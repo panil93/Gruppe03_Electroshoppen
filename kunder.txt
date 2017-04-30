@@ -1,0 +1,39 @@
+[Kunde]:
+Grzegorz Brzeczyszczykiewicz
+Nansensgade 5, 1.th, 5000 Odense C
+grze72
+marzena1
+22334455
+[Kunde]:
+Anders Andersen
+Ørbækvej 122, 5240 Odense NØ
+andy21
+loveyou
+33445566
+[Order]:
+grze72,20170001,159.99
+0000000001
+Nansensgade 5, 1.th, 5000 Odense C
+[Order]:
+grze72,20170002,1119.93
+0000000001,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001
+Nansensgade 5, 1.th, 5000 Odense C
+[Betaling]:
+1119.93
+11/04/2017
+grze72
+20170002
+[Betaling]:
+159.99
+12/04/2017
+grze72
+20170001
+[Reklamation]:
+fejlkøb
+12/04/2017
+true
+penge
+20170001
+grze72
+0000000001,0000000001
+20170002

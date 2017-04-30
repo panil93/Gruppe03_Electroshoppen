@@ -1,0 +1,43 @@
+[Medarbejder]:
+Martin Holm Petersen
+mar16
+martin1234
+butikmedarbejder
+[Medarbejder]:
+Susanne Hansen
+sus15
+susanne1234
+butikmedarbejder
+[Medarbejder]:
+Sofie Jansen
+sof15
+sofie1234
+butikmedarbejder
+[Medarbejder]:
+Per Olsen
+per16
+per1234
+butikmedarbejder
+[Medarbejder]:
+Christian Andersen
+chris17
+christian1234
+kampagnestyrer
+[Medarbejder]:
+Anita Knudstrup
+ani16
+anita1234
+kampagnestyrer
+[Butik]:
+Åsumvej 423, 5240 Odense NØ
+electro_odense@electroshoppen.dk
+mar16,sus15
+[Butik]:
+Højvangen 77, 5330 Munkebo
+electro_munkebo@electroshoppen.dk
+sof15,per16
+[Lager]:
+Åsumvej 423, 5240 Odense NØ
+0000000001,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001,0000000002,0000000002
+Højvangen 77, 5330 Munkebo
+0000000001,0000000001
