@@ -137,7 +137,6 @@
             <Label layoutX="310.0" layoutY="104.0" prefHeight="17.0" prefWidth="135.0" text="Din indkøbsvogn:" />
             <Button fx:id="gaatilkassen" layoutX="492.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleKasseAction" style="-fx-background-color: white;" text="Gå til kassen" textFill="#3300ff" />
             <Label fx:id="totalLabel" layoutX="520.0" layoutY="265.0" prefHeight="25.0" prefWidth="60.0" textFill="WHITE" />
-            <Label layoutX="526.0" layoutY="240.0" text="Totalpris:" />
             <Button fx:id="addtocart" layoutX="178.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Tilføj til vogn" textFill="#3300ff" />
             <Button fx:id="removefromcart" layoutX="179.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Slet fra vogn" textFill="#3300ff" />
             <Button fx:id="kundekonto" layoutX="424.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Til kundekonto" textFill="#3300ff" visible="false" />
