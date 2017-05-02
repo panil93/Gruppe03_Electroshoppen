@@ -450,11 +450,18 @@ public class MenuFXMLController implements Initializable {
             soegpane.setVisible(true);
         } else if (pressed_button == addtocart) {                 
            cart.getItems().add(katalog.getSelectionModel().getSelectedItem());        
-           order.getItems().add(cart.getItems()); 
-           totalpris.setText("pris skal stå her");
+           order.getItems().add(katalog.getSelectionModel().getSelectedItem());
+           double totalPris = 0;
+           for(Varer v : cart.getItems()){
+               totalPris+=v.getPris();
+               String total2 = String.valueOf(totalPris);
+               totalpris.setText(total2);
+           }
+       
+
         } else if (pressed_button == removefromcart) {
              cart.getItems().remove(katalog.getSelectionModel().getSelectedItem());   
-             order.getItems().remove(cart.getItems());
+             order.getItems().remove(katalog.getSelectionModel().getSelectedItem());
         } else if (pressed_button == logaf) {
             logaf.setVisible(false);
             register.setVisible(true);
