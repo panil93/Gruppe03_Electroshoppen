@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import gruppe03_electroshoppen.Kasse;
 import gruppe03_electroshoppen.Kunde;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -138,7 +139,7 @@ public class MenuFXMLController implements Initializable {
     @FXML
     RadioButton collect;
     @FXML
-    TextArea order;
+    ListView order;
     @FXML
     TextField totalpris;
     @FXML
@@ -307,17 +308,23 @@ public class MenuFXMLController implements Initializable {
 
     @FXML
     private void handleKasseAction(ActionEvent event) {
+        Button b = (Button) event.getSource();
+        if(b == gaatilkassen){            
+            kassePane.setVisible(true);
+            shopPane.setVisible(false);      
+        }else if(b == tilbage2){
+            shopPane.setVisible(true);
+        }
         RadioButton radiusek = (RadioButton) group.getSelectedToggle();
         if (radiusek == hjem) {
 
-        } else if (radiusek == collect) {
+        } else if (b == bet && radiusek == collect) {
             collectPane.setVisible(true);
-
+            listButikker.getItems().addAll(mediator.getListOfButikker());
         }
     }
 
     @FXML
-
     private void handleKundeKontoAction(ActionEvent event) {
         Button pressed_button = (Button) event.getSource();
         if (pressed_button == nyreklam) {
@@ -337,6 +344,7 @@ public class MenuFXMLController implements Initializable {
             kundeorderer.setVisible(false);
             redigeringsPane.setVisible(true);
             Button button = (Button) event.getSource();
+            /*
             if (button == gemoplys) {
                 
                 redigeringsPane.setVisible(false);
@@ -347,6 +355,7 @@ public class MenuFXMLController implements Initializable {
                 rediggampass.setVisible(true);
                 
             }
+*/
 
         } else if (pressed_button == tilbage0) {
             kundekontoPane.setVisible(false);
@@ -374,7 +383,7 @@ public class MenuFXMLController implements Initializable {
             mediator.getListOfKunder().add(new Kunde(regname.getText(),regaddr.getText(),reglog.getText(),redadg.getText(),Integer.parseInt(regtel.getText())));
             }
             else{
-                regerrorlabel.setText("Ugældig data, Prøv igen");
+                regerrorlabel.setText("Ugyldig data, Prøv igen");
                 
             }
             } else if (pressed_button == tilbage1) {
@@ -439,14 +448,13 @@ public class MenuFXMLController implements Initializable {
             shopPane.setVisible(false);
         } else if (pressed_button == soueg) {
             soegpane.setVisible(true);
-
-        } else if (pressed_button == addtocart) {
-
+        } else if (pressed_button == addtocart) {                 
+           cart.getItems().add(katalog.getSelectionModel().getSelectedItem());        
+           order.getItems().add(cart.getItems()); 
+           totalpris.setText("pris skal stå her");
         } else if (pressed_button == removefromcart) {
-
-        } else if (pressed_button == gaatilkassen) {
-            kassePane.setVisible(true);
-            shopPane.setVisible(false);
+             cart.getItems().remove(katalog.getSelectionModel().getSelectedItem());   
+             order.getItems().remove(cart.getItems());
         } else if (pressed_button == logaf) {
             logaf.setVisible(false);
             register.setVisible(true);
@@ -496,6 +504,7 @@ public class MenuFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         shopPane.setVisible(true);
         rabat.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99));
+        order.setDisable(true);
 
         setRefAndInitialData(new Mediator());
         updateKatalog();

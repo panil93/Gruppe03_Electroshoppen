@@ -5,6 +5,7 @@
  */
 package gruppe03_electroshoppen;
 
+import Persistence.LoadButikker;
 import Persistence.LoadKunder;
 import Persistence.LoadVarer;
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import java.util.HashMap;
 public class Mediator {
     LoadVarer l= new LoadVarer();
     LoadKunder k=new LoadKunder();
+    LoadButikker lB = new LoadButikker();
+    LoadButikker lB2 = new LoadButikker();
     List<Varer> produktkatalog = new ArrayList<Varer>();
 List<Kunde> listofkunder = new ArrayList<Kunde>();
 List<Medarbejder> medarblist = new ArrayList<Medarbejder>();
@@ -28,6 +31,7 @@ List<Order> listoforder= new ArrayList<Order>();
 public Mediator(){
     l.load();
     k.load(this);
+    lB.load(this);
 }
 public List<Varer>getListOfVarer(){
     
@@ -37,10 +41,10 @@ public List<Kunde>getListOfKunder(){
    return k.getListOfKunder();
 }
 public List<Medarbejder>getListOfMedarbeder(){
-   return this.medarblist; 
+   return this.lB.getListOfMedarbejder(); 
 }
 public List<Butik>getListOfButikker(){
-    return this.listofshops;
+    return this.lB.getListOfButikker();
 }
 public List<Underleverandør>getListOfUnderleverandører(){
     return this.listofunderleverandor;

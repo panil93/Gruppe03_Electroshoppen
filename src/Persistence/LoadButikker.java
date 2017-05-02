@@ -76,5 +76,11 @@ public class LoadButikker extends Loader{
             }
 }
 }
+    public List<Butik> getListOfButikker(){
+      return this.butikker_list;
+}
+    public List<Medarbejder> getListOfMedarbejder(){
+       return this.medarbejder_list;
+    }
 }
 
