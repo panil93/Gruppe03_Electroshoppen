@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -11,6 +13,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MenuFXMLController">
    <children>
@@ -125,6 +128,81 @@
             </Pane>
          </children>
       </AnchorPane>
+      <AnchorPane prefHeight="400.0" prefWidth="606.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ListView layoutX="362.0" layoutY="87.0" prefHeight="178.0" prefWidth="200.0" />
+            <Label layoutX="31.0" layoutY="30.0" prefHeight="35.0" prefWidth="176.0" text="Betaling">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="362.0" layoutY="53.0" prefHeight="35.0" prefWidth="200.0" text="Din bestilling og pris">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="448.0" layoutY="280.0" prefHeight="25.0" prefWidth="114.0" />
+            <Label layoutX="362.0" layoutY="279.0" prefHeight="27.0" prefWidth="81.0" text="Pris i alt">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="88.0" prefHeight="35.0" prefWidth="176.0" text="Kortnummer">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="158.0" prefHeight="35.0" prefWidth="176.0" text="Udløbsdato">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="231.0" prefHeight="35.0" prefWidth="176.0" text="Kontrolcifre">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField disable="true" layoutX="31.0" layoutY="123.0" prefHeight="25.0" prefWidth="216.0" />
+            <TextField disable="true" layoutX="31.0" layoutY="266.0" prefHeight="25.0" prefWidth="54.0" />
+            <ChoiceBox disable="true" layoutX="31.0" layoutY="200.0" prefHeight="25.0" prefWidth="101.0" />
+            <ChoiceBox disable="true" layoutX="146.0" layoutY="200.0" prefHeight="25.0" prefWidth="101.0" />
+            <CheckBox disable="true" layoutX="31.0" layoutY="320.0" mnemonicParsing="false" text="Jeg accepterer betingelserne" />
+            <Button layoutX="362.0" layoutY="329.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Forsæt">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="400.0" prefWidth="606.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ListView layoutX="378.0" layoutY="119.0" prefHeight="163.0" prefWidth="200.0" />
+            <TextArea layoutX="27.0" layoutY="82.0" prefHeight="200.0" prefWidth="332.0" text="Tak for din bestilling">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="27.0" layoutY="32.0" prefHeight="35.0" prefWidth="176.0" text="Kvittering">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="27.0" layoutY="307.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Print kvittering" />
+            <Label layoutX="378.0" layoutY="82.0" prefHeight="35.0" prefWidth="200.0" text="Din bestilling">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="145.0" layoutY="307.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Tilbage til webshoppen" />
+            <Button layoutX="27.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Log af" />
+            <TextField layoutX="463.0" layoutY="307.0" prefHeight="25.0" prefWidth="114.0" />
+            <Label layoutX="382.0" layoutY="306.0" prefHeight="27.0" prefWidth="81.0" text="Pris i alt">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="udlevendørePane" prefHeight="400.0" prefWidth="600.0" visible="false">
          <children>
             <Label layoutX="19.0" layoutY="14.0" text="Order liste:" />
@@ -134,7 +212,7 @@
             <ListView fx:id="undlist" layoutX="14.0" layoutY="31.0" prefHeight="350.0" prefWidth="140.0" />
             <ListView fx:id="unddet" layoutX="300.0" layoutY="132.0" prefHeight="244.0" prefWidth="262.0" />
          </children></AnchorPane>
-      <AnchorPane fx:id="shopPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;">
+      <AnchorPane fx:id="shopPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" visible="false">
          <children>
             <Button fx:id="logpaa" layoutX="533.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Log på" textFill="#3300ff" />
             <Button fx:id="register" layoutX="460.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Register" textFill="#3300ff" />
