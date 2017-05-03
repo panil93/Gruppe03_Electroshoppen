@@ -5,12 +5,14 @@
  */
 package gruppe03_electroshoppen;
 
+import java.util.List;
+import javafx.scene.control.ListView;
+
 /**
  *
  * @author Laura
  */
 public class Kasse {
     Order o;
-    Betaling b;
-    
+    Betaling b;    
 }

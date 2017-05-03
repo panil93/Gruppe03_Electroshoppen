@@ -10,10 +10,19 @@ package gruppe03_electroshoppen;
  * @author Laura
  */
 public class Underleverandør {
-private String login;
-private String adgangskode;
-public Underleverandør(String login, String adgangskode){
-    this.login = login;
-    this.adgangskode = adgangskode;
-}
+
+	private String login;
+	private String adgangskode;
+
+	
+	
+	public Underleverandør(String login, String adgangskode) {
+
+		this.login = login;
+		this.adgangskode = adgangskode;
+
+	}
+
+	
+	
 }

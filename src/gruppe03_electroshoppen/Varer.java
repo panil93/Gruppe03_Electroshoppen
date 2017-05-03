@@ -12,6 +12,7 @@ package gruppe03_electroshoppen;
 public abstract class Varer {
     double RetailPrice;
     private String CompanyId;
+    
       public double getPris(){
         return this.RetailPrice;
         
