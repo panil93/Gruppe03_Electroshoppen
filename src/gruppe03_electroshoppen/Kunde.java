@@ -93,4 +93,7 @@ public String toString(){
 	public String toString() {
 		return this.fuldnavn + "\n" + this.adresse + "\n" + this.telefonnr;
 	}
+
+
+
 }
