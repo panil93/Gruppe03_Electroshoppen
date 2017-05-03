@@ -37,6 +37,19 @@ public String getAdgangskode(){
 public int getTelefonnr(){
     return this.telefonnr;
 }
+public void setTelefonnr(int telly){
+  this.telefonnr= telly;  
+}
+public void setAdgangskode(String adgang){
+    this.adgangskode= adgang;
+}
+public void setAdresse(String adres){
+    this.adresse = adres;
+}
+public void setFuldnavn(String namey){
+    
+    this.fuldnavn= namey;
+}
 @Override
 public String toString(){
     return this.fuldnavn+"\n"+this.adresse+"\n"+this.telefonnr;
