@@ -26,8 +26,7 @@ import gruppe03_electroshoppen.Mediator;
 import gruppe03_electroshoppen.Order;
 import gruppe03_electroshoppen.Produkt;
 import gruppe03_electroshoppen.Varer;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Calendar;
 import java.util.List;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SpinnerValueFactory;
@@ -241,6 +240,10 @@ public class MenuFXMLController implements Initializable {
     Label formedarb;
     @FXML
     Label regerrorlabel;
+    @FXML
+    Label kunneik;
+    @FXML
+    ListView banner;
 
     /**
      * Initializes the controller class.
@@ -286,13 +289,21 @@ public class MenuFXMLController implements Initializable {
                     
                     v.setPris(newPrice);
                     formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i Webshoppen");
+                    if (Calendar.getInstance().after(stardate.getValue())&&Calendar.getInstance().before(slutdate.getValue())){
+           banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i Webshoppen");
+                    }
+                   
                 }
 
-                //updateKatalog();
-            }
+                
+            } 
 
         } else if (radiusek == pos) {
             formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i Points of Sale");
+           if (Calendar.getInstance().after(stardate.getValue())&&Calendar.getInstance().before(slutdate.getValue())){
+           banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i POS");
+           }
+           
         } else if (radiusek == begge) {
             for (Varer v : mediator.getListOfVarer()) {
                 double d = v.getPris();
@@ -300,6 +311,9 @@ public class MenuFXMLController implements Initializable {
                 v.setPris(newPrice);
 
                 formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i både Webshoppen og Points of Sale");
+          if (Calendar.getInstance().after(stardate.getValue())&&Calendar.getInstance().before(slutdate.getValue())){
+           banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i Electroshoppen");
+           }
             }
 
         }
@@ -337,31 +351,71 @@ public class MenuFXMLController implements Initializable {
             kundeorderer.getItems().clear();
             logpaa.setVisible(true);
             register.setVisible(true);
-            kundekonto.setVisible(false);
+            kundekonto.setVisible(false); 
             logaf.setVisible(false);
         } else if (pressed_button == redigopl) {
+            kunneik.setText(" ");
             kundeoplys.setVisible(false);
             kundeorderer.setVisible(false);
             redigeringsPane.setVisible(true);
+        }
+            else if (pressed_button == gemoplys) {
+                Order orde;
             Button button = (Button) event.getSource();
             /*
             if (button == gemoplys) {
                 
                 redigeringsPane.setVisible(false);
-                for(Kunde k)
-                if(redignypass.getText().isEmpty()==false&&rediggampass.getText().compareTo(anotherString))
-            } else if (button == skiftbutton) {
+           for( Kunde kundas: mediator.getListOfKunder()){
+            if(kundas.toString().compareTo(kundeoplys.getText())==0){
+            
+                    
+                
+                if((redignypass.getText().isEmpty()==false)&&(rediggampass.getText().compareTo(kundas.getAdgangskode()))==0){
+                  kundas.setAdgangskode(redignypass.getText());
+                  rediggampass.setVisible(false);
+                  redignypass.setVisible(false);
+                  updateKundeKonto();
+                  
+                }
+                
+                
+                if(redigname.getText().isEmpty()==false){
+                    kundas.setFuldnavn(redigname.getText());
+                    updateKundeKonto();
+                }
+                
+                if(redigtel.getText().isEmpty()==false){
+                    kundas.setTelefonnr(Integer.parseInt(redigtel.getText()));
+                    updateKundeKonto();
+                }
+                
+                if(redigadd.getText().isEmpty()==false){
+                    kundas.setAdresse(redigadd.getText());
+                    updateKundeKonto();
+                }
+             if(redignypass.getText().isEmpty()==true&&redigname.getText().isEmpty()==true&&redigadd.getText().isEmpty()==true&&redigtel.getText().isEmpty()==true){
+                    kunneik.setText("Ugyldig værdig");
+                    updateKundeKonto();
+                }   
+            }
+            } 
+            }
+            else if (pressed_button == skiftbutton) {
                 redignypass.setVisible(true);
                 rediggampass.setVisible(true);
+                updateKundeKonto();
                 
             }
 */
 
-        } else if (pressed_button == tilbage0) {
+         else if (pressed_button == tilbage0) {
             kundekontoPane.setVisible(false);
             shopPane.setVisible(true);
+            updateKundeKonto();
         }
     }
+    
 
     @FXML
     private void handleUnderleverandørAction(ActionEvent event) {
@@ -505,6 +559,13 @@ public class MenuFXMLController implements Initializable {
         this.katalog.getItems().clear();
         List<Varer> objects = mediator.getListOfVarer();
         this.katalog.getItems().addAll(objects);
+    }
+    private void updateKundeKonto(){
+       this.kundeoplys.setText(null);
+       List<Kunde> clients = mediator.getListOfKunder();
+       for (Kunde kudin: clients){
+       this.kundeoplys.setText(kudin.toString());
+    }
     }
 
     @Override

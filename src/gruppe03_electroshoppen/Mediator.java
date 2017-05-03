@@ -155,6 +155,14 @@ public Kunde getKundeByLoginAndPassword(String log, String pass){
     }
     return null;
 }
+public Kunde getKundeByOrder(int ordernrnr){
+    for(Order ordi: k.getListOfOrder()){
+        if(ordi.getId()==ordernrnr){
+            return ordi.getKunde();
+        }
+    }
+    return null;
+}
 public List<Order> getAllOrdersByKunde(Kunde kundzik){
     List<Order> orderlist0 =new ArrayList<>();
     for(Order ord: this.getListOfOrder()){
