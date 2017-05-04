@@ -157,6 +157,9 @@ public Order getOrderByid(String s){
      }
      return orderlist;
  }
+ public void RemoveListOfOrder(Order o){
+     this.k.getListOfOrder().remove(o);
+ }
 public List<Medarbejder> getListOfMedarbejderByLogin(String str){
    List<Medarbejder> medarbliste = new ArrayList<>();
    String[] stringarray =str.split(",");
