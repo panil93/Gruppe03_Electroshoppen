@@ -199,6 +199,7 @@ public class MenuFXMLController implements Initializable {
     ListView reklamprod;
     @FXML
     TextField reklamlist;
+	 @FXML
     ToggleGroup reklamationer;
     @FXML
     RadioButton penge;
