@@ -25,10 +25,12 @@ public Order(int id,String stedtiludlevering, Kunde kunde, double orderPrice, Li
     this.listonorder =  new ArrayList<>();
     this.stedtiludlevering =stedtiludlevering;
     this.orderPrice = orderPrice;
+    this.kunde = kunde;
+    this.listOfVarer = listOfVarer;
     
 }
 public List<Varer> getVarer(){
-    return this.listonorder;
+    return this.listOfVarer;
 }
 public int getId(){
     return this.id;

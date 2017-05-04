@@ -36,6 +36,7 @@ public class Loader {
     public void load() {
         new LoadKunder();
         new LoadVarer();
+        new LoadButikker();
     }
     public void load(Mediator ref_m)
     {

@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import gruppe03_electroshoppen.Butik;
 import gruppe03_electroshoppen.Kasse;
 import gruppe03_electroshoppen.Kunde;
 import java.net.URL;
@@ -26,7 +27,9 @@ import gruppe03_electroshoppen.Mediator;
 import gruppe03_electroshoppen.Order;
 import gruppe03_electroshoppen.Produkt;
 import gruppe03_electroshoppen.Varer;
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -111,6 +114,7 @@ public class MenuFXMLController implements Initializable {
     Button regslut;
     @FXML
     ToggleGroup group;
+    
     @FXML
     RadioButton kat;
     @FXML
@@ -231,9 +235,9 @@ public class MenuFXMLController implements Initializable {
     @FXML
     TextField pakkeoplys;
     @FXML
-    TextField pakkemodtag;
+    TextArea pakkemodtag;
     @FXML
-    TextField pakkedetaj;
+    ListView pakkedetaj;
     @FXML
     ListView<Varer> katalog;
     @FXML
@@ -314,13 +318,42 @@ public class MenuFXMLController implements Initializable {
 	 */
 	@FXML
 	private void handleMedarbejderAction(ActionEvent event) {
+            
 		Button pressed_button = (Button) event.getSource();
 		if (pressed_button == logaffff) {
 			medarbejderPane.setVisible(false);
 			shopPane.setVisible(true);
 		}
-
+                else if(pressed_button ==infobutton){
+                for(Order ordy : mediator.getListOfOrder()){
+                 String test = pakkeoplys.getText();
+                if(Integer.parseInt(test)==(ordy.getId())){
+                    Kunde t = mediator.getKundeByOrder(ordy.getId());
+                    String t2 = mediator.getKundeByOrder(ordy.getId()).getAdresse();
+                    pakkemodtag.setText(t.getName()+"\n"+t2);
+                    for(Varer v :mediator.getVarerByOrder(Integer.parseInt(pakkeoplys.getText()))){
+                        if(v!=null){
+                   pakkedetaj.getItems().add(v);
+                    }
+                    }
+                }
+                else{
+                    //pakkemodtag.setText("Findes ikke");
+                    //pakkedetaj.getItems().add("Findes ikke");
+                }
+                    }
 	}
+                else if(pressed_button ==markmed){
+                    for(Order o: mediator.getListOfOrder()){
+                        if(o.getId()==Integer.parseInt(pakkeoplys.getText())){
+                        mediator.getListOfOrder().remove(o);
+                        pakkemodtag.clear();
+            pakkedetaj.getItems().removeAll(); 
+            pakkeoplys.clear();
+                    }}
+                   
+                }
+        }
 
 	
     @FXML
@@ -352,11 +385,11 @@ public class MenuFXMLController implements Initializable {
             for (Varer v : mediator.getListOfVarer()) {
                 if (v instanceof Produkt) {
                     newPrice=((Produkt) v).calculatePriceWithRabat((Integer)rabat.getValue(), v.getPris());
-                    
+                     
                     v.setPris(newPrice);
                     formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i Webshoppen");
-                    if (Calendar.getInstance().after(stardate.getValue())&&Calendar.getInstance().before(slutdate.getValue())){
-           banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i Webshoppen");
+                    if ((stardate.getValue().isBefore(LocalDate.now()) && slutdate.getValue().isAfter(LocalDate.now())) ){
+                        banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i Webshoppen");
                     }
                    
                 }
@@ -366,18 +399,20 @@ public class MenuFXMLController implements Initializable {
 
         } else if (radiusek == pos) {
             formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i Points of Sale");
-           if (Calendar.getInstance().after(stardate.getValue())&&Calendar.getInstance().before(slutdate.getValue())){
-           banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i POS");
+           if ((stardate.getValue().isBefore(LocalDate.now()) && slutdate.getValue().isAfter(LocalDate.now())) ){
+            banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i POS");
            }
            
         } else if (radiusek == begge) {
+            List<Varer> tester = mediator.getListOfVarer();
             for (Varer v : mediator.getListOfVarer()) {
-                double d = v.getPris();
-                newPrice = (d * (1 - (Integer) rabat.getValue() / 100));
-                v.setPris(newPrice);
+                if (v instanceof Produkt) {
+                    newPrice=((Produkt) v).calculatePriceWithRabat((Integer)rabat.getValue(), v.getPris());
+                     
+                    v.setPris(newPrice);
 
                 formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i både Webshoppen og Points of Sale");
-          if (Calendar.getInstance().after(stardate.getValue())&&Calendar.getInstance().before(slutdate.getValue())){
+          if ((stardate.getValue().isBefore(LocalDate.now()) && slutdate.getValue().isAfter(LocalDate.now())) ){
            banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i Electroshoppen");
            }
             }
@@ -385,12 +420,24 @@ public class MenuFXMLController implements Initializable {
         }
         updateKatalog();
     }
+    }
 
 	 
 	@FXML
 	private void handleKasseAction(ActionEvent event) {
 		Button b = (Button) event.getSource();
+                int id= 0;
+                String stedtiludlevering= null; 
+                Kunde kunde = null; 
+                double orderPrice= 0.0;
+                List<Varer>listOfVarer=null;
+                
+                
+                
+               
+                
 		if (b == gaatilkassen) {
+                    
 			kassePane.setVisible(true);
 			shopPane.setVisible(false);
 		} else if (b == tilbage2) {
@@ -398,19 +445,33 @@ public class MenuFXMLController implements Initializable {
 		} else if (b == bet) {
 			invoiceInfoPane.setVisible(true);
 			kassePane.setVisible(false);
+                        handleForsendelseAction(event);
 		}
-		RadioButton radiusek = (RadioButton) group.getSelectedToggle();
-		if (radiusek == hjem) {
-			
-			
-			
-		} else if (b == bet && radiusek == collect) {
-			collectPane.setVisible(true);
-			listButikker.getItems().addAll(mediator.getListOfButikker());
-			invoiceInfoPaneDiffrentAddress.disableProperty();
-		}
+                else if(b==chooseButton){
+                    collectPane.setVisible(false);
+                    stedtiludlevering= listButikker.getSelectionModel().getSelectedItem().toString();
+                }
+                Order buyorder = new Order(id,stedtiludlevering, kunde, orderPrice, listOfVarer);
+		
 	}
-	
+	@FXML
+        private void handleForsendelseAction(ActionEvent event){
+            RadioButton radiob = (RadioButton) hente.getSelectedToggle();
+		if (radiob == hjem) {
+			
+			
+			
+		} else if (radiob == collect) {
+			collectPane.setVisible(true);
+                        for (Butik butik_to:mediator.getListOfButikker()){
+                            if(butik_to!=null){
+			listButikker.getItems().add(butik_to.getAdresse());
+			invoiceInfoPaneDiffrentAddress.disableProperty();
+                        
+		}
+                        }
+                }
+        }
 	
 
 	@FXML
@@ -680,6 +741,15 @@ public class MenuFXMLController implements Initializable {
 			this.kundeoplys.setText(kudin.toString());
 		}
 	}
+        private void updateButikker(){
+            this.listButikker.getItems().removeAll();
+            List<Butik> butikker = mediator.getListOfButikker();
+            for (Butik shopper : butikker){
+                if (shopper!=null){
+                    this.listButikker.getItems().add(shopper);
+                }
+            }
+        }
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -689,6 +759,7 @@ public class MenuFXMLController implements Initializable {
 
 		setRefAndInitialData(new Mediator());
 		updateKatalog();
+                updateButikker();
 	}
 
 	void setRefAndInitialData(Mediator mediator) {

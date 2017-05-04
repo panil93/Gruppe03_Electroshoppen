@@ -21,7 +21,7 @@ public class Mediator {
     LoadVarer l= new LoadVarer();
     LoadKunder k=new LoadKunder();
     LoadButikker lB = new LoadButikker();
-    LoadButikker lB2 = new LoadButikker();
+    
     List<Varer> produktkatalog = new ArrayList<Varer>();
 List<Kunde> listofkunder = new ArrayList<Kunde>();
 List<Medarbejder> medarblist = new ArrayList<Medarbejder>();
@@ -81,13 +81,26 @@ public Varer getVarerByid(String s){
        
    if(v.getId().compareTo(s) == 0){
        return v;
-   }
+   }}
+   
     
-}
+
+   
+
 return null;
 }
+public List<Varer> getVarerByOrder(int orders_id){
+    
+    for (Order o:this.getListOfOrder()){
+        if(o.getId()==orders_id){
+            return o.getVarer();
+        }
+    }
+    return null;
+}
+
 public Order getOrderByid(String s){
-    for(Order o:listoforder){
+    for(Order o:this.getListOfOrder()){
         if(o.getId()==Integer.parseInt(s)){
             return o;
         }
@@ -122,12 +135,18 @@ public Order getOrderByid(String s){
  }
  public List<Varer> getListOfVarerById(String st){
      List <Varer> varelist = this.l.getProduktKatalog();
-     String[] stringarray =st.split(",");
-     for (int i=0;i<stringarray.length; i++){
-         Varer v= this.getVarerById(stringarray[i]);     
-     varelist.add(v);
+     List<Varer> newlistofvarer= new ArrayList();
+     String[] ids= st.split(",");
+     for(Varer v :varelist){
+         for(String id : ids){
+         if(v.getId().compareTo(id)==0){
+             newlistofvarer.add(v);
+         }
+         
      }
-     return varelist;
+     }
+     
+     return newlistofvarer;
  }
  public List<Order> getListOfOrder(String intowy){
      List<Order> orderlist = this.k.getListOfOrder();
