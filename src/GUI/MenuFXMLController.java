@@ -394,7 +394,7 @@ public class MenuFXMLController implements Initializable {
 		} else if (b == bet) {
 			invoiceInfoPane.setVisible(true);
 			kassePane.setVisible(false);
-			
+
 			invoiceInfoPaneTotalPrice.setText(totalpris.getText());
 
 		}
@@ -423,6 +423,7 @@ public class MenuFXMLController implements Initializable {
 		paymentPane.setVisible(false);
 		receiptPane.setVisible(true);
 		receiptPaneTotalPrice.setText(totalpris.getText());
+		receiptPaneMessage.appendText("Tak for din bestilling" + "\n" + "\n" + "Vi har sendt din kvittering til " + invoiceInfoPaneEmail.getText());
 
 	}
 
@@ -431,14 +432,25 @@ public class MenuFXMLController implements Initializable {
 
 		receiptPane.setVisible(false);
 		shopPane.setVisible(true);
-		
+
+		totalpris.clear();
+		receiptPaneMessage.clear();
 		cart.getItems().clear();
 		order.getItems().clear();
 		paymentPaneOrder.getItems().clear();
-		invoiceInfoPaneOrder.getItems().clear();
 		receiptPaneOrder.getItems().clear();
-		totalpris.clear();
-		
+		invoiceInfoPaneOrder.getItems().clear();
+		invoiceInfoPaneName.clear();
+		invoiceInfoPaneEmail.clear();
+		invoiceInfoPaneTelefon.clear();
+		invoiceInfoPaneAddress1.clear();
+		invoiceInfoPanePostCode.clear();
+		invoiceInfoPaneAddress2.clear();
+		invoiceInfoPaneCity.clear();
+		invoiceInfoPaneMessage.clear();
+		//invoiceInfoPaneDiffrentAddress.clear();
+		//invoiceInfoPaneCountry.clear();
+
 	}
 
 	@FXML
@@ -451,14 +463,14 @@ public class MenuFXMLController implements Initializable {
 		logpaa.setVisible(true);
 		kundekonto.setVisible(false);
 		logaf.setVisible(false);
-
 		cart.getItems().clear();
 		order.getItems().clear();
 		paymentPaneOrder.getItems().clear();
 		invoiceInfoPaneOrder.getItems().clear();
 		receiptPaneOrder.getItems().clear();
 		totalpris.clear();
-		
+		receiptPaneMessage.clear();
+
 	}
 
 	@FXML
@@ -623,7 +635,7 @@ public class MenuFXMLController implements Initializable {
 			paymentPaneOrder.getItems().add(katalog.getSelectionModel().getSelectedItem());
 			invoiceInfoPaneOrder.getItems().add(katalog.getSelectionModel().getSelectedItem());
 			receiptPaneOrder.getItems().add(katalog.getSelectionModel().getSelectedItem());
-			
+
 			double totalPris = 0;
 			for (Varer v : cart.getItems()) {
 				totalPris += v.getPris();
