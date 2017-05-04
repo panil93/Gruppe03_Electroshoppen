@@ -197,6 +197,7 @@ public class MenuFXMLController implements Initializable {
     ListView reklamprod;
     @FXML
     TextField reklamlist;
+	@FXML
     ToggleGroup reklamationer;
     @FXML
     RadioButton penge;
@@ -276,7 +277,6 @@ public class MenuFXMLController implements Initializable {
         }
     }
 
-    @FXML
     private void handleKampagnePaneAction(ActionEvent event) {
         double newPrice = 0;
         
@@ -584,5 +584,8 @@ public class MenuFXMLController implements Initializable {
 
     }
 
+
     // TODO
+
+	
 }
