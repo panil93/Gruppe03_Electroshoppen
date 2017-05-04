@@ -15,6 +15,7 @@ public class Kunde {
     private String login;
     private String adgangskode;
     private int telefonnr;
+	
 public Kunde(String fuldnavn,String adresse,String login,String adgangskode,int telefonnr){
     this.fuldnavn = fuldnavn;
     this.adresse = adresse;
@@ -54,6 +55,11 @@ public void setFuldnavn(String namey){
 public String toString(){
     return this.fuldnavn+"\n"+this.adresse+"\n"+this.telefonnr;
 }
+
+
+
+/**
+ *
 
 	private String fuldnavn;
 	private String adresse;
@@ -95,5 +101,6 @@ public String toString(){
 	}
 
 
+ */
 
 }
