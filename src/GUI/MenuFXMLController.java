@@ -356,7 +356,7 @@ public class MenuFXMLController implements Initializable {
                     v.setPris(newPrice);
                     formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i Webshoppen");
                     if (Calendar.getInstance().after(stardate.getValue())&&Calendar.getInstance().before(slutdate.getValue())){
-           //banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i Webshoppen");
+           banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i Webshoppen");
                     }
                    
                 }
@@ -367,7 +367,7 @@ public class MenuFXMLController implements Initializable {
         } else if (radiusek == pos) {
             formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i Points of Sale");
            if (Calendar.getInstance().after(stardate.getValue())&&Calendar.getInstance().before(slutdate.getValue())){
-           //banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i POS");
+           banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i POS");
            }
            
         } else if (radiusek == begge) {
@@ -378,12 +378,12 @@ public class MenuFXMLController implements Initializable {
 
                 formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i både Webshoppen og Points of Sale");
           if (Calendar.getInstance().after(stardate.getValue())&&Calendar.getInstance().before(slutdate.getValue())){
-           //banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i Electroshoppen");
+           banner.getItems().add("Vild tilbud! hele "+rabat.getValue()+"% kun i Electroshoppen");
            }
             }
 
         }
-        //updateKatalog();
+        updateKatalog();
     }
 
 	 
@@ -395,10 +395,10 @@ public class MenuFXMLController implements Initializable {
 			shopPane.setVisible(false);
 		} else if (b == tilbage2) {
 			shopPane.setVisible(true);
-		} //else if (b == bet) {
-			//invoiceInfoPane.setVisible(true);
-			//kassePane.setVisible(false);
-		//}
+		} else if (b == bet) {
+			invoiceInfoPane.setVisible(true);
+			kassePane.setVisible(false);
+		}
 		RadioButton radiusek = (RadioButton) group.getSelectedToggle();
 		if (radiusek == hjem) {
 			
@@ -407,7 +407,7 @@ public class MenuFXMLController implements Initializable {
 		} else if (b == bet && radiusek == collect) {
 			collectPane.setVisible(true);
 			listButikker.getItems().addAll(mediator.getListOfButikker());
-			//invoiceInfoPaneDiffrentAddress.disableProperty();
+			invoiceInfoPaneDiffrentAddress.disableProperty();
 		}
 	}
 	
@@ -685,7 +685,7 @@ public class MenuFXMLController implements Initializable {
 		order.setDisable(true);
 
 		setRefAndInitialData(new Mediator());
-		//updateKatalog();
+		updateKatalog();
 	}
 
 	void setRefAndInitialData(Mediator mediator) {
