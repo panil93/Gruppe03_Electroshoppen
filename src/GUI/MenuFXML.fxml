@@ -128,9 +128,9 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="400.0" prefWidth="606.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="invoiceInfoPane" prefHeight="400.0" prefWidth="606.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="392.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Forsæt" textFill="#3300ff">
+            <Button fx:id="invoiceInfoPaneContinue" layoutX="392.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleGoToPaymentAction" prefHeight="25.0" prefWidth="200.0" text="Forsæt" textFill="#3300ff">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -145,38 +145,38 @@
             <Label layoutX="39.0" layoutY="168.0" text="Telefon" />
             <Label layoutX="40.0" layoutY="224.0" text="Land" />
             <Label layoutX="44.0" layoutY="275.0" text="Adresse" />
-            <TextField layoutX="40.0" layoutY="87.0" />
-            <TextField layoutX="39.0" layoutY="139.0" />
-            <TextField layoutX="40.0" layoutY="188.0" />
-            <TextField layoutX="39.0" layoutY="304.0" promptText="Gadenavn" />
-            <CheckBox disable="true" layoutX="392.0" layoutY="321.0" mnemonicParsing="false" text="Opret en konto?" />
-            <ChoiceBox disable="true" layoutX="39.0" layoutY="241.0" prefWidth="150.0" />
+            <TextField fx:id="invoiceInfoPaneName" layoutX="40.0" layoutY="87.0" />
+            <TextField fx:id="invoiceInfoPaneEmail" layoutX="39.0" layoutY="139.0" />
+            <TextField fx:id="invoiceInfoPaneTelefon" layoutX="40.0" layoutY="188.0" />
+            <TextField fx:id="invoiceInfoPaneAddress1" layoutX="39.0" layoutY="304.0" promptText="Gadenavn" />
+            <CheckBox fx:id="invoiceInfoPaneCreateAccount" disable="true" layoutX="392.0" layoutY="321.0" mnemonicParsing="false" text="Opret en konto?" />
+            <ChoiceBox fx:id="invoiceInfoPaneCountry" disable="true" layoutX="39.0" layoutY="241.0" prefWidth="150.0" />
             <Label layoutX="46.0" layoutY="336.0" text="By" />
-            <TextField layoutX="208.0" layoutY="357.0" />
-            <TextField layoutX="208.0" layoutY="304.0" promptText="Lejlighed ect. (valgfri)" />
-            <TextField layoutX="40.0" layoutY="357.0" />
+            <TextField fx:id="invoiceInfoPanePostCode" layoutX="208.0" layoutY="357.0" />
+            <TextField fx:id="invoiceInfoPaneAddress2" layoutX="208.0" layoutY="304.0" promptText="Lejlighed ect. (valgfri)" />
+            <TextField fx:id="invoiceInfoPaneCity" layoutX="40.0" layoutY="357.0" />
             <Label layoutX="214.0" layoutY="336.0" text="Postnummer" />
-            <ListView layoutX="392.0" layoutY="102.0" prefHeight="163.0" prefWidth="200.0" />
+            <ListView fx:id="invoiceInfoPaneOrder" layoutX="392.0" layoutY="102.0" prefHeight="163.0" prefWidth="200.0" />
             <Label layoutX="392.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" text="Din bestilling og pris">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="478.0" layoutY="284.0" prefHeight="25.0" prefWidth="114.0" />
+            <TextField fx:id="invoiceInfoPaneTotalPrice" layoutX="478.0" layoutY="284.0" prefHeight="25.0" prefWidth="114.0" />
             <Label layoutX="392.0" layoutY="283.0" prefHeight="27.0" prefWidth="81.0" text="Pris i alt">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextArea layoutX="204.0" layoutY="139.0" prefHeight="123.0" prefWidth="176.0" promptText="Bemærkninger om din ordre..." />
+            <TextArea fx:id="invoiceInfoPaneMessage" layoutX="204.0" layoutY="139.0" prefHeight="123.0" prefWidth="176.0" promptText="Bemærkninger om din ordre..." />
             <Label layoutX="208.0" layoutY="115.0" text="Ordre bemærkninger" />
-            <CheckBox disable="true" layoutX="204.0" layoutY="91.0" mnemonicParsing="false" />
+            <CheckBox fx:id="invoiceInfoPaneDiffrentAddress" disable="true" layoutX="204.0" layoutY="91.0" mnemonicParsing="false" />
             <Label layoutX="204.0" layoutY="66.0" text="Send til en anden adresse?" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="400.0" prefWidth="606.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="paymentPane" prefHeight="400.0" prefWidth="606.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ListView layoutX="362.0" layoutY="87.0" prefHeight="178.0" prefWidth="200.0" />
+            <ListView fx:id="paymentPaneOrder" layoutX="362.0" layoutY="87.0" prefHeight="178.0" prefWidth="200.0" />
             <Label layoutX="31.0" layoutY="30.0" prefHeight="35.0" prefWidth="176.0" text="Betaling">
                <font>
                   <Font name="System Bold" size="24.0" />
@@ -187,7 +187,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="448.0" layoutY="280.0" prefHeight="25.0" prefWidth="114.0" />
+            <TextField fx:id="paymentPaneTotalPrice" layoutX="448.0" layoutY="280.0" prefHeight="25.0" prefWidth="114.0" />
             <Label layoutX="362.0" layoutY="279.0" prefHeight="27.0" prefWidth="81.0" text="Pris i alt">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -208,22 +208,22 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField disable="true" layoutX="31.0" layoutY="123.0" prefHeight="25.0" prefWidth="216.0" />
-            <TextField disable="true" layoutX="31.0" layoutY="266.0" prefHeight="25.0" prefWidth="54.0" />
-            <ChoiceBox disable="true" layoutX="31.0" layoutY="200.0" prefHeight="25.0" prefWidth="101.0" />
-            <ChoiceBox disable="true" layoutX="146.0" layoutY="200.0" prefHeight="25.0" prefWidth="101.0" />
-            <CheckBox disable="true" layoutX="31.0" layoutY="320.0" mnemonicParsing="false" text="Jeg accepterer betingelserne" />
-            <Button layoutX="362.0" layoutY="329.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Forsæt" textFill="#3300ff">
+            <TextField fx:id="paymentPaneCardNumber" disable="true" layoutX="31.0" layoutY="123.0" prefHeight="25.0" prefWidth="216.0" />
+            <TextField fx:id="paymentPaneControl" disable="true" layoutX="31.0" layoutY="266.0" prefHeight="25.0" prefWidth="54.0" />
+            <ChoiceBox fx:id="paymentPaneDateMonth" disable="true" layoutX="31.0" layoutY="200.0" prefHeight="25.0" prefWidth="101.0" />
+            <ChoiceBox fx:id="paymentPaneDateYear" disable="true" layoutX="146.0" layoutY="200.0" prefHeight="25.0" prefWidth="101.0" />
+            <CheckBox fx:id="paymentPaneCondition" disable="true" layoutX="31.0" layoutY="320.0" mnemonicParsing="false" text="Jeg accepterer betingelserne" />
+            <Button fx:id="paymentPaneContinue" layoutX="362.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleGoToReceiptAction" prefHeight="25.0" prefWidth="200.0" text="Forsæt" textFill="#3300ff">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="400.0" prefWidth="606.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="receiptPane" prefHeight="400.0" prefWidth="606.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ListView layoutX="378.0" layoutY="119.0" prefHeight="163.0" prefWidth="200.0" />
-            <TextArea layoutX="27.0" layoutY="82.0" prefHeight="200.0" prefWidth="332.0" text="Tak for din bestilling">
+            <ListView fx:id="receiptPaneOrder" layoutX="378.0" layoutY="119.0" prefHeight="163.0" prefWidth="200.0" />
+            <TextArea fx:id="receiptPaneMessage" layoutX="27.0" layoutY="82.0" prefHeight="200.0" prefWidth="332.0" text="Tak for din bestilling">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -233,15 +233,15 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button disable="true" layoutX="27.0" layoutY="307.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="332.0" text="Print kvittering" textFill="#3300ff" />
+            <Button fx:id="receiptPanePrint" disable="true" layoutX="27.0" layoutY="307.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="332.0" text="Print kvittering" textFill="#3300ff" />
             <Label layoutX="378.0" layoutY="82.0" prefHeight="35.0" prefWidth="200.0" text="Din bestilling">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="382.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Tilbage til webshoppen" textFill="#3300ff" />
-            <Button layoutX="472.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Log af" textFill="#3300ff" />
-            <TextField layoutX="463.0" layoutY="307.0" prefHeight="25.0" prefWidth="114.0" />
+            <Button fx:id="receiptPaneBack" layoutX="382.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Tilbage til webshoppen" textFill="#3300ff" />
+            <Button fx:id="receiptPaneLogOf" layoutX="472.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Log af" textFill="#3300ff" />
+            <TextField fx:id="receiptPaneTotalPrice" layoutX="463.0" layoutY="307.0" prefHeight="25.0" prefWidth="114.0" />
             <Label layoutX="382.0" layoutY="306.0" prefHeight="27.0" prefWidth="81.0" text="Pris i alt">
                <font>
                   <Font name="System Bold" size="18.0" />
