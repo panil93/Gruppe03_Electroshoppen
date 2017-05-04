@@ -413,7 +413,6 @@ public class MenuFXMLController implements Initializable {
 
 		invoiceInfoPane.setVisible(false);
 		paymentPane.setVisible(true);
-
 		paymentPaneTotalPrice.setText(totalpris.getText());
 
 	}
@@ -423,7 +422,6 @@ public class MenuFXMLController implements Initializable {
 
 		paymentPane.setVisible(false);
 		receiptPane.setVisible(true);
-
 		receiptPaneTotalPrice.setText(totalpris.getText());
 
 	}
@@ -433,12 +431,20 @@ public class MenuFXMLController implements Initializable {
 
 		receiptPane.setVisible(false);
 		shopPane.setVisible(true);
-
+		
+		cart.getItems().clear();
+		order.getItems().clear();
+		paymentPaneOrder.getItems().clear();
+		invoiceInfoPaneOrder.getItems().clear();
+		receiptPaneOrder.getItems().clear();
+		totalpris.clear();
+		
 	}
 
 	@FXML
-	private void handleReceiptPaneLogOffButtonAction(ActionEvent event) {
+	private void handleLogOffButtonAction(ActionEvent event) {
 
+		receiptPane.setVisible(false);
 		kampagnePane.setVisible(false);
 		shopPane.setVisible(true);
 		register.setVisible(true);
@@ -446,6 +452,13 @@ public class MenuFXMLController implements Initializable {
 		kundekonto.setVisible(false);
 		logaf.setVisible(false);
 
+		cart.getItems().clear();
+		order.getItems().clear();
+		paymentPaneOrder.getItems().clear();
+		invoiceInfoPaneOrder.getItems().clear();
+		receiptPaneOrder.getItems().clear();
+		totalpris.clear();
+		
 	}
 
 	@FXML

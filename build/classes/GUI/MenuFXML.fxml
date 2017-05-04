@@ -240,7 +240,7 @@
                </font>
             </Label>
             <Button fx:id="receiptPaneBack" layoutX="382.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleReceiptPaneBackButtonAction" prefHeight="25.0" prefWidth="81.0" text="Tilbage til webshoppen" textFill="#3300ff" />
-            <Button fx:id="receiptPaneLogOff" layoutX="472.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleReceiptPaneLogOffButtonAction" prefHeight="25.0" prefWidth="96.0" text="Log af" textFill="#3300ff" />
+            <Button fx:id="receiptPaneLogOff" layoutX="472.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleLogOffButtonAction" prefHeight="25.0" prefWidth="96.0" text="Log af" textFill="#3300ff" />
             <TextField fx:id="receiptPaneTotalPrice" disable="true" editable="false" layoutX="463.0" layoutY="307.0" prefHeight="25.0" prefWidth="114.0" />
             <Label layoutX="382.0" layoutY="306.0" prefHeight="27.0" prefWidth="81.0" text="Pris i alt">
                <font>
