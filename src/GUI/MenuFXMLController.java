@@ -362,7 +362,7 @@ public class MenuFXMLController implements Initializable {
             else if (pressed_button == gemoplys) {
                 Order orde;
             Button button = (Button) event.getSource();
-            /*
+            
             if (button == gemoplys) {
                 
                 redigeringsPane.setVisible(false);
@@ -405,15 +405,16 @@ public class MenuFXMLController implements Initializable {
                 redignypass.setVisible(true);
                 rediggampass.setVisible(true);
                 updateKundeKonto();
-                
+             
             }
-*/
+
 
          else if (pressed_button == tilbage0) {
             kundekontoPane.setVisible(false);
             shopPane.setVisible(true);
             updateKundeKonto();
         }
+    }
     }
     
 

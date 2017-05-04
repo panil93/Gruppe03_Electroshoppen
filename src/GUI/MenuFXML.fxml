@@ -39,7 +39,7 @@
             <ListView fx:id="kundeorderer" layoutX="310.0" layoutY="70.0" prefHeight="275.0" prefWidth="176.0" />
             <ListView fx:id="kundereklam" layoutX="19.0" layoutY="238.0" prefHeight="149.0" prefWidth="158.0" />
             <TextArea fx:id="kundeoplys" editable="false" layoutX="19.0" layoutY="78.0" prefHeight="142.0" prefWidth="223.0" />
-            <Label fx:id="banner" layoutX="15.0" layoutY="18.0" prefHeight="17.0" prefWidth="316.0" />
+            
          </children></AnchorPane>
       <Pane fx:id="redigeringsPane" prefHeight="390.0" prefWidth="581.0" style="-fx-background-color: lightblue;" visible="false">
          <children>
