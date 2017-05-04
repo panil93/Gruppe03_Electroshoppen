@@ -398,17 +398,20 @@ public class MenuFXMLController implements Initializable {
 		} else if (b == bet) {
 			invoiceInfoPane.setVisible(true);
 			kassePane.setVisible(false);
+			//paymentPaneOrder
+			invoiceInfoPaneTotalPrice.setText(totalpris.getText());
+			
 		}
-		RadioButton radiusek = (RadioButton) group.getSelectedToggle();
-		if (radiusek == hjem) {
+	//	RadioButton radiusek = (RadioButton) group.getSelectedToggle();
+	//	if (radiusek == hjem) {
 			
 			
 			
-		} else if (b == bet && radiusek == collect) {
-			collectPane.setVisible(true);
-			listButikker.getItems().addAll(mediator.getListOfButikker());
-			invoiceInfoPaneDiffrentAddress.disableProperty();
-		}
+	//	} else if (b == bet && radiusek == collect) {
+	//		collectPane.setVisible(true);
+	//		listButikker.getItems().addAll(mediator.getListOfButikker());
+	//		invoiceInfoPaneDiffrentAddress.disableProperty();
+	//	}
 	}
 	
 	
