@@ -667,7 +667,10 @@ public class MenuFXMLController implements Initializable {
 	private void updateKatalog() {
 		this.katalog.getItems().clear();
 		List<Varer> objects = mediator.getListOfVarer();
-		this.katalog.getItems().addAll(objects);
+                for (Varer v:objects){
+                    if (v!= null)
+		this.katalog.getItems().add(v);}
+                
 	}
 
 	private void updateKundeKonto() {
