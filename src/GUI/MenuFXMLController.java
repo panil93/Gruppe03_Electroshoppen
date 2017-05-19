@@ -46,212 +46,215 @@ import javafx.scene.control.SpinnerValueFactory;
 public class MenuFXMLController implements Initializable {
 
     private Mediator mediator;
+	
     @FXML
-    AnchorPane shopPane;
+    private AnchorPane shopPane;
     @FXML
-    AnchorPane medarbejderPane;
+    private AnchorPane medarbejderPane;
     @FXML
-    AnchorPane loggingPane;
+    private AnchorPane loggingPane;
     @FXML
-    AnchorPane registerPane;
+    private AnchorPane registerPane;
     @FXML
-    AnchorPane kassePane;
+    private AnchorPane kassePane;
     @FXML
-    AnchorPane kampagnePane;
+    private AnchorPane kampagnePane;
     @FXML
-    AnchorPane kundekontoPane;
+    private AnchorPane kundekontoPane;
     @FXML
-    AnchorPane udlevendørePane;
+    private AnchorPane udlevendørePane;
     @FXML
-    Button logpaa;
+    private Button logpaa;
     @FXML
-    Button logaf;
+    private Button logaf;
     @FXML
-    Button kundekonto;
+    private Button kundekonto;
     @FXML
-    Button register;
+    private Button register;
     @FXML
-    Button soueg;
+    private Button soueg;
     @FXML
-    Button addtocart;
+    private Button addtocart;
     @FXML
-    Button removefromcart;
+    private Button removefromcart;
     @FXML
-    Pane soegpane;
+    private Pane soegpane;
     @FXML
-    Button gaatilkassen;
+    private Button gaatilkassen;
     @FXML
-    Label totalLabel;
+    private Label totalLabel;
     @FXML
-    Button tilbage0;
+    private Button tilbage0;
     @FXML
-    Button tilbage1;
+    private Button tilbage1;
     @FXML
-    Button tilbage2;
+    private Button tilbage2;
     @FXML
-    Button tilbage3;
+    private Button tilbage3;
     @FXML
-    Button kunde;
+    private Button kunde;
     @FXML
-    Button medarbejder;
+    private Button medarbejder;
     @FXML
-    Button under;
+    private Button under;
     @FXML
-    Button kamp;
+    private Button kamp;
     @FXML
-    TextField loginek;
+    private TextField loginek;
     @FXML
-    TextField password;
+    private TextField password;
     @FXML
-    TextField regname;
+    private TextField regname;
     @FXML
-    TextField regaddr;
+    private TextField regaddr;
     @FXML
-    TextField regtel;
+    private TextField regtel;
     @FXML
-    TextField reglog;
+    private TextField reglog;
     @FXML
-    TextField redadg;
+    private TextField redadg;
     @FXML
-    Button regslut;
+    private Button regslut;
     @FXML
-    ToggleGroup group;
-
+    private ToggleGroup group;
     @FXML
-    RadioButton kat;
+    private RadioButton kat;
     @FXML
-    RadioButton id;
+    private RadioButton id;
     @FXML
-    TextField søgid;
+    private TextField søgid;
     @FXML
-    ListView søgkat;
+    private ListView søgkat;
     @FXML
-    Label katlab;
+    private Label katlab;
     @FXML
-    Button søgslut;
+    private Button søgslut;
     @FXML
-    Button tilbage4;
+    private Button tilbage4;
     @FXML
-    ListView undlist;
+    private ListView undlist;
     @FXML
-    ListView unddet;
+    private ListView unddet;
     @FXML
-    Button undmak;
+    private Button undmak;
     @FXML
-    Button undan;
+    private Button undan;
     @FXML
-    ToggleGroup hente;
+    private ToggleGroup hente;
     @FXML
-    RadioButton hjem;
+    private RadioButton hjem;
     @FXML
-    RadioButton collect;
+    private RadioButton collect;
     @FXML
-    ListView order;
+    private ListView order;
     @FXML
-    TextField totalpris;
+    private TextField totalpris;
     @FXML
-    TextField procent;
+    private TextField procent;
     @FXML
-    Button bet;
+    private Button bet;
     @FXML
-    Pane collectPane;
+    private Pane collectPane;
     @FXML
-    ListView listButikker;
+    private ListView listButikker;
     @FXML
-    Button chooseButton;
+    private Button chooseButton;
     @FXML
-    Button nykamp;
+    private Button nykamp;
     @FXML
-    Button logaff;
+    private Button logaff;
     @FXML
-    Pane nykampPane;
+    private Pane nykampPane;
     @FXML
-    ToggleGroup kamptog;
+    private ToggleGroup kamptog;
     @FXML
-    RadioButton web;
+    private RadioButton web;
     @FXML
-    RadioButton pos;
+    private RadioButton pos;
     @FXML
-    RadioButton begge;
+    private RadioButton begge;
     @FXML
-    Spinner rabat;
+    private Spinner rabat;
     @FXML
-    DatePicker stardate;
+    private DatePicker stardate;
     @FXML
-    DatePicker slutdate;
+    private DatePicker slutdate;
     @FXML
-    Button opretbutton;
+    private Button opretbutton;
     @FXML
-    Button nyreklam;
+    private Button nyreklam;
     @FXML
-    Button redigopl;
+    private Button redigopl;
     @FXML
-    Button logafff;
+    private Button logafff;
     @FXML
-    ListView kundereklam;
+    private ListView kundereklam;
     @FXML
-    TextArea kundeoplys;
+    private TextArea kundeoplys;
     @FXML
-    ListView kundeorderer;
+    private ListView kundeorderer;
     @FXML
-    TextField kundetilbud;
+    private TextField kundetilbud;
     @FXML
-    Pane reklampane;
+    private Pane reklampane;
     @FXML
-    ListView reklamord;
+    private ListView reklamord;
     @FXML
-    TextField reklamaars;
+    private TextField reklamaars;
     @FXML
-    ListView reklamprod;
+    private ListView reklamprod;
     @FXML
-    TextField reklamlist;
-    ToggleGroup reklamationer;
+    private TextField reklamlist;
+	@FXML
+    private ToggleGroup reklamationer;
     @FXML
-    RadioButton penge;
+    private RadioButton penge;
     @FXML
-    RadioButton varer;
+    private RadioButton varer;
     @FXML
-    Button opretreklam;
+    private Button opretreklam;
     @FXML
-    Pane redigeringsPane;
+    private Pane redigeringsPane;
     @FXML
-    Button skiftbutton;
+    private Button skiftbutton;
     @FXML
-    Button gemoplys;
+    private Button gemoplys;
     @FXML
-    TextField redigname;
+    private TextField redigname;
     @FXML
-    TextField redigadd;
+    private TextField redigadd;
     @FXML
-    TextField redigtel;
+    private TextField redigtel;
     @FXML
-    TextField rediggampass;
+    private TextField rediggampass;
     @FXML
-    TextField redignypass;
+    private TextField redignypass;
     @FXML
-    Button infobutton;
+    private Button infobutton;
     @FXML
-    Button markmed;
+    private Button markmed;
     @FXML
-    Button logaffff;
+    private Button logaffff;
     @FXML
-    TextField pakkeoplys;
+    private TextField pakkeoplys;
     @FXML
-    TextArea pakkemodtag;
+    private TextArea pakkemodtag;
     @FXML
-    ListView pakkedetaj;
+    private ListView pakkedetaj;
     @FXML
-    ListView<Varer> katalog;
+    private ListView<Varer> katalog;
     @FXML
-    ListView<Varer> cart;
+    private ListView<Varer> cart;
     @FXML
-    Label formedarb;
+    private Label formedarb;
     @FXML
-    Label regerrorlabel;
+    private Label regerrorlabel;
     @FXML
-    Label kunneik;
+    private Label kunneik;
     @FXML
-    ListView banner;
+    private ListView banner;
+	
+	//Invoice Info Pane
     @FXML
     private AnchorPane invoiceInfoPane;
     @FXML
@@ -282,6 +285,12 @@ public class MenuFXMLController implements Initializable {
     private TextArea invoiceInfoPaneMessage;
     @FXML
     private CheckBox invoiceInfoPaneDiffrentAddress;
+	@FXML
+	private Button invoiceInfoPaneBack;
+	@FXML
+	private Button invoiceInfoPaneLogOff;
+	
+	//Payment Pane
     @FXML
     private AnchorPane paymentPane;
     @FXML
@@ -300,6 +309,12 @@ public class MenuFXMLController implements Initializable {
     private CheckBox paymentPaneCondition;
     @FXML
     private Button paymentPaneContinue;
+	@FXML
+	private Button paymentPaneBack;
+	@FXML
+	private Button paymentPaneLogOff;
+	
+	//Receipt Pane
     @FXML
     private AnchorPane receiptPane;
     @FXML
@@ -314,6 +329,7 @@ public class MenuFXMLController implements Initializable {
     private TextField receiptPaneTotalPrice;
     @FXML
     private Button receiptPaneLogOff;
+
 
     /**
      * Initializes the controller class.
@@ -361,6 +377,8 @@ public class MenuFXMLController implements Initializable {
         }
     }
 
+	
+	
     @FXML
     private void handleKampagneAction(ActionEvent event) {
         Button pressed_button = (Button) event.getSource();

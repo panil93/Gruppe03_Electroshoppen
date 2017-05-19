@@ -173,23 +173,25 @@
             <Label layoutX="208.0" layoutY="115.0" text="Ordre bemærkninger" />
             <CheckBox fx:id="invoiceInfoPaneDiffrentAddress" disable="true" layoutX="204.0" layoutY="91.0" mnemonicParsing="false" />
             <Label layoutX="204.0" layoutY="66.0" text="Send til en anden adresse?" />
+            <Button fx:id="invoiceInfoPaneBack11" layoutX="392.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleReceiptPaneBackButtonAction" prefHeight="25.0" prefWidth="81.0" text="Tilbage" textFill="#3300ff" />
+            <Button fx:id="invoiceInfoPaneLogOff2" disable="true" layoutX="487.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleLogOffButtonAction" prefHeight="25.0" prefWidth="96.0" text="Log af" textFill="#3300ff" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="paymentPane" prefHeight="400.0" prefWidth="606.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ListView fx:id="paymentPaneOrder" disable="true" layoutX="362.0" layoutY="87.0" prefHeight="178.0" prefWidth="200.0" />
+            <ListView fx:id="paymentPaneOrder" disable="true" layoutX="362.0" layoutY="104.0" prefHeight="178.0" prefWidth="200.0" />
             <Label layoutX="31.0" layoutY="30.0" prefHeight="35.0" prefWidth="176.0" text="Betaling">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="362.0" layoutY="53.0" prefHeight="35.0" prefWidth="200.0" text="Din bestilling og pris">
+            <Label layoutX="362.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" text="Din bestilling og pris">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="paymentPaneTotalPrice" disable="true" editable="false" layoutX="448.0" layoutY="280.0" prefHeight="25.0" prefWidth="114.0" />
-            <Label layoutX="362.0" layoutY="279.0" prefHeight="27.0" prefWidth="81.0" text="Pris i alt">
+            <TextField fx:id="paymentPaneTotalPrice" disable="true" editable="false" layoutX="447.0" layoutY="291.0" prefHeight="25.0" prefWidth="114.0" />
+            <Label layoutX="362.0" layoutY="290.0" prefHeight="27.0" prefWidth="81.0" text="Pris i alt">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -214,11 +216,13 @@
             <ChoiceBox fx:id="paymentPaneDateMonth" disable="true" layoutX="31.0" layoutY="200.0" prefHeight="25.0" prefWidth="101.0" />
             <ChoiceBox fx:id="paymentPaneDateYear" disable="true" layoutX="146.0" layoutY="200.0" prefHeight="25.0" prefWidth="101.0" />
             <CheckBox fx:id="paymentPaneCondition" disable="true" layoutX="31.0" layoutY="320.0" mnemonicParsing="false" text="Jeg accepterer betingelserne" />
-            <Button fx:id="paymentPaneContinue" layoutX="362.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleGoToReceiptAction" prefHeight="25.0" prefWidth="200.0" text="Forsæt" textFill="#3300ff">
+            <Button fx:id="paymentPaneContinue" layoutX="362.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleGoToReceiptAction" prefHeight="25.0" prefWidth="200.0" text="Forsæt" textFill="#3300ff">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
+            <Button fx:id="paymentPaneBack1" layoutX="362.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleReceiptPaneBackButtonAction" prefHeight="25.0" prefWidth="81.0" text="Tilbage" textFill="#3300ff" />
+            <Button fx:id="paymentPaneLogOff1" disable="true" layoutX="462.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleLogOffButtonAction" prefHeight="25.0" prefWidth="96.0" text="Log af" textFill="#3300ff" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="receiptPane" prefHeight="400.0" prefWidth="606.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
