@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Laura
+ * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class ProduktKatalog {
     List<Produkt> katalog;

@@ -8,7 +8,7 @@ package gruppe03_electroshoppen;
 
 /**
  *
- * @author Laura
+ * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public abstract class Varer {
     double RetailPrice;
