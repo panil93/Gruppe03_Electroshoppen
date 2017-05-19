@@ -471,6 +471,7 @@ public class MenuFXMLController implements Initializable {
 			shopPane.setVisible(true);
 		} else if (b == bet) {
 			invoiceInfoPane.setVisible(true);
+			invoiceInfoPaneTotalPrice.setText(totalpris.getText());
 			kassePane.setVisible(false);
 			handleForsendelseAction(event);
 		} else if (b == chooseButton) {
@@ -524,7 +525,6 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private void handleGoToReceiptAction(ActionEvent event) {
 
-		
 		setAllPaneInvisibleButOne(receiptPane);	
 		receiptPaneTotalPrice.setText(totalpris.getText());
 
@@ -532,7 +532,7 @@ public class MenuFXMLController implements Initializable {
 
 	
 	/**
-	 * This method handles the BackToWebshop button on Chart pane, Invoice pane, 
+	 * This method handles the BackToWebshop button on Invoice pane, 
 	 * Payment pane, and keeps the selected info.
 	 *
 	 * @param event
@@ -542,9 +542,7 @@ public class MenuFXMLController implements Initializable {
 	
 		setAllPaneInvisibleButOne(shopPane);	
 		
-
 	}
-	
 	
 	/**
 	 * This method handles the BackToWebshop button on Receipt pane.
@@ -555,16 +553,8 @@ public class MenuFXMLController implements Initializable {
 	private void handleReceiptPaneBackButtonAction(ActionEvent event) {
 	
 		setAllPaneInvisibleButOne(shopPane);	
-		
+		clearAllItemsAndTotalprice();
 	
-
-		cart.getItems().clear();
-		order.getItems().clear();
-		paymentPaneOrder.getItems().clear();
-		invoiceInfoPaneOrder.getItems().clear();
-		receiptPaneOrder.getItems().clear();
-		totalpris.clear();
-
 	}
 
 	/**
@@ -575,20 +565,12 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private void handleLogOffButtonAction(ActionEvent event) {
 
-		receiptPane.setVisible(false);
-		kampagnePane.setVisible(false);
-		shopPane.setVisible(true);
 		register.setVisible(true);
 		logpaa.setVisible(true);
-		kundekonto.setVisible(false);
 		logaf.setVisible(false);
 
-		cart.getItems().clear();
-		order.getItems().clear();
-		paymentPaneOrder.getItems().clear();
-		invoiceInfoPaneOrder.getItems().clear();
-		receiptPaneOrder.getItems().clear();
-		totalpris.clear();
+		setAllPaneInvisibleButOne(shopPane);
+	    clearAllItemsAndTotalprice();
 
 	}
 
@@ -599,6 +581,7 @@ public class MenuFXMLController implements Initializable {
 	 */
 	@FXML
 	private void handleKundeKontoAction(ActionEvent event) {
+		
 		Button pressed_button = (Button) event.getSource();
 		if (pressed_button == nyreklam) {
 			reklampane.setVisible(true);
@@ -950,4 +933,19 @@ public class MenuFXMLController implements Initializable {
 		pane.setVisible(true);
 	}
 
+	/**
+	 * This method clears all selected items and totalprice in the webshop.
+	 *
+	 */
+	private void clearAllItemsAndTotalprice() {
+	
+		cart.getItems().clear();	
+		order.getItems().clear();
+		paymentPaneOrder.getItems().clear();
+		invoiceInfoPaneOrder.getItems().clear();
+		receiptPaneOrder.getItems().clear();
+		totalpris.clear();
+		
+	}
+	
 }
