@@ -285,8 +285,6 @@ public class MenuFXMLController implements Initializable {
 	private CheckBox invoiceInfoPaneDiffrentAddress;
 	@FXML
 	private Button invoiceInfoPaneBack;
-	@FXML
-	private Button invoiceInfoPaneLogOff;
 
 	//Payment Pane
 	@FXML
@@ -309,8 +307,6 @@ public class MenuFXMLController implements Initializable {
 	private Button paymentPaneContinue;
 	@FXML
 	private Button paymentPaneBack;
-	@FXML
-	private Button paymentPaneLogOff;
 
 	//Receipt Pane
 	@FXML
@@ -327,9 +323,15 @@ public class MenuFXMLController implements Initializable {
 	private TextField receiptPaneTotalPrice;
 	@FXML
 	private Button receiptPaneLogOff;
+	@FXML
+	private Button invoiceInfoPaneLogOff2;
+	@FXML
+	private Button paymentPaneLogOff1;
 
 	/**
-	 * Initializes the controller class.
+	 * This method handles the...
+	 *
+	 * @param event
 	 */
 	@FXML
 	private void handleMedarbejderAction(ActionEvent event) {
@@ -375,10 +377,10 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    * @param event
-    */
+	 * This method handles the...
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleKampagneAction(ActionEvent event) {
 		Button pressed_button = (Button) event.getSource();
@@ -398,10 +400,10 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    * @param event
-    */
+	 * This method handles the...
+	 *
+	 * @param event
+	 */
 	private void handleKampagnePaneAction(ActionEvent event) {
 		double newPrice = 0;
 
@@ -448,10 +450,10 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    * @param event
-    */
+	 * This method handles the...
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleKasseAction(ActionEvent event) {
 		Button b = (Button) event.getSource();
@@ -480,10 +482,10 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    * @param event
-    */
+	 * This method handles the...
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleForsendelseAction(ActionEvent event) {
 		RadioButton radiob = (RadioButton) hente.getSelectedToggle();
@@ -502,44 +504,59 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the GoToPayment button on Invoice Pane.
-    *
-    * @param event
-    */
+	 * This method handles the GoToPayment button on Invoice pane.
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleGoToPaymentAction(ActionEvent event) {
 
-		invoiceInfoPane.setVisible(false);
-		paymentPane.setVisible(true);
+		setAllPaneInvisibleButOne(paymentPane);	
 		paymentPaneTotalPrice.setText(totalpris.getText());
 
 	}
 
 	/**
-    * This method handles the GoToReceipt button on Payment Pane.
-    *
-    * @param event
-    */
+	 * This method handles the GoToReceipt button on Payment pane.
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleGoToReceiptAction(ActionEvent event) {
 
-		paymentPane.setVisible(false);
-		receiptPane.setVisible(true);
+		
+		setAllPaneInvisibleButOne(receiptPane);	
 		receiptPaneTotalPrice.setText(totalpris.getText());
 
 	}
 
 	
 	/**
-    * This method handles the BackToWebshop button on Receipt Pane.
-    *
-    * @param event
-    */
+	 * This method handles the BackToWebshop button on Chart pane, Invoice pane, 
+	 * Payment pane, and keeps the selected info.
+	 *
+	 * @param event
+	 */
+	@FXML
+	private void handleBackButtonsAction(ActionEvent event) {
+	
+		setAllPaneInvisibleButOne(shopPane);	
+		
+
+	}
+	
+	
+	/**
+	 * This method handles the BackToWebshop button on Receipt pane.
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleReceiptPaneBackButtonAction(ActionEvent event) {
-
-		receiptPane.setVisible(false);
-		shopPane.setVisible(true);
+	
+		setAllPaneInvisibleButOne(shopPane);	
+		
+	
 
 		cart.getItems().clear();
 		order.getItems().clear();
@@ -551,10 +568,10 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    * @param event
-    */
+	 * This method handles the...
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleLogOffButtonAction(ActionEvent event) {
 
@@ -576,10 +593,10 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    * @param event
-    */
+	 * This method handles the...
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleKundeKontoAction(ActionEvent event) {
 		Button pressed_button = (Button) event.getSource();
@@ -653,20 +670,20 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    * @param event
-    */
+	 * This method handles the...
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleUnderleverandørAction(ActionEvent event) {
 
 	}
 
 	/**
-    * This method handles the...
-    *
-    * @param event
-    */
+	 * This method handles the...
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleRegistrationAction(ActionEvent event) {
 		Button pressed_button = (Button) event.getSource();
@@ -692,10 +709,10 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    * @param event
-    */
+	 * This method handles the...
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleLogginAction(ActionEvent event) {
 		Button pressed_button = (Button) event.getSource();
@@ -741,10 +758,10 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    * @param event
-    */
+	 * This method handles the...
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleShoppingAction(ActionEvent event) {
 		Button pressed_button = (Button) event.getSource();
@@ -794,12 +811,12 @@ public class MenuFXMLController implements Initializable {
 
 		}
 	}
-	
+
 	/**
-    * This method handles the...
-    *
-    * @param event
-    */
+	 * This method handles the...
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleSøgningAction(ActionEvent event) {
 		RadioButton but = (RadioButton) group.getSelectedToggle();
@@ -821,9 +838,9 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    */
+	 * This method handles the...
+	 *
+	 */
 	private void updateKatalog() {
 		this.katalog.getItems().clear();
 		List<Varer> objects = mediator.getListOfVarer();
@@ -836,9 +853,9 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    */
+	 * This method handles the...
+	 *
+	 */
 	private void updateKundeKonto() {
 		this.kundeoplys.setText(null);
 		List<Kunde> clients = mediator.getListOfKunder();
@@ -848,11 +865,13 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    */
+	 * This method handles the...
+	 *
+	 */
 	private void updateButikker() {
+
 		this.listButikker.getItems().removeAll();
+
 		List<Butik> butikker = mediator.getListOfButikker();
 		for (Butik shopper : butikker) {
 			if (shopper != null) {
@@ -862,10 +881,10 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    * @param url, rb
-    */
+	 * This method handles the...
+	 *
+	 * @param url, rb
+	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		shopPane.setVisible(true);
@@ -878,13 +897,57 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-    * This method handles the...
-    *
-    * @param mediator
-    */
+	 * This method handles the...
+	 *
+	 * @param mediator
+	 */
 	void setRefAndInitialData(Mediator mediator) {
 		this.mediator = mediator;
 
+	}
+
+	/**
+	 * This method sets only one pane visible.
+	 *
+	 * @param pane
+	 */
+	private void setAllPaneInvisibleButOne(Pane pane) {
+		
+		if (pane != shopPane) {
+			shopPane.setVisible(false);
+		}
+		if (pane != kassePane) {
+			kassePane.setVisible(false);
+		}
+		if (pane != invoiceInfoPane) {
+			invoiceInfoPane.setVisible(false);
+		}
+		if (pane != paymentPane) {
+			paymentPane.setVisible(false);
+		}
+		if (pane != receiptPane) {
+			receiptPane.setVisible(false);
+		}
+		if (pane != medarbejderPane) {
+			medarbejderPane.setVisible(false);
+		}
+		if (pane != loggingPane) {
+			loggingPane.setVisible(false);
+		}
+		if (pane != registerPane) {
+			registerPane.setVisible(false);
+		}
+		if (pane != kampagnePane) {
+			kampagnePane.setVisible(false);
+		}
+		if (pane != kundekontoPane) {
+			kundekontoPane.setVisible(false);
+		}
+		if (pane != udlevendørePane) {
+			udlevendørePane.setVisible(false);
+		}
+
+		pane.setVisible(true);
 	}
 
 }
