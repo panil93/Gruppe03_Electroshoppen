@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class Kasse {
-    Order o;
-    Betaling b;    
+
+	Order o;
+	Betaling b;
 }

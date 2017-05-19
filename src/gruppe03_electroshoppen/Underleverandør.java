@@ -14,8 +14,6 @@ public class Underleverandør {
 	private String login;
 	private String adgangskode;
 
-	
-	
 	public Underleverandør(String login, String adgangskode) {
 
 		this.login = login;
@@ -23,6 +21,4 @@ public class Underleverandør {
 
 	}
 
-	
-	
 }

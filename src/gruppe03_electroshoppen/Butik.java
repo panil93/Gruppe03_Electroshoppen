@@ -13,17 +13,19 @@ import java.util.List;
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class Butik {
-    private String adresse;
-    private String mail;
-    private List<Medarbejder> medarbejderList;
 
-    public Butik(String adresse, String mail,List<Medarbejder> medarbejderList) {
-        this.adresse = adresse;
-        this.mail = mail;
-        
-    }
-    public String getAdresse(){
-        return this.adresse;
-    }
-    
+	private String adresse;
+	private String mail;
+	private List<Medarbejder> medarbejderList;
+
+	public Butik(String adresse, String mail, List<Medarbejder> medarbejderList) {
+		this.adresse = adresse;
+		this.mail = mail;
+
+	}
+
+	public String getAdresse() {
+		return this.adresse;
+	}
+
 }

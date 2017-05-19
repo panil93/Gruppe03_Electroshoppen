@@ -13,20 +13,22 @@ import java.util.List;
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class Reklamation {
-    private String årsag;
-    private Date dato;
-    private boolean erÅbnet;
-    private String byttevare;
-    private int id;
-    Kunde kunde;
-    List<Varer> varerTilBytte;
-    Order order;
-public Reklamation(String årsag, Date dato, boolean erÅbnet, String byttevare, int id, Kunde kunde,List<Varer> varerTilBytte,Order order){
-    this.årsag=årsag;
-    this.dato = dato;
-    this.erÅbnet = erÅbnet;
-    this.byttevare = byttevare;
-    this.id = id;
-}
-    
+
+	private String årsag;
+	private Date dato;
+	private boolean erÅbnet;
+	private String byttevare;
+	private int id;
+	Kunde kunde;
+	List<Varer> varerTilBytte;
+	Order order;
+
+	public Reklamation(String årsag, Date dato, boolean erÅbnet, String byttevare, int id, Kunde kunde, List<Varer> varerTilBytte, Order order) {
+		this.årsag = årsag;
+		this.dato = dato;
+		this.erÅbnet = erÅbnet;
+		this.byttevare = byttevare;
+		this.id = id;
+	}
+
 }

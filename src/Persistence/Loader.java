@@ -28,27 +28,29 @@ import java.util.logging.Logger;
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class Loader {
-     
-   public Loader(){
-       
-       
-   }
-    public void load() {
-        new LoadKunder();
-        new LoadVarer();
-        new LoadButikker();
-    }
-    public void load(Mediator ref_m)
-    {
-        
-    }
-     public Date readDate(Scanner scanner) {
-    String dateFormat = "dd/MM/yyyy";
-    
-        try {
-            return new SimpleDateFormat(dateFormat).parse(scanner.nextLine());
-        } catch (ParseException ex) {
-            Logger.getLogger(LoadVarer.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }}
+
+	public Loader() {
+
+	}
+
+	public void load() {
+		new LoadKunder();
+		new LoadVarer();
+		new LoadButikker();
+	}
+
+	public void load(Mediator ref_m) {
+
+	}
+
+	public Date readDate(Scanner scanner) {
+		String dateFormat = "dd/MM/yyyy";
+
+		try {
+			return new SimpleDateFormat(dateFormat).parse(scanner.nextLine());
+		} catch (ParseException ex) {
+			Logger.getLogger(LoadVarer.class.getName()).log(Level.SEVERE, null, ex);
+			return null;
+		}
+	}
 }

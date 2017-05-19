@@ -12,10 +12,12 @@ import java.util.Date;
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class Salg {
-    private Date tidsstempel;
-    private boolean erFærdig;
-    public Salg(Date tidsstempel, boolean erFærdig){
-        this.tidsstempel = tidsstempel;
-        this.erFærdig = erFærdig;
-    }
+
+	private Date tidsstempel;
+	private boolean erFærdig;
+
+	public Salg(Date tidsstempel, boolean erFærdig) {
+		this.tidsstempel = tidsstempel;
+		this.erFærdig = erFærdig;
+	}
 }

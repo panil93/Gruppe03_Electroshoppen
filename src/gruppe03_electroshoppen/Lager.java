@@ -12,10 +12,12 @@ import java.util.List;
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class Lager {
-    private Butik butik;
-    private List <Varer> listofvarer;
-    public Lager(Butik butik,List <Varer> listofvarer){
-        
-    }
-    
+
+	private Butik butik;
+	private List<Varer> listofvarer;
+
+	public Lager(Butik butik, List<Varer> listofvarer) {
+
+	}
+
 }

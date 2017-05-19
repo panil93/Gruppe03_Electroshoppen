@@ -13,8 +13,10 @@ import java.util.List;
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class ProduktKatalog {
-    List<Produkt> katalog;
-public ProduktKatalog(List<Produkt>katalog){
-    this.katalog= new ArrayList<Produkt>();
-}
+
+	List<Produkt> katalog;
+
+	public ProduktKatalog(List<Produkt> katalog) {
+		this.katalog = new ArrayList<Produkt>();
+	}
 }

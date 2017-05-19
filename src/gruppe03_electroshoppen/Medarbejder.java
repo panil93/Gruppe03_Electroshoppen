@@ -11,24 +11,24 @@ package gruppe03_electroshoppen;
  */
 public class Medarbejder {
 
-    private String fuldnavn;
-    private String login;
-    private String adgangskode;
-    private String type;
+	private String fuldnavn;
+	private String login;
+	private String adgangskode;
+	private String type;
 
-    public Medarbejder(String fuldnavn, String login, String adgangskode, String type) {
-        this.fuldnavn = fuldnavn;
-        this.login = login;
-        this.adgangskode = adgangskode;
-        this.type = type;
-    }
+	public Medarbejder(String fuldnavn, String login, String adgangskode, String type) {
+		this.fuldnavn = fuldnavn;
+		this.login = login;
+		this.adgangskode = adgangskode;
+		this.type = type;
+	}
 
-    public String getLogin() {
-        return this.login;
-    }
+	public String getLogin() {
+		return this.login;
+	}
 
-    public String getAdgangskode() {
-        return this.adgangskode;
-    }
+	public String getAdgangskode() {
+		return this.adgangskode;
+	}
 
 }

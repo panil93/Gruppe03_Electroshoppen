@@ -32,20 +32,20 @@ public class Betaling {
 	}
 
 	public Date getDato() {
-		
+
 		return this.dato;
-		
+
 	}
 
 	public Kunde getKundetilBetaling() {
-		
+
 		return this.kunde;
-		
+
 	}
 
 	public Order getOrderTilBetaling() {
-		
+
 		return this.order;
-		
+
 	}
 }
