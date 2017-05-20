@@ -44,6 +44,7 @@ import javafx.scene.control.SpinnerValueFactory;
 public class MenuFXMLController implements Initializable {
 
 	private Mediator mediator;
+	private String stedtiludlevering = null;
 
 	@FXML
 	private AnchorPane shopPane;
@@ -85,8 +86,8 @@ public class MenuFXMLController implements Initializable {
 	private Button tilbage0;
 	@FXML
 	private Button tilbage1;
-	@FXML
-	private Button tilbage2;
+	//@FXML
+	//private Button tilbage2;
 	@FXML
 	private Button tilbage3;
 	@FXML
@@ -149,8 +150,8 @@ public class MenuFXMLController implements Initializable {
 	private TextField totalpris;
 	@FXML
 	private TextField procent;
-	@FXML
-	private Button bet;
+	//@FXML
+	//private Button bet;
 	@FXML
 	private Pane collectPane;
 	@FXML
@@ -252,6 +253,14 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private ListView banner;
 
+	//Order Pane
+	@FXML
+	private Button orderPaneLogOff;
+	@FXML
+	private Button orderPaneBack;
+	@FXML
+	private Button orderPaneContinue;
+
 	//Invoice Info Pane
 	@FXML
 	private AnchorPane invoiceInfoPane;
@@ -285,6 +294,8 @@ public class MenuFXMLController implements Initializable {
 	private CheckBox invoiceInfoPaneDiffrentAddress;
 	@FXML
 	private Button invoiceInfoPaneBack;
+	@FXML
+	private Button invoiceInfoPaneLogOff;
 
 	//Payment Pane
 	@FXML
@@ -307,6 +318,8 @@ public class MenuFXMLController implements Initializable {
 	private Button paymentPaneContinue;
 	@FXML
 	private Button paymentPaneBack;
+	@FXML
+	private Button paymentPaneLogOff;
 
 	//Receipt Pane
 	@FXML
@@ -323,10 +336,6 @@ public class MenuFXMLController implements Initializable {
 	private TextField receiptPaneTotalPrice;
 	@FXML
 	private Button receiptPaneLogOff;
-	@FXML
-	private Button invoiceInfoPaneLogOff2;
-	@FXML
-	private Button paymentPaneLogOff1;
 
 	/**
 	 * This method handles the...
@@ -335,36 +344,62 @@ public class MenuFXMLController implements Initializable {
 	 */
 	@FXML
 	private void handleMedarbejderAction(ActionEvent event) {
+		
 		pakkedetaj.getItems().removeAll();
 		Button pressed_button = (Button) event.getSource();
+		
 		if (pressed_button == logaffff) {
+			
 			medarbejderPane.setVisible(false);
 			shopPane.setVisible(true);
+			
 		} else if (pressed_button == infobutton) {
+			
 			pakkedetaj.getItems().clear();
+			
+			//
 			for (Order ordy : mediator.getListOfOrder()) {
+				
+				//
 				String test = pakkeoplys.getText();
+				
+				//
 				if (Integer.parseInt(test) == (ordy.getId())) {
+					
 					Kunde t = mediator.getKundeByOrder(ordy.getId());
 					String t2 = mediator.getKundeByOrder(ordy.getId()).getAdresse();
 					pakkemodtag.setText(t.getName() + "\n" + t2);
+					
+					//
 					for (Varer v : mediator.getVarerByOrder(Integer.parseInt(pakkeoplys.getText()))) {
+						
+						//
 						if (v != null) {
+							
 							pakkedetaj.getItems().add(v);
+							
 						}
 					}
 				} else {
+					
 					//pakkemodtag.setText("Findes ikke");
 					//pakkedetaj.getItems().add("Findes ikke");
 				}
 			}
 		} else if (pressed_button == markmed) {
+				
 			List<Order> ord = mediator.getListOfOrder();
-
 			Iterator<Order> i = ord.iterator();
+			
+			//
 			while (i.hasNext()) {
+				
+				//
 				Order o = i.next();
+				
+				//
 				if (o.getId() == Integer.parseInt(pakkeoplys.getText())) {
+					
 					mediator.RemoveListOfOrder(o);
 
 				}
@@ -383,8 +418,11 @@ public class MenuFXMLController implements Initializable {
 	 */
 	@FXML
 	private void handleKampagneAction(ActionEvent event) {
+		
 		Button pressed_button = (Button) event.getSource();
+		
 		if (pressed_button == logaff) {
+			
 			kampagnePane.setVisible(false);
 			shopPane.setVisible(true);
 			register.setVisible(true);
@@ -393,9 +431,13 @@ public class MenuFXMLController implements Initializable {
 			logaf.setVisible(false);
 
 		} else if (pressed_button == nykamp) {
+			
 			nykampPane.setVisible(true);
+			
 		} else if (pressed_button == opretbutton) {
+			
 			this.handleKampagnePaneAction(event);
+			
 		}
 	}
 
@@ -405,19 +447,26 @@ public class MenuFXMLController implements Initializable {
 	 * @param event
 	 */
 	private void handleKampagnePaneAction(ActionEvent event) {
+		
 		double newPrice = 0;
-
 		RadioButton radiusek = (RadioButton) kamptog.getSelectedToggle();
+		
 		if (radiusek == web) {
+			
 			List<Varer> tester = mediator.getListOfVarer();
+			
 			for (Varer v : mediator.getListOfVarer()) {
+			
 				if (v instanceof Produkt) {
+					
 					newPrice = ((Produkt) v).calculatePriceWithRabat((Integer) rabat.getValue(), v.getPris());
-
 					v.setPris(newPrice);
 					formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i Webshoppen");
+					
 					if ((stardate.getValue().isBefore(LocalDate.now()) && slutdate.getValue().isAfter(LocalDate.now()))) {
+						
 						banner.getItems().add("Vild tilbud! hele " + rabat.getValue() + "% kun i Webshoppen");
+					
 					}
 
 				}
@@ -425,22 +474,32 @@ public class MenuFXMLController implements Initializable {
 			}
 
 		} else if (radiusek == pos) {
+			
 			formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i Points of Sale");
+			
 			if ((stardate.getValue().isBefore(LocalDate.now()) && slutdate.getValue().isAfter(LocalDate.now()))) {
+				
 				banner.getItems().add("Vild tilbud! hele " + rabat.getValue() + "% kun i POS");
+			
 			}
 
 		} else if (radiusek == begge) {
+			
 			List<Varer> tester = mediator.getListOfVarer();
+			
 			for (Varer v : mediator.getListOfVarer()) {
+				
 				if (v instanceof Produkt) {
+					
 					newPrice = ((Produkt) v).calculatePriceWithRabat((Integer) rabat.getValue(), v.getPris());
 
 					v.setPris(newPrice);
-
 					formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i både Webshoppen og Points of Sale");
+					
 					if ((stardate.getValue().isBefore(LocalDate.now()) && slutdate.getValue().isAfter(LocalDate.now()))) {
+						
 						banner.getItems().add("Vild tilbud! hele " + rabat.getValue() + "% kun i Electroshoppen");
+					
 					}
 				}
 
@@ -456,9 +515,9 @@ public class MenuFXMLController implements Initializable {
 	 */
 	@FXML
 	private void handleKasseAction(ActionEvent event) {
+
 		Button b = (Button) event.getSource();
 		int id = 0;
-		String stedtiludlevering = null;
 		Kunde kunde = null;
 		double orderPrice = 0.0;
 		List<Varer> listOfVarer = null;
@@ -467,41 +526,87 @@ public class MenuFXMLController implements Initializable {
 
 			kassePane.setVisible(true);
 			shopPane.setVisible(false);
-		} else if (b == tilbage2) {
-			shopPane.setVisible(true);
-		} else if (b == bet) {
-			invoiceInfoPane.setVisible(true);
-			invoiceInfoPaneTotalPrice.setText(totalpris.getText());
-			kassePane.setVisible(false);
-			handleForsendelseAction(event);
-		} else if (b == chooseButton) {
-			collectPane.setVisible(false);
-			stedtiludlevering = listButikker.getSelectionModel().getSelectedItem().toString();
 		}
-		Order buyorder = new Order(id, stedtiludlevering, kunde, orderPrice, listOfVarer);
 
+		//String stedtiludlevering = null;
+		//else if (b == tilbage2) {
+		//	shopPane.setVisible(true);
+		//		} 
+		//else if (b == bet) {
+		//	invoiceInfoPane.setVisible(true);
+		//	invoiceInfoPaneTotalPrice.setText(totalpris.getText());
+		//	kassePane.setVisible(false);
+		//	handleForsendelseAction(event);
+		//} else if (b == chooseButton) {
+		//	collectPane.setVisible(false);
+		//	stedtiludlevering = listButikker.getSelectionModel().getSelectedItem().toString();
+		//}
+		// Order buyorder = new Order(id, stedtiludlevering, kunde, orderPrice, listOfVarer);
 	}
 
 	/**
-	 * This method handles the...
+	 * This method handles the Radio buttons on 
 	 *
 	 * @param event
 	 */
 	@FXML
 	private void handleForsendelseAction(ActionEvent event) {
-		RadioButton radiob = (RadioButton) hente.getSelectedToggle();
-		if (radiob == hjem) {
 
-		} else if (radiob == collect) {
+		RadioButton radiob = (RadioButton) hente.getSelectedToggle();
+
+		if (radiob == collect) {
+
+			listButikker.getItems().clear();
 			collectPane.setVisible(true);
+
 			for (Butik butik_to : mediator.getListOfButikker()) {
+
 				if (butik_to != null) {
+
 					listButikker.getItems().add(butik_to.getAdresse());
 					invoiceInfoPaneDiffrentAddress.disableProperty();
 
 				}
 			}
+
+		} else if (radiob == hjem) {
+
+			listButikker.getItems().clear();
+
 		}
+
+	}
+
+	/**
+	 * This method handles the ChooseButton button on Collect Pane on Order
+	 * Pane.
+	 *
+	 * @param event
+	 */
+	@FXML
+	private void handleChooseButtonAction(ActionEvent event) {
+
+		//Handels if no store is chosen. When clicked nothing happens on the screen. 
+		if (listButikker.getSelectionModel().getSelectedItem() == null) {
+
+			return;
+		}
+
+		stedtiludlevering = listButikker.getSelectionModel().getSelectedItem().toString();
+		collectPane.setVisible(false);
+	}
+
+	/**
+	 * This method handles the GoToInvoice button on Order Pane.
+	 *
+	 * @param event
+	 */
+	@FXML
+	private void handleGoToInvoiceAction(ActionEvent event) {
+
+		setAllPaneInvisibleButOne(invoiceInfoPane);
+		invoiceInfoPaneTotalPrice.setText(totalpris.getText());
+
 	}
 
 	/**
@@ -512,7 +617,7 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private void handleGoToPaymentAction(ActionEvent event) {
 
-		setAllPaneInvisibleButOne(paymentPane);	
+		setAllPaneInvisibleButOne(paymentPane);
 		paymentPaneTotalPrice.setText(totalpris.getText());
 
 	}
@@ -525,36 +630,38 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private void handleGoToReceiptAction(ActionEvent event) {
 
-		setAllPaneInvisibleButOne(receiptPane);	
+		setAllPaneInvisibleButOne(receiptPane);
 		receiptPaneTotalPrice.setText(totalpris.getText());
+		receiptPaneMessage.setText("Tak for din bestilling" + "\n" + "Vi har sendt din kvittering til " + invoiceInfoPaneEmail.getText());
 
 	}
 
-	
 	/**
-	 * This method handles the BackToWebshop button on Invoice pane, 
-	 * Payment pane, and keeps the selected info.
+	 * This method handles the Back button on Order Pane, Invoice pane, Payment
+	 * pane, and keeps the selected info. When clicked the user returns to the
+	 * webshop.
 	 *
 	 * @param event
 	 */
 	@FXML
 	private void handleBackButtonsAction(ActionEvent event) {
-	
-		setAllPaneInvisibleButOne(shopPane);	
-		
+
+		setAllPaneInvisibleButOne(shopPane);
+
 	}
-	
+
 	/**
-	 * This method handles the BackToWebshop button on Receipt pane.
+	 * This method handles the Back button on Receipt pane, and clears the
+	 * selected info. When clicked the user returns to the webshop.
 	 *
 	 * @param event
 	 */
 	@FXML
 	private void handleReceiptPaneBackButtonAction(ActionEvent event) {
-	
-		setAllPaneInvisibleButOne(shopPane);	
+
+		setAllPaneInvisibleButOne(shopPane);
 		clearAllItemsAndTotalprice();
-	
+
 	}
 
 	/**
@@ -568,9 +675,8 @@ public class MenuFXMLController implements Initializable {
 		register.setVisible(true);
 		logpaa.setVisible(true);
 		logaf.setVisible(false);
-
 		setAllPaneInvisibleButOne(shopPane);
-	    clearAllItemsAndTotalprice();
+		clearAllItemsAndTotalprice();
 
 	}
 
@@ -581,12 +687,14 @@ public class MenuFXMLController implements Initializable {
 	 */
 	@FXML
 	private void handleKundeKontoAction(ActionEvent event) {
-		
+
 		Button pressed_button = (Button) event.getSource();
 		if (pressed_button == nyreklam) {
+
 			reklampane.setVisible(true);
 
 		} else if (pressed_button == logafff) {
+
 			kundekontoPane.setVisible(false);
 			shopPane.setVisible(true);
 			kundeoplys.clear();
@@ -595,22 +703,29 @@ public class MenuFXMLController implements Initializable {
 			register.setVisible(true);
 			kundekonto.setVisible(false);
 			logaf.setVisible(false);
+
 		} else if (pressed_button == redigopl) {
+
 			kunneik.setText(" ");
 			kundeoplys.setVisible(false);
 			kundeorderer.setVisible(false);
 			redigeringsPane.setVisible(true);
+
 		} else if (pressed_button == gemoplys) {
+
 			Order orde;
 			Button button = (Button) event.getSource();
 
 			if (button == gemoplys) {
 
 				redigeringsPane.setVisible(false);
+
 				for (Kunde kundas : mediator.getListOfKunder()) {
+
 					if (kundas.toString().compareTo(kundeoplys.getText()) == 0) {
 
 						if ((redignypass.getText().isEmpty() == false) && (rediggampass.getText().compareTo(kundas.getAdgangskode())) == 0) {
+
 							kundas.setAdgangskode(redignypass.getText());
 							rediggampass.setVisible(false);
 							redignypass.setVisible(false);
@@ -619,31 +734,40 @@ public class MenuFXMLController implements Initializable {
 						}
 
 						if (redigname.getText().isEmpty() == false) {
+
 							kundas.setFuldnavn(redigname.getText());
 							updateKundeKonto();
+
 						}
 
 						if (redigtel.getText().isEmpty() == false) {
+
 							kundas.setTelefonnr(Integer.parseInt(redigtel.getText()));
 							updateKundeKonto();
 						}
 
 						if (redigadd.getText().isEmpty() == false) {
+
 							kundas.setAdresse(redigadd.getText());
 							updateKundeKonto();
+
 						}
 						if (redignypass.getText().isEmpty() == true && redigname.getText().isEmpty() == true && redigadd.getText().isEmpty() == true && redigtel.getText().isEmpty() == true) {
+
 							kunneik.setText("Ugyldig værdig");
 							updateKundeKonto();
+
 						}
 					}
 				}
 			} else if (pressed_button == skiftbutton) {
+
 				redignypass.setVisible(true);
 				rediggampass.setVisible(true);
 				updateKundeKonto();
 
 			} else if (pressed_button == tilbage0) {
+
 				kundekontoPane.setVisible(false);
 				shopPane.setVisible(true);
 				updateKundeKonto();
@@ -669,9 +793,13 @@ public class MenuFXMLController implements Initializable {
 	 */
 	@FXML
 	private void handleRegistrationAction(ActionEvent event) {
+
 		Button pressed_button = (Button) event.getSource();
+
 		if (pressed_button == regslut) {
+
 			if ((regname.getText().isEmpty() == false) && (regaddr.getText().isEmpty() == false) && (regtel.getText().isEmpty() == false) && (reglog.getText().isEmpty() == false) && (redadg.getText().isEmpty() == false)) {
+
 				mediator.getListOfKunder().add(new Kunde(regname.getText(), regaddr.getText(), reglog.getText(), redadg.getText(), Integer.parseInt(regtel.getText())));
 				registerPane.setVisible(false);
 				shopPane.setVisible(true);
@@ -680,11 +808,14 @@ public class MenuFXMLController implements Initializable {
 				logaf.setVisible(true);
 				kundekonto.setVisible(true);
 				mediator.getListOfKunder().add(new Kunde(regname.getText(), regaddr.getText(), reglog.getText(), redadg.getText(), Integer.parseInt(regtel.getText())));
+
 			} else {
+
 				regerrorlabel.setText("Ugyldig data, Prøv igen");
 
 			}
 		} else if (pressed_button == tilbage1) {
+
 			registerPane.setVisible(false);
 			shopPane.setVisible(true);
 		}
@@ -698,9 +829,13 @@ public class MenuFXMLController implements Initializable {
 	 */
 	@FXML
 	private void handleLogginAction(ActionEvent event) {
+
 		Button pressed_button = (Button) event.getSource();
+
 		if (pressed_button == kunde) {
+
 			if (mediator.getKundeByLoginAndPassword(loginek.getText(), password.getText()) != null) {
+
 				loggingPane.setVisible(false);
 				shopPane.setVisible(true);
 				logpaa.setVisible(false);
@@ -721,18 +856,23 @@ public class MenuFXMLController implements Initializable {
 			medarbejderPane.setVisible(true);
 			loginek.clear();
 			password.clear();
+
 		} else if (pressed_button == under) {
+
 			loggingPane.setVisible(false);
 			udlevendørePane.setVisible(true);
 			loginek.clear();
 			password.clear();
+
 		} else if (pressed_button == kamp) {
+
 			loggingPane.setVisible(false);
 			kampagnePane.setVisible(true);
 			loginek.clear();
 			password.clear();
 
 		} else if (pressed_button == tilbage3) {
+
 			loggingPane.setVisible(false);
 			shopPane.setVisible(true);
 			loginek.clear();
@@ -747,16 +887,25 @@ public class MenuFXMLController implements Initializable {
 	 */
 	@FXML
 	private void handleShoppingAction(ActionEvent event) {
+
 		Button pressed_button = (Button) event.getSource();
+
 		if (pressed_button == logpaa) {
+
 			loggingPane.setVisible(true);
 			shopPane.setVisible(false);
+
 		} else if (pressed_button == register) {
+
 			registerPane.setVisible(true);
 			shopPane.setVisible(false);
+
 		} else if (pressed_button == soueg) {
+
 			soegpane.setVisible(true);
+
 		} else if (pressed_button == addtocart) {
+
 			cart.getItems().add(katalog.getSelectionModel().getSelectedItem());
 			order.getItems().add(katalog.getSelectionModel().getSelectedItem());
 			paymentPaneOrder.getItems().add(katalog.getSelectionModel().getSelectedItem());
@@ -764,19 +913,24 @@ public class MenuFXMLController implements Initializable {
 			receiptPaneOrder.getItems().add(katalog.getSelectionModel().getSelectedItem());
 
 			double totalPris = 0;
+
 			for (Varer v : cart.getItems()) {
+
 				totalPris += v.getPris();
 				String total2 = String.valueOf(totalPris);
 				totalpris.setText(total2);
 			}
 
 		} else if (pressed_button == removefromcart) {
+
 			cart.getItems().remove(katalog.getSelectionModel().getSelectedItem());
 			order.getItems().remove(katalog.getSelectionModel().getSelectedItem());
 			paymentPaneOrder.getItems().remove(katalog.getSelectionModel().getSelectedItem());
 			invoiceInfoPaneOrder.getItems().remove(katalog.getSelectionModel().getSelectedItem());
 			receiptPaneOrder.getItems().remove(katalog.getSelectionModel().getSelectedItem());
+
 		} else if (pressed_button == logaf) {
+
 			logaf.setVisible(false);
 			register.setVisible(true);
 			logpaa.setVisible(true);
@@ -784,12 +938,16 @@ public class MenuFXMLController implements Initializable {
 			kundekonto.setVisible(false);
 
 		} else if (pressed_button == kundekonto) {
+
 			shopPane.setVisible(false);
 			kundekontoPane.setVisible(true);
+
 		} else if (pressed_button == søgslut) {
+
 			soegpane.setVisible(false);
 
 		} else if (pressed_button == tilbage4) {
+
 			soegpane.setVisible(false);
 
 		}
@@ -802,20 +960,30 @@ public class MenuFXMLController implements Initializable {
 	 */
 	@FXML
 	private void handleSøgningAction(ActionEvent event) {
+
 		RadioButton but = (RadioButton) group.getSelectedToggle();
+
 		if (but == id) {
+
 			søgkat.setVisible(false);
 			søgid.setVisible(true);
 			katlab.setVisible(false);
+
 			if (søgid.getText() != null) {
+
 				søgslut.setVisible(true);
+
 			}
 		} else if (but == kat) {
+
 			søgid.setVisible(false);
 			katlab.setVisible(true);
 			søgkat.setVisible(true);
+
 			if (søgkat.getItems() != null) {
+
 				søgslut.setVisible(true);
+
 			}
 		}
 	}
@@ -827,9 +995,15 @@ public class MenuFXMLController implements Initializable {
 	private void updateKatalog() {
 		this.katalog.getItems().clear();
 		List<Varer> objects = mediator.getListOfVarer();
+
+		//
 		for (Varer v : objects) {
+			
+			//
 			if (v != null) {
+				
 				this.katalog.getItems().add(v);
+			
 			}
 		}
 
@@ -840,10 +1014,15 @@ public class MenuFXMLController implements Initializable {
 	 *
 	 */
 	private void updateKundeKonto() {
+
 		this.kundeoplys.setText(null);
 		List<Kunde> clients = mediator.getListOfKunder();
+
+		//
 		for (Kunde kudin : clients) {
+			
 			this.kundeoplys.setText(kudin.toString());
+
 		}
 	}
 
@@ -854,29 +1033,41 @@ public class MenuFXMLController implements Initializable {
 	private void updateButikker() {
 
 		this.listButikker.getItems().removeAll();
-
 		List<Butik> butikker = mediator.getListOfButikker();
+
+		//
 		for (Butik shopper : butikker) {
+			
+			//
 			if (shopper != null) {
+				
 				this.listButikker.getItems().add(shopper);
+				
 			}
 		}
 	}
 
 	/**
-	 * This method handles the...
+	 * This
 	 *
 	 * @param url, rb
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		shopPane.setVisible(true);
-		rabat.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99));
-		order.setDisable(true);
 
+		//
+		shopPane.setVisible(true);
+		//
+		rabat.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99));
+		//
+		order.setDisable(true);
+		//
 		setRefAndInitialData(new Mediator());
+		//
 		updateKatalog();
+		//
 		updateButikker();
+
 	}
 
 	/**
@@ -885,6 +1076,7 @@ public class MenuFXMLController implements Initializable {
 	 * @param mediator
 	 */
 	void setRefAndInitialData(Mediator mediator) {
+
 		this.mediator = mediator;
 
 	}
@@ -895,7 +1087,7 @@ public class MenuFXMLController implements Initializable {
 	 * @param pane
 	 */
 	private void setAllPaneInvisibleButOne(Pane pane) {
-		
+
 		if (pane != shopPane) {
 			shopPane.setVisible(false);
 		}
@@ -938,14 +1130,25 @@ public class MenuFXMLController implements Initializable {
 	 *
 	 */
 	private void clearAllItemsAndTotalprice() {
-	
-		cart.getItems().clear();	
+
+		cart.getItems().clear();
 		order.getItems().clear();
-		paymentPaneOrder.getItems().clear();
+		hjem.setSelected(true);
+		collect.setSelected(false);
+		listButikker.getItems().clear();
 		invoiceInfoPaneOrder.getItems().clear();
+		invoiceInfoPaneName.setText("");
+		invoiceInfoPaneEmail.setText("");
+		invoiceInfoPaneTelefon.setText("");
+		invoiceInfoPanePostCode.setText("");
+		invoiceInfoPaneAddress1.setText("");
+		invoiceInfoPaneAddress2.setText("");
+		invoiceInfoPaneCity.setText("");
+		invoiceInfoPaneMessage.setText("");
+		paymentPaneOrder.getItems().clear();
 		receiptPaneOrder.getItems().clear();
 		totalpris.clear();
-		
+
 	}
-	
+
 }
