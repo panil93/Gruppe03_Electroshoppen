@@ -110,20 +110,24 @@
 		</AnchorPane>
 		<AnchorPane fx:id="shopPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" visible="false">
 			<children>
-				<Button fx:id="logpaa" layoutX="533.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Log på" textFill="#3300ff" />
-				<Button fx:id="register" layoutX="460.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Register" textFill="#3300ff" />
-				<Label layoutX="41.0" layoutY="32.0" prefHeight="17.0" prefWidth="109.0" text="Produkter:" />
-				<Button fx:id="soueg" layoutX="187.0" layoutY="45.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Søg varen" textFill="#3300ff" />
-				<Label layoutX="310.0" layoutY="104.0" prefHeight="17.0" prefWidth="135.0" text="Din indkøbsvogn:" />
-				<Button fx:id="gaatilkassen" layoutX="492.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleKasseAction" style="-fx-background-color: white;" text="Gå til kassen" textFill="#3300ff" />
+				<Button fx:id="logpaa" layoutX="533.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleShoppingAction" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: white;" text="Log på" textFill="#3300ff" />
+				<Button fx:id="register" layoutX="460.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Registrer" textFill="#3300ff" />
+				<Label layoutX="14.0" layoutY="80.0" prefHeight="17.0" prefWidth="109.0" text="Produkter:" />
+				<Button fx:id="soueg" layoutX="15.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleShoppingAction" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: white;" text="Søg efter varen" textFill="#3300ff" />
+				<Label layoutX="309.0" layoutY="80.0" prefHeight="17.0" prefWidth="135.0" text="Indkøbskurv:" />
+				<Button fx:id="gaatilkassen" layoutX="301.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleKasseAction" prefHeight="30.0" prefWidth="193.0" style="-fx-background-color: white;" text="Gå til kassen" textFill="#3300ff">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
 				<Label fx:id="totalLabel" layoutX="520.0" layoutY="265.0" prefHeight="25.0" prefWidth="60.0" textFill="WHITE" />
-				<Button fx:id="addtocart" layoutX="178.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Tilføj til vogn" textFill="#3300ff" />
-				<Button fx:id="removefromcart" layoutX="179.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Slet fra vogn" textFill="#3300ff" />
+				<Button fx:id="addtocart" layoutX="205.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleShoppingAction" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: white;" text="Læg i kurv" textFill="#3300ff" />
+				<Button fx:id="removefromcart" layoutX="501.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Fjern fra kurv" textFill="#3300ff" />
 				<Button fx:id="kundekonto" layoutX="424.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Til kundekonto" textFill="#3300ff" visible="false" />
-				<Button fx:id="logaf" layoutX="534.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Log af" textFill="#3300ff" visible="false" />
-				<ListView fx:id="katalog" layoutX="14.0" layoutY="55.0" prefHeight="332.0" prefWidth="158.0" />
-				<ListView fx:id="cart" layoutX="284.0" layoutY="135.0" prefHeight="215.0" prefWidth="200.0" />
-				<Pane fx:id="soegpane" layoutX="15.0" layoutY="7.0" prefHeight="383.0" prefWidth="571.0" style="-fx-background-color: lightblue;" visible="false">
+				<Button fx:id="logaf" layoutX="534.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleShoppingAction" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: white;" text="Log af" textFill="#3300ff" visible="false" />
+				<ListView fx:id="katalog" layoutX="15.0" layoutY="100.0" prefHeight="222.0" prefWidth="183.0" />
+				<ListView fx:id="cart" layoutX="301.0" layoutY="100.0" prefHeight="222.0" prefWidth="193.0" />
+				<ListView fx:id="banner" layoutX="12.0" layoutY="13.0" prefHeight="55.0" prefWidth="439.0" />
+				<Pane fx:id="soegpane" layoutX="15.0" layoutY="7.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<children>
 						<RadioButton fx:id="id" layoutX="52.0" layoutY="49.0" mnemonicParsing="false" onAction="#handleSøgningAction" text="Søg efter id-nummer">
 							<toggleGroup>
@@ -138,7 +142,6 @@
 						<ListView fx:id="søgkat" layoutX="187.0" layoutY="98.0" prefHeight="200.0" prefWidth="183.0" />
 					</children>
 				</Pane>
-				<ListView fx:id="banner" layoutX="24.0" layoutY="6.0" prefHeight="30.0" prefWidth="427.0" />
 			</children>
 		</AnchorPane>
 		<AnchorPane fx:id="kassePane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" visible="false">
@@ -178,7 +181,7 @@
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Label>
-						<Button fx:id="chooseButton" layoutX="256.0" layoutY="53.0" mnemonicParsing="false" onAction="#handleChooseButtonAction" style="-fx-background-color: white;" text="Vælg" textFill="#3300ff" />
+						<Button fx:id="chooseButton" layoutX="256.0" layoutY="53.0" mnemonicParsing="false" onAction="#handleChooseButtonAction" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: white;" text="Vælg" textFill="#3300ff" />
 						<ListView fx:id="listButikker" layoutX="24.0" layoutY="53.0" prefHeight="275.0" prefWidth="216.0" />
 					</children>
 				</Pane>
