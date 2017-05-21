@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import gruppe03_electroshoppen.Betaling;
 import gruppe03_electroshoppen.Butik;
 import gruppe03_electroshoppen.Kunde;
 import java.net.URL;
@@ -143,8 +144,7 @@ public class MenuFXMLController implements Initializable {
 	private RadioButton hjem;
 	@FXML
 	private RadioButton collect;
-	@FXML
-	private ListView order;
+	
 	@FXML
 	private TextField totalpris;
 	@FXML
@@ -254,6 +254,8 @@ public class MenuFXMLController implements Initializable {
 
 	//Order Pane
 	@FXML
+	private ListView orderPaneOrder;
+	@FXML
 	private Button orderPaneLogOff;
 	@FXML
 	private Button orderPaneBack;
@@ -335,8 +337,19 @@ public class MenuFXMLController implements Initializable {
 	private TextField receiptPaneTotalPrice;
 	@FXML
 	private Button receiptPaneLogOff;
+	
+	//
 	@FXML
 	private Button nykampPanelogaff;
+	
+	//Supplyer Pane
+	@FXML
+	private Button SupplyerPaneLogOff;
+	
+	
+	
+	
+	
 
 	/**
 	 * This method handles the...
@@ -640,11 +653,15 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private void handleGoToReceiptAction(ActionEvent event) {
 
+		//listOfVarer<> =cart.getItems();
+		
 		setAllPaneInvisibleButOne(receiptPane);
 		receiptPaneTotalPrice.setText(totalpris.getText());
 		receiptPaneMessage.setText("Tak for din bestilling" + "\n" + "Vi har sendt din kvittering til " + invoiceInfoPaneEmail.getText());
 		
 		
+		// Order order = new Order(id, stedtiludlevering, kunde, totalpris, listOfVarer);
+       // Betaling betaling = new Betaling(totalpris, dato, kunde, order);
 		
 	}
 
@@ -919,7 +936,7 @@ public class MenuFXMLController implements Initializable {
 		} else if (pressed_button == addtocart) {
 
 			cart.getItems().add(katalog.getSelectionModel().getSelectedItem());
-			order.getItems().add(katalog.getSelectionModel().getSelectedItem());
+			orderPaneOrder.getItems().add(katalog.getSelectionModel().getSelectedItem());
 			paymentPaneOrder.getItems().add(katalog.getSelectionModel().getSelectedItem());
 			invoiceInfoPaneOrder.getItems().add(katalog.getSelectionModel().getSelectedItem());
 			receiptPaneOrder.getItems().add(katalog.getSelectionModel().getSelectedItem());
@@ -936,7 +953,7 @@ public class MenuFXMLController implements Initializable {
 		} else if (pressed_button == removefromcart) {
 
 			cart.getItems().remove(katalog.getSelectionModel().getSelectedItem());
-			order.getItems().remove(katalog.getSelectionModel().getSelectedItem());
+			orderPaneOrder.getItems().remove(katalog.getSelectionModel().getSelectedItem());
 			paymentPaneOrder.getItems().remove(katalog.getSelectionModel().getSelectedItem());
 			invoiceInfoPaneOrder.getItems().remove(katalog.getSelectionModel().getSelectedItem());
 			receiptPaneOrder.getItems().remove(katalog.getSelectionModel().getSelectedItem());
@@ -1142,7 +1159,7 @@ public class MenuFXMLController implements Initializable {
 	private void clearAllItemsAndTotalprice() {
 
 		cart.getItems().clear();
-		order.getItems().clear();
+		orderPaneOrder.getItems().clear();
 		hjem.setSelected(true);
 		collect.setSelected(false);
 		listButikker.getItems().clear();

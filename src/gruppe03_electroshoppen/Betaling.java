@@ -17,7 +17,12 @@ public class Betaling {
 	private Date dato;
 	private Kunde kunde;
 	private Order order;
-
+	
+	/**
+	 *
+	 *
+	 * @param
+	 */
 	public Betaling(double beløb, Date dato, Kunde kunde, Order order) {
 
 		this.beløb = beløb;
@@ -25,24 +30,40 @@ public class Betaling {
 		this.kunde = kunde;
 		this.order = order;
 	}
-
+	
+	/**
+	 *
+	 *
+	 */
 	public double getBeløb() {
 
 		return this.beløb;
 	}
 
+	/**
+	 *
+	 *
+	 */
 	public Date getDato() {
 
 		return this.dato;
 
 	}
 
+	/**
+	 *
+	 *
+	 */
 	public Kunde getKundetilBetaling() {
 
 		return this.kunde;
 
 	}
-
+	
+	/**
+	 *
+	 *
+	 */
 	public Order getOrderTilBetaling() {
 
 		return this.order;

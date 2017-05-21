@@ -15,13 +15,19 @@ import java.util.List;
 public class Order {
 
 	private int id;
-	List<Varer> listonorder;
 	private String stedtiludlevering;
-	Kunde kunde;
-	List<Varer> listOfVarer;
 	private double orderPrice;
+	Kunde kunde;
+	List<Varer> listonorder;
+	List<Varer> listOfVarer;
 
+	/**
+	 *
+	 *
+	 * @param
+	 */
 	public Order(int id, String stedtiludlevering, Kunde kunde, double orderPrice, List<Varer> listOfVarer) {
+
 		this.id = id;
 		this.listonorder = new ArrayList<>();
 		this.stedtiludlevering = stedtiludlevering;
@@ -31,33 +37,74 @@ public class Order {
 
 	}
 
+	/**
+	 *
+	 *
+	 */
 	public List<Varer> getVarer() {
+
 		return this.listOfVarer;
+
 	}
 
+	/**
+	 *
+	 *
+	 */
 	public int getId() {
+
 		return this.id;
+
 	}
 
+	/**
+	 *
+	 *
+	 */
 	public double getTotalPris(List<Varer> l) {
+
 		double totalPrice = 0;
+
+		//
 		for (Varer v : l) {
+
 			double a = v.getPris();
 			totalPrice += a;
+
 		}
+
 		return totalPrice;
+
 	}
 
+	/**
+	 *
+	 *
+	 */
 	public String getStedttilUdlevering() {
+
 		return this.stedtiludlevering;
+
 	}
 
+	/**
+	 *
+	 *
+	 */
 	public Kunde getKunde() {
+
 		return this.kunde;
+
 	}
 
+	/**
+	 *
+	 *
+	 */
 	@Override
 	public String toString() {
+
 		return String.valueOf(this.id);
+
 	}
 }
