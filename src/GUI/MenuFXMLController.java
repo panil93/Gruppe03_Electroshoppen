@@ -336,6 +336,8 @@ public class MenuFXMLController implements Initializable {
 	private TextField receiptPaneTotalPrice;
 	@FXML
 	private Button receiptPaneLogOff;
+	@FXML
+	private Button nykampPanelogaff;
 
 	/**
 	 * This method handles the...
@@ -437,6 +439,15 @@ public class MenuFXMLController implements Initializable {
 		} else if (pressed_button == opretbutton) {
 			
 			this.handleKampagnePaneAction(event);
+			
+		}else if(pressed_button == nykampPanelogaff){
+		
+			kampagnePane.setVisible(false);
+			shopPane.setVisible(true);
+			register.setVisible(true);
+			logpaa.setVisible(true);
+			kundekonto.setVisible(false);
+			logaf.setVisible(false);
 			
 		}
 	}
@@ -633,7 +644,9 @@ public class MenuFXMLController implements Initializable {
 		setAllPaneInvisibleButOne(receiptPane);
 		receiptPaneTotalPrice.setText(totalpris.getText());
 		receiptPaneMessage.setText("Tak for din bestilling" + "\n" + "Vi har sendt din kvittering til " + invoiceInfoPaneEmail.getText());
-
+		
+		
+		
 	}
 
 	/**
@@ -1059,8 +1072,6 @@ public class MenuFXMLController implements Initializable {
 		shopPane.setVisible(true);
 		//
 		rabat.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99));
-		//
-		order.setDisable(true);
 		//
 		setRefAndInitialData(new Mediator());
 		//
