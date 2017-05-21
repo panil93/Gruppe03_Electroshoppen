@@ -5,7 +5,6 @@
 package GUI;
 
 import gruppe03_electroshoppen.Butik;
-import gruppe03_electroshoppen.Kasse;
 import gruppe03_electroshoppen.Kunde;
 import java.net.URL;
 import java.util.ResourceBundle;

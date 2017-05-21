@@ -12,7 +12,6 @@ import gruppe03_electroshoppen.Medarbejder;
 import gruppe03_electroshoppen.Mediator;
 import gruppe03_electroshoppen.Order;
 import gruppe03_electroshoppen.Reklamation;
-import gruppe03_electroshoppen.Salg;
 import gruppe03_electroshoppen.Underleverandør;
 import gruppe03_electroshoppen.Varer;
 import java.text.ParseException;
