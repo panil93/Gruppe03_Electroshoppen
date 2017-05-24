@@ -269,7 +269,7 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private TextField redignypass;
 	
-	//
+	//Reclamation
 	@FXML
 	private Pane reklampane;
 	@FXML
@@ -585,6 +585,9 @@ public class MenuFXMLController implements Initializable {
 
 		if (b == gaatilkassen) {
 
+			//if()
+			
+			
 			kassePane.setVisible(true);
 			shopPane.setVisible(false);
 		}
@@ -974,6 +977,12 @@ public class MenuFXMLController implements Initializable {
 
 		} else if (pressed_button == addtocart) {
 
+			//If no item is selected, nothing happens on the screen.
+			if(katalog.getSelectionModel().getSelectedItem() == null){
+		
+				return;
+			}
+			
 			cart.getItems().add(katalog.getSelectionModel().getSelectedItem());
 			orderPaneOrder.getItems().add(katalog.getSelectionModel().getSelectedItem());
 			paymentPaneOrder.getItems().add(katalog.getSelectionModel().getSelectedItem());
