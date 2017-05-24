@@ -17,7 +17,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MenuFXMLController">
 	<children>
-		<AnchorPane fx:id="shopPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" visible="false">
+		<AnchorPane fx:id="shopPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;">
 			<children>
 				<Button fx:id="logpaa" layoutX="533.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleShoppingAction" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: white;" text="Log på" textFill="#3300ff" />
 				<Button fx:id="register" layoutX="460.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleShoppingAction" style="-fx-background-color: white;" text="Registrer" textFill="#3300ff" />

@@ -70,6 +70,8 @@ public class MenuFXMLController implements Initializable {
 	private Button gaatilkassen;
 	@FXML
 	private Button soueg;
+	@FXML
+	private Button kundekonto;
 	
 	//Search Pane
 	@FXML
@@ -353,8 +355,6 @@ public class MenuFXMLController implements Initializable {
 	
 	//Hvor hører de her hjemme?
 	@FXML
-	private Button kundekonto;
-	@FXML
 	private Label totalLabel;
 	@FXML
 	private ToggleGroup group;
@@ -585,11 +585,25 @@ public class MenuFXMLController implements Initializable {
 
 		if (b == gaatilkassen) {
 
-			//if()
+			if(cart.getItems().isEmpty()){
 			
+				return;
+			}
+			
+			
+			
+			
+			//User has to log on to continue.			
+			if(kundekonto.isVisible()== false){
+			
+			return;
+			
+			}
 			
 			kassePane.setVisible(true);
 			shopPane.setVisible(false);
+			
+	
 		}
 
 		//String stedtiludlevering = null;
