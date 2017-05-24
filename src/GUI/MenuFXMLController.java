@@ -47,76 +47,33 @@ public class MenuFXMLController implements Initializable {
 	private Mediator mediator;
 	private String stedtiludlevering = null;
 
+	//Shop Pane
 	@FXML
 	private AnchorPane shopPane;
 	@FXML
-	private AnchorPane medarbejderPane;
+	private ListView banner;
 	@FXML
-	private AnchorPane loggingPane;
-	@FXML
-	private AnchorPane registerPane;
-	@FXML
-	private AnchorPane kassePane;
-	@FXML
-	private AnchorPane kampagnePane;
-	@FXML
-	private AnchorPane kundekontoPane;
-	@FXML
-	private AnchorPane udlevendørePane;
+	private Button register;
 	@FXML
 	private Button logpaa;
 	@FXML
 	private Button logaf;
 	@FXML
-	private Button kundekonto;
+	private ListView<Varer> katalog;
 	@FXML
-	private Button register;
-	@FXML
-	private Button soueg;
+	private ListView<Varer> cart;
 	@FXML
 	private Button addtocart;
 	@FXML
 	private Button removefromcart;
 	@FXML
-	private Pane soegpane;
-	@FXML
 	private Button gaatilkassen;
 	@FXML
-	private Label totalLabel;
+	private Button soueg;
+	
+	//Search Pane
 	@FXML
-	private Button tilbage0;
-	@FXML
-	private Button tilbage1;
-	//@FXML
-	//private Button tilbage2;
-	@FXML
-	private Button tilbage3;
-	@FXML
-	private Button kunde;
-	@FXML
-	private Button medarbejder;
-	@FXML
-	private Button under;
-	@FXML
-	private Button kamp;
-	@FXML
-	private TextField loginek;
-	@FXML
-	private TextField password;
-	@FXML
-	private TextField regname;
-	@FXML
-	private TextField regaddr;
-	@FXML
-	private TextField regtel;
-	@FXML
-	private TextField reglog;
-	@FXML
-	private TextField redadg;
-	@FXML
-	private Button regslut;
-	@FXML
-	private ToggleGroup group;
+	private Pane soegpane;
 	@FXML
 	private RadioButton kat;
 	@FXML
@@ -124,136 +81,17 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private TextField søgid;
 	@FXML
-	private ListView søgkat;
-	@FXML
 	private Label katlab;
 	@FXML
 	private Button søgslut;
 	@FXML
 	private Button tilbage4;
 	@FXML
-	private ListView undlist;
-	@FXML
-	private ListView unddet;
-	@FXML
-	private Button undmak;
-	@FXML
-	private Button undan;
-	@FXML
-	private ToggleGroup hente;
-	@FXML
-	private RadioButton hjem;
-	@FXML
-	private RadioButton collect;
+	private ListView søgkat;
 	
-	@FXML
-	private TextField totalpris;
-	@FXML
-	private TextField procent;
-	//@FXML
-	//private Button bet;
-	@FXML
-	private Pane collectPane;
-	@FXML
-	private ListView listButikker;
-	@FXML
-	private Button chooseButton;
-	@FXML
-	private Button nykamp;
-	@FXML
-	private Button logaff;
-	@FXML
-	private Pane nykampPane;
-	@FXML
-	private ToggleGroup kamptog;
-	@FXML
-	private RadioButton web;
-	@FXML
-	private RadioButton pos;
-	@FXML
-	private RadioButton begge;
-	@FXML
-	private Spinner rabat;
-	@FXML
-	private DatePicker stardate;
-	@FXML
-	private DatePicker slutdate;
-	@FXML
-	private Button opretbutton;
-	@FXML
-	private Button nyreklam;
-	@FXML
-	private Button redigopl;
-	@FXML
-	private Button logafff;
-	@FXML
-	private ListView kundereklam;
-	@FXML
-	private TextArea kundeoplys;
-	@FXML
-	private ListView kundeorderer;
-	@FXML
-	private TextField kundetilbud;
-	@FXML
-	private Pane reklampane;
-	@FXML
-	private ListView reklamord;
-	@FXML
-	private TextField reklamaars;
-	@FXML
-	private ListView reklamprod;
-	@FXML
-	private TextField reklamlist;
-	@FXML
-	private ToggleGroup reklamationer;
-	@FXML
-	private RadioButton penge;
-	@FXML
-	private RadioButton varer;
-	@FXML
-	private Button opretreklam;
-	@FXML
-	private Pane redigeringsPane;
-	@FXML
-	private Button skiftbutton;
-	@FXML
-	private Button gemoplys;
-	@FXML
-	private TextField redigname;
-	@FXML
-	private TextField redigadd;
-	@FXML
-	private TextField redigtel;
-	@FXML
-	private TextField rediggampass;
-	@FXML
-	private TextField redignypass;
-	@FXML
-	private Button infobutton;
-	@FXML
-	private Button markmed;
-	@FXML
-	private Button logaffff;
-	@FXML
-	private TextField pakkeoplys;
-	@FXML
-	private TextArea pakkemodtag;
-	@FXML
-	private ListView pakkedetaj;
-	@FXML
-	private ListView<Varer> katalog;
-	@FXML
-	private ListView<Varer> cart;
-	@FXML
-	private Label formedarb;
-	@FXML
-	private Label regerrorlabel;
-	@FXML
-	private Label kunneik;
-	@FXML
-	private ListView banner;
-
 	//Order Pane
+	@FXML
+	private AnchorPane kassePane;
 	@FXML
 	private ListView orderPaneOrder;
 	@FXML
@@ -262,7 +100,25 @@ public class MenuFXMLController implements Initializable {
 	private Button orderPaneBack;
 	@FXML
 	private Button orderPaneContinue;
-
+	@FXML
+	private TextField totalpris;
+	@FXML
+	private TextField procent;
+	@FXML
+	private RadioButton hjem;
+	@FXML
+	private RadioButton collect;
+	@FXML
+	private ToggleGroup hente;
+	
+	//Collect Pane
+	@FXML
+	private Pane collectPane;
+	@FXML
+	private ListView listButikker;
+	@FXML
+	private Button chooseButton;
+	
 	//Invoice Info Pane
 	@FXML
 	private AnchorPane invoiceInfoPane;
@@ -298,7 +154,7 @@ public class MenuFXMLController implements Initializable {
 	private Button invoiceInfoPaneBack;
 	@FXML
 	private Button invoiceInfoPaneLogOff;
-
+	
 	//Payment Pane
 	@FXML
 	private AnchorPane paymentPane;
@@ -339,19 +195,200 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private Button receiptPaneLogOff;
 	
+	//Register Pane
+	@FXML
+	private AnchorPane registerPane;
+	@FXML
+	private TextField regname;
+	@FXML
+	private TextField regaddr;
+	@FXML
+	private TextField regtel;
+	@FXML
+	private TextField reglog;
+	@FXML
+	private TextField redadg;
+	@FXML
+	private Button regslut;
+	@FXML
+	private Button tilbage1;
+	
+	//Log in Pane
+	@FXML
+	private AnchorPane loggingPane;
+	@FXML
+	private Button tilbage3;
+	@FXML
+	private Button kunde;
+	@FXML
+	private Button medarbejder;
+	@FXML
+	private Button under;
+	@FXML
+	private Button kamp;
+	@FXML
+	private TextField loginek;
+	@FXML
+	private TextField password;
+	
+	//User Account Pane
+	@FXML
+	private AnchorPane kundekontoPane;
+	@FXML
+	private Button tilbage0;
+	@FXML
+	private Button logafff;
+	@FXML
+	private Button nyreklam;
+	@FXML
+	private Button redigopl;
+	@FXML
+	private TextField kundetilbud;
+	@FXML
+	private ListView kundeorderer;
+	@FXML
+	private ListView kundereklam;
+	@FXML
+	private TextArea kundeoplys;
+	
 	//
 	@FXML
-	private Button nykampPanelogaff;
+	private Pane redigeringsPane;
+	@FXML
+	private Button skiftbutton;
+	@FXML
+	private Button gemoplys;
+	@FXML
+	private TextField redigname;
+	@FXML
+	private TextField redigadd;
+	@FXML
+	private TextField redigtel;
+	@FXML
+	private TextField rediggampass;
+	@FXML
+	private TextField redignypass;
 	
+	//
+	@FXML
+	private Pane reklampane;
+	@FXML
+	private ListView reklamord;
+	@FXML
+	private TextField reklamaars;
+	@FXML
+	private ListView reklamprod;
+	@FXML
+	private TextField reklamlist;
+	@FXML
+	private ToggleGroup reklamationer;
+	@FXML
+	private RadioButton penge;
+	@FXML
+	private RadioButton varer;
+	@FXML
+	private Button opretreklam;
+	
+	//Employee Pane
+	@FXML
+	private AnchorPane medarbejderPane;
+	@FXML
+	private Button infobutton;
+	@FXML
+	private Button markmed;
+	@FXML
+	private Button logaffff;
+	@FXML
+	private TextField pakkeoplys;
+	@FXML
+	private TextArea pakkemodtag;
+	@FXML
+	private ListView pakkedetaj;
+
 	//Supplyer Pane
+	@FXML
+	private AnchorPane udlevendørePane;
+	@FXML
+	private ListView undlist;
+	@FXML
+	private ListView unddet;
+	@FXML
+	private Button undmak;
+	@FXML
+	private Button undan;
 	@FXML
 	private Button SupplyerPaneLogOff;
 	
+	//Campaign Pane
+	@FXML
+	private AnchorPane kampagnePane;
+	@FXML
+	private Button nykamp;
+	@FXML
+	private Button logaff;
 	
+	//New Campaign Pane
+	@FXML
+	private Pane nykampPane;
+	@FXML
+	private ToggleGroup kamptog;
+	@FXML
+	private RadioButton web;
+	@FXML
+	private RadioButton pos;
+	@FXML
+	private RadioButton begge;
+	@FXML
+	private RadioButton newCampaignPanePersonal;
+	@FXML
+	private Spinner rabat;
+	@FXML
+	private DatePicker stardate;
+	@FXML
+	private DatePicker slutdate;
+	@FXML
+	private Button opretbutton;
+	@FXML
+	private Button nykampPanelogaff;
 	
-	
-	
+	//Hvor hører de her hjemme?
+	@FXML
+	private Button kundekonto;
+	@FXML
+	private Label totalLabel;
+	@FXML
+	private ToggleGroup group;
+	@FXML
+	private Label formedarb;
+	@FXML
+	private Label regerrorlabel;
+	@FXML
+	private Label kunneik;
+	@FXML
+	private ToggleGroup kamptog1;
 
+
+	/**
+	 * This
+	 *
+	 * @param url, rb
+	 */
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+
+		//
+		shopPane.setVisible(true);
+		//
+		rabat.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99));
+		//
+		setRefAndInitialData(new Mediator());
+		//
+		updateKatalog();
+		//
+		updateButikker();
+
+	}
+	
 	/**
 	 * This method handles the...
 	 *
@@ -1078,26 +1115,7 @@ public class MenuFXMLController implements Initializable {
 		}
 	}
 
-	/**
-	 * This
-	 *
-	 * @param url, rb
-	 */
-	@Override
-	public void initialize(URL url, ResourceBundle rb) {
-
-		//
-		shopPane.setVisible(true);
-		//
-		rabat.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99));
-		//
-		setRefAndInitialData(new Mediator());
-		//
-		updateKatalog();
-		//
-		updateButikker();
-
-	}
+	
 
 	/**
 	 * This method handles the...
