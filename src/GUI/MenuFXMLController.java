@@ -716,8 +716,8 @@ public class MenuFXMLController implements Initializable {
 		receiptPaneMessage.setText("Tak for din bestilling" + "\n" + "Vi har sendt din kvittering til " + invoiceInfoPaneEmail.getText());
 		
 		
-		// Order order = new Order(id, stedtiludlevering, kunde, totalpris, listOfVarer);
-       // Betaling betaling = new Betaling(totalpris, dato, kunde, order);
+		//Order order = new Order(id, stedtiludlevering, kunde, totalpris, listOfVarer);
+       //Betaling betaling = new Betaling(totalpris, dato, kunde, order);
 		
 	}
 
