@@ -140,7 +140,7 @@
 				<Label layoutX="208.0" layoutY="115.0" text="Ordre bemærkninger" />
 				<CheckBox fx:id="invoiceInfoPaneDiffrentAddress" disable="true" layoutX="204.0" layoutY="91.0" mnemonicParsing="false" />
 				<Label layoutX="204.0" layoutY="66.0" text="Send til en anden adresse?" />
-				<Button fx:id="invoiceInfoPaneBack" layoutX="392.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleBackButtonsAction" prefHeight="25.0" prefWidth="81.0" text="Tilbage" textFill="#3300ff" />
+				<Button fx:id="invoiceInfoPaneBack" layoutX="392.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleBackButtonsAction" prefHeight="25.0" prefWidth="81.0" text="Shop videre" textFill="#3300ff" />
 				<Button fx:id="invoiceInfoPaneLogOff" disable="true" layoutX="487.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleLogOffButtonAction" prefHeight="25.0" prefWidth="96.0" text="Log på" textFill="#3300ff" />
 			</children>
 		</AnchorPane>
@@ -188,7 +188,7 @@
 						<Font name="System Bold" size="14.0" />
 					</font>
 				</Button>
-				<Button fx:id="paymentPaneBack" layoutX="362.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleBackButtonsAction" prefHeight="25.0" prefWidth="81.0" text="Tilbage" textFill="#3300ff" />
+				<Button fx:id="paymentPaneBack" layoutX="362.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleBackButtonsAction" prefHeight="25.0" prefWidth="81.0" text="Shop videre" textFill="#3300ff" />
 				<Button fx:id="paymentPaneLogOff" disable="true" layoutX="462.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleLogOffButtonAction" prefHeight="25.0" prefWidth="96.0" text="Log på" textFill="#3300ff" />
 			</children>
 		</AnchorPane>
@@ -250,18 +250,18 @@
 		</AnchorPane>
 		<AnchorPane fx:id="kundekontoPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" visible="false">
 			<children>
-				<Label layoutX="26.0" layoutY="51.0" text="Dine oplysninger:" />
-				<Label layoutX="37.0" layoutY="221.0" text="Dine reklamationer:" />
-				<Label layoutX="322.0" layoutY="51.0" text="Dine orderer:" />
-				<Button fx:id="tilbage0" layoutX="342.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Til webshoppen" textFill="#3300ff" />
-				<Button fx:id="logafff" layoutX="458.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Log af" textFill="#3300ff" />
-				<Button fx:id="redigopl" layoutX="141.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Rediger oplysninger" textFill="#3300ff" />
-				<Button fx:id="nyreklam" layoutX="191.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Opret reklamation" textFill="#3300ff" />
-				<TextField fx:id="kundetilbud" editable="false" layoutX="496.0" layoutY="202.0" onAction="#handleKundeKontoAction" prefHeight="95.0" prefWidth="90.0" />
-				<Label layoutX="487.0" layoutY="170.0" text="Din personligt tilbud:" />
-				<ListView fx:id="kundeorderer" layoutX="310.0" layoutY="70.0" prefHeight="275.0" prefWidth="176.0" />
-				<ListView fx:id="kundereklam" layoutX="19.0" layoutY="238.0" prefHeight="149.0" prefWidth="158.0" />
-				<TextArea fx:id="kundeoplys" editable="false" layoutX="19.0" layoutY="78.0" prefHeight="142.0" prefWidth="223.0" />
+				<Label layoutX="19.0" layoutY="53.0" text="Dine oplysninger:" />
+				<Label layoutX="19.0" layoutY="227.0" text="Dine reklamationer:" />
+				<Label layoutX="397.0" layoutY="223.0" prefHeight="25.0" prefWidth="70.0" text="Dine ordre:" />
+				<Button fx:id="tilbage0" layoutX="382.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Til webshoppen" textFill="#3300ff" />
+				<Button fx:id="logafff" layoutX="495.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: white;" text="Log af" textFill="#3300ff" />
+				<Button fx:id="redigopl" layoutX="225.0" layoutY="78.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Rediger oplysninger" textFill="#3300ff" />
+				<Button fx:id="nyreklam" layoutX="225.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Opret reklamation" textFill="#3300ff" />
+				<TextField fx:id="kundetilbud" editable="false" layoutX="394.0" layoutY="78.0" onAction="#handleKundeKontoAction" prefHeight="142.0" prefWidth="176.0" />
+				<Label layoutX="397.0" layoutY="53.0" text="Dine personlige tilbud:" />
+				<ListView fx:id="kundeorderer" layoutX="394.0" layoutY="250.0" prefHeight="134.0" prefWidth="176.0" />
+				<ListView fx:id="kundereklam" layoutX="19.0" layoutY="245.0" prefHeight="142.0" prefWidth="200.0" />
+				<TextArea fx:id="kundeoplys" editable="false" layoutX="19.0" layoutY="78.0" prefHeight="142.0" prefWidth="200.0" />
       		<Pane fx:id="redigeringsPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       			<children>
       				<TextField fx:id="redigname" layoutX="37.0" layoutY="129.0" onAction="#handleKundeKontoAction" />
@@ -269,8 +269,8 @@
       				<TextField fx:id="redigtel" layoutX="37.0" layoutY="248.0" onAction="#handleKundeKontoAction" />
       				<TextField fx:id="rediggampass" layoutX="323.0" layoutY="68.0" onAction="#handleKundeKontoAction" promptText="Gammel adgangskode..." visible="false" />
       				<TextField fx:id="redignypass" layoutX="323.0" layoutY="104.0" onAction="#handleKundeKontoAction" promptText="Ny adgangskode..." visible="false" />
-      				<Button fx:id="skiftbutton" layoutX="243.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Skift adgangskode" textFill="#3300ff" />
-      				<Button fx:id="gemoplys" layoutX="383.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Gem oplysninger" textFill="#3300ff" />
+      				<Button fx:id="skiftbutton" layoutX="266.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Skift adgangskode" textFill="#3300ff" />
+      				<Button fx:id="gemoplys" layoutX="397.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Gem oplysninger" textFill="#3300ff" />
       				<Label fx:id="kunneik" layoutX="212.0" layoutY="223.0" prefHeight="17.0" prefWidth="100.0" />
       				<Label layoutX="37.0" layoutY="104.0" text="Nyt fuldnavn:" />
       				<Label layoutX="42.0" layoutY="160.0" text="Ny adresse:" />
@@ -283,16 +283,16 @@
       				<Label layoutX="26.0" layoutY="14.0" text="Vælg order" />
       				<Label layoutX="174.0" layoutY="14.0" text="Vælg produkter" />
       				<Label layoutX="338.0" layoutY="14.0" text="Din reklamationsliste:" />
-      				<Button fx:id="opretreklam" layoutX="518.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Opret" textFill="#3300ff" />
-      				<RadioButton fx:id="penge" layoutX="487.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" text="Penge">
+      				<Button fx:id="opretreklam" layoutX="513.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Opret" textFill="#3300ff" />
+      				<RadioButton fx:id="penge" layoutX="498.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" text="Penge">
       					<toggleGroup>
       						<ToggleGroup fx:id="reklamationer" />
       					</toggleGroup>
       				</RadioButton>
-      				<RadioButton fx:id="varer" layoutX="487.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" text="Varer" toggleGroup="$reklamationer" />
-      				<Label layoutX="498.0" layoutY="23.0" text="Du ønsker dig:" />
-      				<TextField fx:id="reklamaars" layoutX="29.0" layoutY="244.0" onAction="#handleKundeKontoAction" prefHeight="41.0" prefWidth="456.0" />
-      				<Label layoutX="48.0" layoutY="212.0" text="Årsag:" />
+      				<RadioButton fx:id="varer" layoutX="500.0" layoutY="67.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" text="Varer" toggleGroup="$reklamationer" />
+      				<Label layoutX="498.0" layoutY="14.0" text="Du ønsker dig:" />
+      				<TextField fx:id="reklamaars" layoutX="25.0" layoutY="249.0" onAction="#handleKundeKontoAction" prefHeight="110.0" prefWidth="462.0" />
+      				<Label layoutX="29.0" layoutY="219.0" text="Årsag:" />
       				<ListView fx:id="reklamord" layoutX="14.0" layoutY="43.0" prefHeight="142.0" prefWidth="149.0" />
       				<ListView fx:id="reklamprod" layoutX="174.0" layoutY="43.0" prefHeight="142.0" prefWidth="158.0" />
       			</children>
@@ -330,23 +330,28 @@
 				<Button fx:id="logaff" layoutX="496.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleKampagneAction" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: white;" text="Log af" textFill="#3300ff" />
 				<Pane fx:id="nykampPane" layoutX="139.0" layoutY="103.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<children>
-						<RadioButton fx:id="begge" layoutX="52.0" layoutY="106.0" mnemonicParsing="false" text="Alle">
+						<RadioButton fx:id="begge" layoutX="52.0" layoutY="98.0" mnemonicParsing="false" text="Alle">
 							<toggleGroup>
 								<ToggleGroup fx:id="kamptog" />
 							</toggleGroup>
 						</RadioButton>
 						<RadioButton fx:id="web" layoutX="51.0" layoutY="51.0" mnemonicParsing="false" text="Webshop" toggleGroup="$kamptog" />
-						<RadioButton fx:id="pos" layoutX="52.0" layoutY="80.0" mnemonicParsing="false" text="PoS" toggleGroup="$kamptog" />
+						<RadioButton fx:id="pos" layoutX="51.0" layoutY="74.0" mnemonicParsing="false" text="PoS" toggleGroup="$kamptog" />
 						<Label layoutX="52.0" layoutY="23.0" text="Kampagne gælder i:" />
-						<Spinner fx:id="rabat" layoutX="52.0" layoutY="160.0" prefHeight="25.0" prefWidth="69.0" />
-						<Label layoutX="52.0" layoutY="192.0" text="Startdato:" />
-						<DatePicker fx:id="slutdate" layoutX="51.0" layoutY="259.0" prefHeight="7.0" prefWidth="90.0" showWeekNumbers="true" />
-						<DatePicker fx:id="stardate" layoutX="51.0" layoutY="209.0" prefHeight="7.0" prefWidth="90.0" showWeekNumbers="true" />
-						<Button fx:id="opretbutton" layoutX="183.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleKampagneAction" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: white;" text="Opret" textFill="#3300ff" />
-						<Label layoutX="54.0" layoutY="242.0" text="Slutdato:" />
-						<Label layoutX="50.0" layoutY="135.0" prefHeight="25.0" prefWidth="85.0" text="\% besparelse:" />
+						<Spinner fx:id="rabat" layoutX="52.0" layoutY="175.0" prefHeight="25.0" prefWidth="69.0" />
+						<Label layoutX="52.0" layoutY="210.0" text="Startdato:" />
+						<DatePicker fx:id="slutdate" layoutX="51.0" layoutY="284.0" prefHeight="7.0" prefWidth="90.0" showWeekNumbers="true" />
+						<DatePicker fx:id="stardate" layoutX="51.0" layoutY="234.0" prefHeight="7.0" prefWidth="90.0" showWeekNumbers="true" />
+						<Button fx:id="opretbutton" layoutX="158.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleKampagneAction" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: white;" text="Opret" textFill="#3300ff" />
+						<Label layoutX="54.0" layoutY="263.0" text="Slutdato:" />
+						<Label layoutX="54.0" layoutY="144.0" prefHeight="25.0" prefWidth="85.0" text="\% besparelse:" />
 						<Label fx:id="formedarb" layoutX="131.0" layoutY="106.0" />
                   <Button fx:id="nykampPanelogaff" layoutX="492.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleKampagneAction" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: white;" text="Log af" textFill="#3300ff" />
+                  <RadioButton fx:id="newCampaignPanePersonal" layoutX="52.0" layoutY="123.0" mnemonicParsing="false" text="Personligt tilbud">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="kamptog1" />
+                     </toggleGroup>
+                  </RadioButton>
 					</children>
 				</Pane>
 			</children>

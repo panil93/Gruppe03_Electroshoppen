@@ -32,6 +32,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import javafx.collections.FXCollections;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
@@ -278,7 +279,7 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private CheckBox invoiceInfoPaneCreateAccount;
 	@FXML
-	private ChoiceBox<?> invoiceInfoPaneCountry;
+	private ChoiceBox<String> invoiceInfoPaneCountry;
 	@FXML
 	private TextField invoiceInfoPanePostCode;
 	@FXML
@@ -629,7 +630,8 @@ public class MenuFXMLController implements Initializable {
 
 		setAllPaneInvisibleButOne(invoiceInfoPane);
 		invoiceInfoPaneTotalPrice.setText(totalpris.getText());
-
+		invoiceInfoPaneCountry.setValue("Danmark");
+		
 	}
 
 	/**
