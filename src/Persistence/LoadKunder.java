@@ -5,7 +5,7 @@
  */
 package Persistence;
 
-import gruppe03_electroshoppen.Betaling;
+import gruppe03_electroshoppen.Payment;
 import gruppe03_electroshoppen.Kunde;
 import gruppe03_electroshoppen.Mediator;
 import gruppe03_electroshoppen.Order;
@@ -31,7 +31,7 @@ public class LoadKunder extends Loader {
 	private List<Kunde> kunde_list;
 	private List<Order> order_list;
 	private List<Reklamation> reklamation_list;
-	private List<Betaling> betaling_list;
+	private List<Payment> betaling_list;
 	Mediator mediator;
 
 	@Override
@@ -87,7 +87,7 @@ public class LoadKunder extends Loader {
 					Kunde kunde0 = mediator.getKundeByLogin(scanner.nextLine());
 					;
 					Order orderek = mediator.getOrderByid(scanner.nextLine());
-					Betaling betaling = new Betaling(beløb, dato, kunde0, orderek);
+					Payment betaling = new Payment(beløb, dato, kunde0, orderek);
 					betaling_list.add(betaling);
 					break;
 				case "[Reklamation]:":
@@ -117,7 +117,7 @@ public class LoadKunder extends Loader {
 		return this.order_list;
 	}
 
-	public List<Betaling> getListOfBetalinger() {
+	public List<Payment> getListOfBetalinger() {
 		return this.betaling_list;
 	}
 

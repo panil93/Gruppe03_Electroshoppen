@@ -5,7 +5,7 @@
  */
 package Persistence;
 
-import gruppe03_electroshoppen.Betaling;
+import gruppe03_electroshoppen.Payment;
 import gruppe03_electroshoppen.Butik;
 import gruppe03_electroshoppen.Kunde;
 import gruppe03_electroshoppen.Medarbejder;

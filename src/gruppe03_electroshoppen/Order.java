@@ -1,55 +1,53 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gruppe03_electroshoppen;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This class represent an order in the webshop. An order contains a list of all
+ * the products and services a customer wishes to buy. An order has a unique ID.   
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class Order {
 
 	private int id;
-	private String stedtiludlevering;
-	private double orderPrice;
-	Kunde kunde;
-	List<Varer> listonorder;
-	List<Varer> listOfVarer;
+	private String deliveryPlace;
+	private double amount;
+	Kunde customer;
+	List<Varer> listOfCommodities;
 
 	/**
+	 * This contructor creates an Order-object.
 	 *
-	 *
-	 * @param
+	 * @param id
+	 * @param deliveryPlace
+	 * @param customer
+	 * @param amount
+	 * @param listOfCommodities
 	 */
-	public Order(int id, String stedtiludlevering, Kunde kunde, double orderPrice, List<Varer> listOfVarer) {
+	public Order(int id, String deliveryPlace, Kunde customer, double amount, List<Varer> listOfCommodities) {
 
 		this.id = id;
-		this.listonorder = new ArrayList<>();
-		this.stedtiludlevering = stedtiludlevering;
-		this.orderPrice = orderPrice;
-		this.kunde = kunde;
-		this.listOfVarer = listOfVarer;
+		this.deliveryPlace = deliveryPlace;
+		this.amount = amount;
+		this.customer = customer;
+		this.listOfCommodities = listOfCommodities;
 
 	}
 
 	/**
 	 *
-	 *
+	 * @return A list of all products and services in the order.
 	 */
-	public List<Varer> getVarer() {
+	public List<Varer> getCommodities() {
 
-		return this.listOfVarer;
+		return this.listOfCommodities;
 
 	}
 
 	/**
 	 *
-	 *
+	 * @return The ID of the order.
 	 */
 	public int getId() {
 
@@ -59,47 +57,27 @@ public class Order {
 
 	/**
 	 *
-	 *
+	 * @return The delivery place.
 	 */
-	public double getTotalPris(List<Varer> l) {
+	public String getDeliveryPlace() {
 
-		double totalPrice = 0;
-
-		//
-		for (Varer v : l) {
-
-			double a = v.getPris();
-			totalPrice += a;
-
-		}
-
-		return totalPrice;
+		return this.deliveryPlace;
 
 	}
 
 	/**
 	 *
-	 *
+	 * @return The customer requesting the order.
 	 */
-	public String getStedttilUdlevering() {
+	public Kunde getCustomer() {
 
-		return this.stedtiludlevering;
+		return this.customer;
 
 	}
 
 	/**
 	 *
-	 *
-	 */
-	public Kunde getKunde() {
-
-		return this.kunde;
-
-	}
-
-	/**
-	 *
-	 *
+	 * @return The orders ID as a String.
 	 */
 	@Override
 	public String toString() {

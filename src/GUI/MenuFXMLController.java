@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import gruppe03_electroshoppen.Betaling;
+import gruppe03_electroshoppen.Payment;
 import gruppe03_electroshoppen.Butik;
 import gruppe03_electroshoppen.Kunde;
 import java.net.URL;
@@ -97,8 +97,6 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private ListView orderPaneOrder;
 	@FXML
-	private Button orderPaneLogOff;
-	@FXML
 	private Button orderPaneBack;
 	@FXML
 	private Button orderPaneContinue;
@@ -154,8 +152,6 @@ public class MenuFXMLController implements Initializable {
 	private CheckBox invoiceInfoPaneDiffrentAddress;
 	@FXML
 	private Button invoiceInfoPaneBack;
-	@FXML
-	private Button invoiceInfoPaneLogOff;
 	
 	//Payment Pane
 	@FXML
@@ -178,8 +174,6 @@ public class MenuFXMLController implements Initializable {
 	private Button paymentPaneContinue;
 	@FXML
 	private Button paymentPaneBack;
-	@FXML
-	private Button paymentPaneLogOff;
 
 	//Receipt Pane
 	@FXML
@@ -194,8 +188,6 @@ public class MenuFXMLController implements Initializable {
 	private Button receiptPaneBack;
 	@FXML
 	private TextField receiptPaneTotalPrice;
-	@FXML
-	private Button receiptPaneLogOff;
 	
 	//Register Pane
 	@FXML

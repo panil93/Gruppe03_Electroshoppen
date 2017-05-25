@@ -61,7 +61,7 @@ public class Mediator {
 		return k.getListOfOrder();
 	}
 
-	public List<Betaling> getListOfBetalinger() {
+	public List<Payment> getListOfBetalinger() {
 		return k.getListOfBetalinger();
 	}
 
@@ -103,7 +103,7 @@ public class Mediator {
 
 		for (Order o : this.getListOfOrder()) {
 			if (o.getId() == orders_id) {
-				return o.getVarer();
+				return o.getCommodities();
 			}
 		}
 		return null;
@@ -199,7 +199,7 @@ public class Mediator {
 	public Kunde getKundeByOrder(int ordernrnr) {
 		for (Order ordi : k.getListOfOrder()) {
 			if (ordi.getId() == ordernrnr) {
-				return ordi.getKunde();
+				return ordi.getCustomer();
 			}
 		}
 		return null;
@@ -208,7 +208,7 @@ public class Mediator {
 	public List<Order> getAllOrdersByKunde(Kunde kundzik) {
 		List<Order> orderlist0 = new ArrayList<>();
 		for (Order ord : this.getListOfOrder()) {
-			if (ord.getKunde() == kundzik) {
+			if (ord.getCustomer() == kundzik) {
 				orderlist0.add(ord);
 			}
 		}
