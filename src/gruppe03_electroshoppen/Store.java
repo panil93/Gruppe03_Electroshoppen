@@ -5,19 +5,27 @@
  */
 package gruppe03_electroshoppen;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
-public class Lager {
+public class Store {
 
-	private Butik butik;
-	private List<Varer> listofvarer;
+	private String adresse;
+	private String mail;
+	private List<Employee> medarbejderList;
 
-	public Lager(Butik butik, List<Varer> listofvarer) {
+	public Store(String adresse, String mail, List<Employee> medarbejderList) {
+		this.adresse = adresse;
+		this.mail = mail;
 
+	}
+
+	public String getAdresse() {
+		return this.adresse;
 	}
 
 }

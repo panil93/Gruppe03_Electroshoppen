@@ -5,10 +5,10 @@
  */
 package Persistence;
 
-import gruppe03_electroshoppen.Kunde;
-import gruppe03_electroshoppen.Produkt;
+import gruppe03_electroshoppen.Customer;
+import gruppe03_electroshoppen.Product;
 import gruppe03_electroshoppen.Service;
-import gruppe03_electroshoppen.Varer;
+import gruppe03_electroshoppen.Commodity;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,10 +27,10 @@ import java.util.logging.Logger;
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
-public class LoadVarer extends Loader {
+public class LoadCommodities extends Loader {
 
-	private List<Varer> product_list = new ArrayList();
-	private HashMap<String, Varer> kunde_list;
+	private List<Commodity> product_list = new ArrayList();
+	private HashMap<String, Commodity> kunde_list;
 
 	@Override
 	public void load() {
@@ -43,7 +43,7 @@ public class LoadVarer extends Loader {
 				//if not such file exists create it.
 				file.createNewFile();
 			} catch (IOException ex1) {
-				Logger.getLogger(LoadKunder.class.getName()).log(Level.SEVERE, null, ex1);
+				Logger.getLogger(LoadCustomers.class.getName()).log(Level.SEVERE, null, ex1);
 				return;
 			}
 		}
@@ -83,14 +83,14 @@ public class LoadVarer extends Loader {
 					Date DeliveryDate = this.readDate(scanner);
 					Date PriceLastModified = this.readDate(scanner);
 
-					Varer produkt = new Produkt(RetailPrice, CompanyId, SupplierName, SupplierId, SupplierProductCode, ProductCategory, Brand, CostPrice, CostPriceFreightFrom, CostPriceFreightTo, CostPriceHandlingFee, CostPriceWeeFee, EAN, Expired, ExpiredDate, StockQuantity, LastRestocked, ShortReelDescription, LongDescription, ShortDescription, Title, DeliveryTime, Weight, Lenght, Width, Height, ConvertedDate, Created, Modified, NextDeliveryQuantity, DeliveryDate, PriceLastModified);
+					Commodity produkt = new Product(RetailPrice, CompanyId, SupplierName, SupplierId, SupplierProductCode, ProductCategory, Brand, CostPrice, CostPriceFreightFrom, CostPriceFreightTo, CostPriceHandlingFee, CostPriceWeeFee, EAN, Expired, ExpiredDate, StockQuantity, LastRestocked, ShortReelDescription, LongDescription, ShortDescription, Title, DeliveryTime, Weight, Lenght, Width, Height, ConvertedDate, Created, Modified, NextDeliveryQuantity, DeliveryDate, PriceLastModified);
 					this.product_list.add(produkt);
 					break;
 				case "[Service]:":
 					double RetailPrice0 = Double.parseDouble(scanner.nextLine());
 					String CompanyId0 = scanner.nextLine();
 					String navn = scanner.nextLine();
-					Varer service = new Service(CompanyId0, navn, RetailPrice0);
+					Commodity service = new Service(CompanyId0, navn, RetailPrice0);
 					this.product_list.add(service);
 
 					break;
@@ -101,7 +101,7 @@ public class LoadVarer extends Loader {
 		}
 	}
 
-	public List<Varer> getProduktKatalog() {
+	public List<Commodity> getProduktKatalog() {
 		return this.product_list;
 	}
 }

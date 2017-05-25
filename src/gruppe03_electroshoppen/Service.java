@@ -9,7 +9,7 @@ package gruppe03_electroshoppen;
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
-public class Service extends Varer {
+public class Service extends Commodity{
 
 	private String navn;
 

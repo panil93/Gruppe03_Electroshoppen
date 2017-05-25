@@ -9,26 +9,16 @@ package gruppe03_electroshoppen;
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
-public class Medarbejder {
+public class Subsupplier{
 
-	private String fuldnavn;
 	private String login;
 	private String adgangskode;
-	private String type;
 
-	public Medarbejder(String fuldnavn, String login, String adgangskode, String type) {
-		this.fuldnavn = fuldnavn;
+	public Subsupplier(String login, String adgangskode) {
+
 		this.login = login;
 		this.adgangskode = adgangskode;
-		this.type = type;
-	}
 
-	public String getLogin() {
-		return this.login;
-	}
-
-	public String getAdgangskode() {
-		return this.adgangskode;
 	}
 
 }

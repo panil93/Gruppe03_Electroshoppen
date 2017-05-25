@@ -13,8 +13,8 @@ public class Order {
 	private int id;
 	private String deliveryPlace;
 	private double amount;
-	Kunde customer;
-	List<Varer> listOfCommodities;
+	Customer customer;
+	List<Commodity> listOfCommodities;
 
 	/**
 	 * This contructor creates an Order-object.
@@ -25,7 +25,7 @@ public class Order {
 	 * @param amount
 	 * @param listOfCommodities
 	 */
-	public Order(int id, String deliveryPlace, Kunde customer, double amount, List<Varer> listOfCommodities) {
+	public Order(int id, String deliveryPlace, Customer customer, double amount, List<Commodity> listOfCommodities) {
 
 		this.id = id;
 		this.deliveryPlace = deliveryPlace;
@@ -39,7 +39,7 @@ public class Order {
 	 *
 	 * @return A list of all products and services in the order.
 	 */
-	public List<Varer> getCommodities() {
+	public List<Commodity> getCommodities() {
 
 		return this.listOfCommodities;
 
@@ -69,7 +69,7 @@ public class Order {
 	 *
 	 * @return The customer requesting the order.
 	 */
-	public Kunde getCustomer() {
+	public Customer getCustomer() {
 
 		return this.customer;
 

@@ -6,14 +6,14 @@
 package Persistence;
 
 import gruppe03_electroshoppen.Payment;
-import gruppe03_electroshoppen.Butik;
-import gruppe03_electroshoppen.Kunde;
-import gruppe03_electroshoppen.Medarbejder;
+import gruppe03_electroshoppen.Store;
+import gruppe03_electroshoppen.Customer;
+import gruppe03_electroshoppen.Employee;
 import gruppe03_electroshoppen.Mediator;
 import gruppe03_electroshoppen.Order;
-import gruppe03_electroshoppen.Reklamation;
-import gruppe03_electroshoppen.Underleverandør;
-import gruppe03_electroshoppen.Varer;
+import gruppe03_electroshoppen.Reclamation;
+import gruppe03_electroshoppen.Subsupplier;
+import gruppe03_electroshoppen.Commodity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,9 +33,9 @@ public class Loader {
 	}
 
 	public void load() {
-		new LoadKunder();
-		new LoadVarer();
-		new LoadButikker();
+		new LoadCustomers();
+		new LoadCommodities();
+		new LoadStores();
 	}
 
 	public void load(Mediator ref_m) {
@@ -48,7 +48,7 @@ public class Loader {
 		try {
 			return new SimpleDateFormat(dateFormat).parse(scanner.nextLine());
 		} catch (ParseException ex) {
-			Logger.getLogger(LoadVarer.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(LoadCommodities.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
 		}
 	}

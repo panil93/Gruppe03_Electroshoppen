@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
-public class Produkt extends Varer {
+public class Product extends Commodity{
 
 	private String SupplierName;
 	private int SupplierId;
@@ -45,7 +45,7 @@ public class Produkt extends Varer {
 	private Date DeliveryDate;
 	private Date PriceLastModified;
 
-	public Produkt(double RetailPrice, String CompanyId, String SupplierName, int SupplierId, String SupplierProductCode, String ProductCategory, String Brand, double CostPrice, double CostPriceFreightFrom, double CostPriceFreightTo, double CostPriceHandlingFee, double CostPriceWeeFee, String EAN, boolean Expired, Date ExpiredDate, int StockQuantity, Date LastRestocked, String ShortReelDescription, String LongDescription, String ShortDescription, String Title, int DeliveryTime, double Weight, double Lenght, double Width, double Height, Date ConvertedDate, Date Created, Date Modified, int NextDeliveryQuantity, Date DeliveryDate, Date PriceLastModified) {
+	public Product(double RetailPrice, String CompanyId, String SupplierName, int SupplierId, String SupplierProductCode, String ProductCategory, String Brand, double CostPrice, double CostPriceFreightFrom, double CostPriceFreightTo, double CostPriceHandlingFee, double CostPriceWeeFee, String EAN, boolean Expired, Date ExpiredDate, int StockQuantity, Date LastRestocked, String ShortReelDescription, String LongDescription, String ShortDescription, String Title, int DeliveryTime, double Weight, double Lenght, double Width, double Height, Date ConvertedDate, Date Created, Date Modified, int NextDeliveryQuantity, Date DeliveryDate, Date PriceLastModified) {
 		super(RetailPrice, CompanyId);
 		this.SupplierName = SupplierName;
 	}

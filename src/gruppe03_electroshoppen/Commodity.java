@@ -10,7 +10,7 @@ package gruppe03_electroshoppen;
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
-public abstract class Varer {
+public abstract class Commodity{
 
 	double RetailPrice;
 	private String CompanyId;
@@ -25,7 +25,8 @@ public abstract class Varer {
 
 	}
 
-	public Varer(double RetailPrice, String CompanyId) {
+	public Commodity(double RetailPrice, String CompanyId) {
+	
 		this.RetailPrice = RetailPrice;
 		this.CompanyId = CompanyId;
 

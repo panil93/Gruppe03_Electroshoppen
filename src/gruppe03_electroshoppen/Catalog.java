@@ -12,11 +12,13 @@ import java.util.List;
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
-public class ProduktKatalog {
+public class Catalog {
 
-	List<Produkt> katalog;
+	List<Product> catalog;
 
-	public ProduktKatalog(List<Produkt> katalog) {
-		this.katalog = new ArrayList<Produkt>();
+	public Catalog(List<Product> katalog) {
+
+		this.catalog = new ArrayList<Product>();
+
 	}
 }

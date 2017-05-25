@@ -5,19 +5,22 @@
  */
 package gruppe03_electroshoppen;
 
+import java.util.List;
+
 /**
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
-public class Underleverandør {
+public class Storage {
 
-	private String login;
-	private String adgangskode;
+	private Store store;
+	private List<Commodity> listOfCommodities;
 
-	public Underleverandør(String login, String adgangskode) {
-
-		this.login = login;
-		this.adgangskode = adgangskode;
+	/**
+	 *
+	 * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
+	 */
+	public Storage(Store store, List<Commodity> listOfCommodities) {
 
 	}
 

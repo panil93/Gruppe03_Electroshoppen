@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
-public class Kampagne {
+public class Campaign{
 
 	private int procentTilbud;
 	private boolean gælderIWebshop;
@@ -19,13 +19,17 @@ public class Kampagne {
 	private Date startdato;
 	private Date sluttdato;
 
-	public Kampagne(int procentTilbud, boolean gælderIWebshop, boolean gælderIPoS) {
+	public Campaign(int procentTilbud, boolean gælderIWebshop, boolean gælderIPoS) {
+		
 		this.procentTilbud = procentTilbud;
 		this.gælderIWebshop = gælderIWebshop;
 		this.gælderIPoS = gælderIPoS;
+	
 	}
 
 	public int getProcentTilbud() {
+	
 		return this.procentTilbud;
+	
 	}
 }

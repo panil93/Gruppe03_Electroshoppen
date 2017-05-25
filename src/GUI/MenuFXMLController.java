@@ -5,8 +5,8 @@
 package GUI;
 
 import gruppe03_electroshoppen.Payment;
-import gruppe03_electroshoppen.Butik;
-import gruppe03_electroshoppen.Kunde;
+import gruppe03_electroshoppen.Store;
+import gruppe03_electroshoppen.Customer;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -24,8 +24,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import gruppe03_electroshoppen.Mediator;
 import gruppe03_electroshoppen.Order;
-import gruppe03_electroshoppen.Produkt;
-import gruppe03_electroshoppen.Varer;
+import gruppe03_electroshoppen.Product;
+import gruppe03_electroshoppen.Commodity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,9 +59,9 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private Button logaf;
 	@FXML
-	private ListView<Varer> katalog;
+	private ListView<Commodity> katalog;
 	@FXML
-	private ListView<Varer> cart;
+	private ListView<Commodity> cart;
 	@FXML
 	private Button addtocart;
 	@FXML
@@ -143,7 +143,7 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private TextField invoiceInfoPaneCity;
 	@FXML
-	private ListView<Varer> invoiceInfoPaneOrder;
+	private ListView<Commodity> invoiceInfoPaneOrder;
 	@FXML
 	private TextField invoiceInfoPaneTotalPrice;
 	@FXML
@@ -157,7 +157,7 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private AnchorPane paymentPane;
 	@FXML
-	private ListView<Varer> paymentPaneOrder;
+	private ListView<Commodity> paymentPaneOrder;
 	@FXML
 	private TextField paymentPaneTotalPrice;
 	@FXML
@@ -179,7 +179,7 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private AnchorPane receiptPane;
 	@FXML
-	private ListView<Varer> receiptPaneOrder;
+	private ListView<Commodity> receiptPaneOrder;
 	@FXML
 	private TextArea receiptPaneMessage;
 	@FXML
@@ -410,12 +410,12 @@ public class MenuFXMLController implements Initializable {
 				//
 				if (Integer.parseInt(test) == (ordy.getId())) {
 					
-					Kunde t = mediator.getKundeByOrder(ordy.getId());
+					Customer t = mediator.getKundeByOrder(ordy.getId());
 					String t2 = mediator.getKundeByOrder(ordy.getId()).getAdresse();
 					pakkemodtag.setText(t.getName() + "\n" + t2);
 					
 					//
-					for (Varer v : mediator.getVarerByOrder(Integer.parseInt(pakkeoplys.getText()))) {
+					for (Commodity v : mediator.getVarerByOrder(Integer.parseInt(pakkeoplys.getText()))) {
 						
 						//
 						if (v != null) {
@@ -506,13 +506,13 @@ public class MenuFXMLController implements Initializable {
 		
 		if (radiusek == web) {
 			
-			List<Varer> tester = mediator.getListOfVarer();
+			List<Commodity> tester = mediator.getListOfVarer();
 			
-			for (Varer v : mediator.getListOfVarer()) {
+			for (Commodity v : mediator.getListOfVarer()) {
 			
-				if (v instanceof Produkt) {
+				if (v instanceof Product) {
 					
-					newPrice = ((Produkt) v).calculatePriceWithRabat((Integer) rabat.getValue(), v.getPris());
+					newPrice = ((Product) v).calculatePriceWithRabat((Integer) rabat.getValue(), v.getPris());
 					v.setPris(newPrice);
 					formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i Webshoppen");
 					
@@ -538,13 +538,13 @@ public class MenuFXMLController implements Initializable {
 
 		} else if (radiusek == begge) {
 			
-			List<Varer> tester = mediator.getListOfVarer();
+			List<Commodity> tester = mediator.getListOfVarer();
 			
-			for (Varer v : mediator.getListOfVarer()) {
+			for (Commodity v : mediator.getListOfVarer()) {
 				
-				if (v instanceof Produkt) {
+				if (v instanceof Product) {
 					
-					newPrice = ((Produkt) v).calculatePriceWithRabat((Integer) rabat.getValue(), v.getPris());
+					newPrice = ((Product) v).calculatePriceWithRabat((Integer) rabat.getValue(), v.getPris());
 
 					v.setPris(newPrice);
 					formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i både Webshoppen og Points of Sale");
@@ -571,9 +571,9 @@ public class MenuFXMLController implements Initializable {
 
 		Button b = (Button) event.getSource();
 		int id = 0;
-		Kunde kunde = null;
+		Customer kunde = null;
 		double orderPrice = 0.0;
-		List<Varer> listOfVarer = null;
+		List<Commodity> listOfVarer = null;
 
 		if (b == gaatilkassen) {
 
@@ -629,11 +629,11 @@ public class MenuFXMLController implements Initializable {
 			listButikker.getItems().clear();
 			collectPane.setVisible(true);
 
-			for (Butik butik_to : mediator.getListOfButikker()) {
+			for (Store store : mediator.getListOfButikker()) {
 
-				if (butik_to != null) {
+				if (store != null) {
 
-					listButikker.getItems().add(butik_to.getAdresse());
+					listButikker.getItems().add(store.getAdresse());
 					invoiceInfoPaneDiffrentAddress.disableProperty();
 
 				}
@@ -797,7 +797,7 @@ public class MenuFXMLController implements Initializable {
 
 				redigeringsPane.setVisible(false);
 
-				for (Kunde kundas : mediator.getListOfKunder()) {
+				for (Customer kundas : mediator.getListOfKunder()) {
 
 					if (kundas.toString().compareTo(kundeoplys.getText()) == 0) {
 
@@ -877,14 +877,14 @@ public class MenuFXMLController implements Initializable {
 
 			if ((regname.getText().isEmpty() == false) && (regaddr.getText().isEmpty() == false) && (regtel.getText().isEmpty() == false) && (reglog.getText().isEmpty() == false) && (redadg.getText().isEmpty() == false)) {
 
-				mediator.getListOfKunder().add(new Kunde(regname.getText(), regaddr.getText(), reglog.getText(), redadg.getText(), Integer.parseInt(regtel.getText())));
+				mediator.getListOfKunder().add(new Customer(regname.getText(), regaddr.getText(), reglog.getText(), redadg.getText(), Integer.parseInt(regtel.getText())));
 				registerPane.setVisible(false);
 				shopPane.setVisible(true);
 				logpaa.setVisible(false);
 				register.setVisible(false);
 				logaf.setVisible(true);
 				kundekonto.setVisible(true);
-				mediator.getListOfKunder().add(new Kunde(regname.getText(), regaddr.getText(), reglog.getText(), redadg.getText(), Integer.parseInt(regtel.getText())));
+				mediator.getListOfKunder().add(new Customer(regname.getText(), regaddr.getText(), reglog.getText(), redadg.getText(), Integer.parseInt(regtel.getText())));
 
 			} else {
 
@@ -921,7 +921,7 @@ public class MenuFXMLController implements Initializable {
 				kundekonto.setVisible(true);
 
 				password.clear();
-				Kunde kundeczek = mediator.getKundeByLogin(loginek.getText());
+				Customer kundeczek = mediator.getKundeByLogin(loginek.getText());
 				kundeoplys.setText(kundeczek.toString());
 				List<Order> tmp0 = mediator.getAllOrdersByKunde(mediator.getKundeByLoginAndPassword(loginek.getText(), password.getText()));
 				kundeorderer.getItems().addAll(tmp0);
@@ -997,7 +997,7 @@ public class MenuFXMLController implements Initializable {
 
 			double totalPris = 0;
 
-			for (Varer v : cart.getItems()) {
+			for (Commodity v : cart.getItems()) {
 
 				totalPris += v.getPris();
 				String total2 = String.valueOf(totalPris);
@@ -1077,10 +1077,10 @@ public class MenuFXMLController implements Initializable {
 	 */
 	private void updateKatalog() {
 		this.katalog.getItems().clear();
-		List<Varer> objects = mediator.getListOfVarer();
+		List<Commodity> objects = mediator.getListOfVarer();
 
 		//
-		for (Varer v : objects) {
+		for (Commodity v : objects) {
 			
 			//
 			if (v != null) {
@@ -1099,10 +1099,10 @@ public class MenuFXMLController implements Initializable {
 	private void updateKundeKonto() {
 
 		this.kundeoplys.setText(null);
-		List<Kunde> clients = mediator.getListOfKunder();
+		List<Customer> clients = mediator.getListOfKunder();
 
 		//
-		for (Kunde kudin : clients) {
+		for (Customer kudin : clients) {
 			
 			this.kundeoplys.setText(kudin.toString());
 
@@ -1116,10 +1116,10 @@ public class MenuFXMLController implements Initializable {
 	private void updateButikker() {
 
 		this.listButikker.getItems().removeAll();
-		List<Butik> butikker = mediator.getListOfButikker();
+		List<Store> butikker = mediator.getListOfButikker();
 
 		//
-		for (Butik shopper : butikker) {
+		for (Store shopper : butikker) {
 			
 			//
 			if (shopper != null) {

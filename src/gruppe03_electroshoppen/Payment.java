@@ -3,7 +3,7 @@ package gruppe03_electroshoppen;
 import java.util.Date;
 
 /**
- * This class represent a payment in the webshop. It is the payment of an
+ * This class represent a payment in the webshop. It is a payment of an
  * order. The class has 4 accessor methods. One for each of the attributes.
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
@@ -12,7 +12,7 @@ public class Payment {
 
 	private double amount;
 	private Date date;
-	private Kunde customer;
+	private Customer customer;
 	private Order order;
 
 	/**
@@ -23,7 +23,7 @@ public class Payment {
 	 * @param customer
 	 * @param order
 	 */
-	public Payment(double amount, Date date, Kunde customer, Order order) {
+	public Payment(double amount, Date date, Customer customer, Order order) {
 
 		this.amount = amount;
 		this.date = date;
@@ -54,7 +54,7 @@ public class Payment {
 	 *
 	 * @return The customer belonging to a payment.
 	 */
-	public Kunde getCustomerToPayment() {
+	public Customer getCustomerToPayment() {
 
 		return this.customer;
 

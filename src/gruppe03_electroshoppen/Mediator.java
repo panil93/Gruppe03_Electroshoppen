@@ -5,9 +5,9 @@
  */
 package gruppe03_electroshoppen;
 
-import Persistence.LoadButikker;
-import Persistence.LoadKunder;
-import Persistence.LoadVarer;
+import Persistence.LoadStores;
+import Persistence.LoadCustomers;
+import Persistence.LoadCommodities;
 import java.util.ArrayList;
 import java.util.List;
 import Persistence.Loader;
@@ -19,15 +19,15 @@ import java.util.HashMap;
  */
 public class Mediator {
 
-	LoadVarer l = new LoadVarer();
-	LoadKunder k = new LoadKunder();
-	LoadButikker lB = new LoadButikker();
+	LoadCommodities l = new LoadCommodities();
+	LoadCustomers k = new LoadCustomers();
+	LoadStores lB = new LoadStores();
 
-	List<Varer> produktkatalog = new ArrayList<Varer>();
-	List<Kunde> listofkunder = new ArrayList<Kunde>();
-	List<Medarbejder> medarblist = new ArrayList<Medarbejder>();
-	List<Butik> listofshops = new ArrayList<Butik>();
-	List<Underleverandør> listofunderleverandor = new ArrayList<Underleverandør>();
+	List<Commodity> produktkatalog = new ArrayList<Commodity>();
+	List<Customer> listofkunder = new ArrayList<Customer>();
+	List<Employee> medarblist = new ArrayList<Employee>();
+	List<Store> listofshops = new ArrayList<Store>();
+	List<Subsupplier> listofunderleverandor = new ArrayList<Subsupplier>();
 	List<Order> listoforder = new ArrayList<Order>();
 
 	public Mediator() {
@@ -36,24 +36,24 @@ public class Mediator {
 		lB.load(this);
 	}
 
-	public List<Varer> getListOfVarer() {
+	public List<Commodity> getListOfVarer() {
 
 		return l.getProduktKatalog();
 	}
 
-	public List<Kunde> getListOfKunder() {
+	public List<Customer> getListOfKunder() {
 		return k.getListOfKunder();
 	}
 
-	public List<Medarbejder> getListOfMedarbeder() {
+	public List<Employee> getListOfMedarbeder() {
 		return this.lB.getListOfMedarbejder();
 	}
 
-	public List<Butik> getListOfButikker() {
+	public List<Store> getListOfButikker() {
 		return this.lB.getListOfButikker();
 	}
 
-	public List<Underleverandør> getListOfUnderleverandører() {
+	public List<Subsupplier> getListOfUnderleverandører() {
 		return this.listofunderleverandor;
 	}
 
@@ -65,13 +65,13 @@ public class Mediator {
 		return k.getListOfBetalinger();
 	}
 
-	public List<Reklamation> getListOfReklamationer() {
+	public List<Reclamation> getListOfReklamationer() {
 		return k.getListOfReklamationer();
 	}
 
-	public Kunde getKundeByLogin(String login) {
-		List<Kunde> listeofkunde = k.getListOfKunder();
-		for (Kunde kunde : listeofkunde) {
+	public Customer getKundeByLogin(String login) {
+		List<Customer> listeofkunde = k.getListOfKunder();
+		for (Customer kunde : listeofkunde) {
 			if (kunde.getLogin().compareTo(login) == 0) {
 				return kunde;
 			}
@@ -80,7 +80,7 @@ public class Mediator {
 	}
 
 	public boolean IsEmpoloeeInSystem(String login, String adgangskode) {
-		for (Medarbejder m : medarblist) {
+		for (Employee m : medarblist) {
 			if (m.getLogin().compareTo(login) == 0 && m.getAdgangskode().compareTo(adgangskode) == 0) {
 				return true;
 			}
@@ -88,8 +88,8 @@ public class Mediator {
 		return false;
 	}
 
-	public Varer getVarerByid(String s) {
-		for (Varer v : produktkatalog) {
+	public Commodity getVarerByid(String s) {
+		for (Commodity v : produktkatalog) {
 
 			if (v.getId().compareTo(s) == 0) {
 				return v;
@@ -99,7 +99,7 @@ public class Mediator {
 		return null;
 	}
 
-	public List<Varer> getVarerByOrder(int orders_id) {
+	public List<Commodity> getVarerByOrder(int orders_id) {
 
 		for (Order o : this.getListOfOrder()) {
 			if (o.getId() == orders_id) {
@@ -118,8 +118,8 @@ public class Mediator {
 		return null;
 	}
 
-	public Varer getVarerById(String n) {
-		for (Varer v : produktkatalog) {
+	public Commodity getVarerById(String n) {
+		for (Commodity v : produktkatalog) {
 			if (v.getId().compareTo(n) == 0) {
 
 				return v;
@@ -129,8 +129,8 @@ public class Mediator {
 		return null;
 	}
 
-	public Medarbejder getMedarbejderByLogin(String l) {
-		for (Medarbejder m : medarblist) {
+	public Employee getMedarbejderByLogin(String l) {
+		for (Employee m : medarblist) {
 			if (m.getLogin().compareTo(l) == 0) {
 				return m;
 			}
@@ -138,8 +138,8 @@ public class Mediator {
 		return null;
 	}
 
-	public Butik getButikByAdresse(String a) {
-		for (Butik b : listofshops) {
+	public Store getButikByAdresse(String a) {
+		for (Store b : listofshops) {
 			if (b.getAdresse().compareTo(a) == 0) {
 				return b;
 			}
@@ -147,11 +147,11 @@ public class Mediator {
 		return null;
 	}
 
-	public List<Varer> getListOfVarerById(String st) {
-		List<Varer> varelist = this.l.getProduktKatalog();
-		List<Varer> newlistofvarer = new ArrayList();
+	public List<Commodity> getListOfVarerById(String st) {
+		List<Commodity> varelist = this.l.getProduktKatalog();
+		List<Commodity> newlistofvarer = new ArrayList();
 		String[] ids = st.split(",");
-		for (Varer v : varelist) {
+		for (Commodity v : varelist) {
 			for (String id : ids) {
 				if (v.getId().compareTo(id) == 0) {
 					newlistofvarer.add(v);
@@ -177,18 +177,18 @@ public class Mediator {
 		this.k.getListOfOrder().remove(o);
 	}
 
-	public List<Medarbejder> getListOfMedarbejderByLogin(String str) {
-		List<Medarbejder> medarbliste = new ArrayList<>();
+	public List<Employee> getListOfMedarbejderByLogin(String str) {
+		List<Employee> medarbliste = new ArrayList<>();
 		String[] stringarray = str.split(",");
 		for (int i = 0; i < stringarray.length; i++) {
-			Medarbejder m = this.getMedarbejderByLogin(stringarray[i]);
+			Employee m = this.getMedarbejderByLogin(stringarray[i]);
 			medarbliste.add(m);
 		}
 		return medarbliste;
 	}
 
-	public Kunde getKundeByLoginAndPassword(String log, String pass) {
-		for (Kunde kund : k.getListOfKunder()) {
+	public Customer getKundeByLoginAndPassword(String log, String pass) {
+		for (Customer kund : k.getListOfKunder()) {
 			if ((kund.getLogin().compareTo(log) == 0) && (kund.getAdgangskode().compareTo(pass) == 0)) {
 				return kund;
 			}
@@ -196,7 +196,7 @@ public class Mediator {
 		return null;
 	}
 
-	public Kunde getKundeByOrder(int ordernrnr) {
+	public Customer getKundeByOrder(int ordernrnr) {
 		for (Order ordi : k.getListOfOrder()) {
 			if (ordi.getId() == ordernrnr) {
 				return ordi.getCustomer();
@@ -205,7 +205,7 @@ public class Mediator {
 		return null;
 	}
 
-	public List<Order> getAllOrdersByKunde(Kunde kundzik) {
+	public List<Order> getAllOrdersByKunde(Customer kundzik) {
 		List<Order> orderlist0 = new ArrayList<>();
 		for (Order ord : this.getListOfOrder()) {
 			if (ord.getCustomer() == kundzik) {
