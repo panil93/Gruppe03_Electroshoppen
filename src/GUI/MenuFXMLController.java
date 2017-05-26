@@ -363,6 +363,7 @@ public class MenuFXMLController implements Initializable {
 	private Label kunneik;
 	@FXML
 	private ToggleGroup kamptog1;
+	
 
 
 	/**
@@ -855,7 +856,7 @@ public class MenuFXMLController implements Initializable {
 	 * @param event
 	 */
 	@FXML
-	private void handleUnderleverandørAction(ActionEvent event) {
+	private void handleSubsupplierAction(ActionEvent event) {
 
 		Button pressed_button = (Button) event.getSource();
 
@@ -943,7 +944,8 @@ public class MenuFXMLController implements Initializable {
 
 		} else if (pressed_button == under) {
 
-			setAllPaneInvisibleButOne(SubsupplierPane);
+			loggingPane.setVisible(false);
+			SubsupplierPane.setVisible(true);
 			loginek.clear();
 			password.clear();
 			

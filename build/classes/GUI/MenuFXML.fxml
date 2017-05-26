@@ -38,7 +38,7 @@
 				<ListView fx:id="banner" layoutX="12.0" layoutY="13.0" prefHeight="55.0" prefWidth="406.0" />
 				<Pane fx:id="soegpane" layoutX="15.0" layoutY="7.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<children>
-						<RadioButton fx:id="id" layoutX="52.0" layoutY="49.0" mnemonicParsing="false" onAction="#handleSøgningAction" text="Søg efter id-nummer">
+						<RadioButton fx:id="SearchPaneId" layoutX="52.0" layoutY="49.0" mnemonicParsing="false" onAction="#handleSøgningAction" text="Søg efter id-nummer">
 							<toggleGroup>
 								<ToggleGroup fx:id="group" />
 							</toggleGroup>
@@ -309,15 +309,16 @@
 				<TextArea fx:id="pakkemodtag" editable="false" layoutX="365.0" layoutY="231.0" prefHeight="149.0" prefWidth="223.0" />
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="udlevendørePane" prefHeight="400.0" prefWidth="600.0" visible="false">
+		<AnchorPane fx:id="SubsupplierPane" mouseTransparent="true" prefHeight="400.0" prefWidth="600.0">
 			<children>
 				<Label layoutX="19.0" layoutY="14.0" text="Ordre oversigt:" />
-				<Button fx:id="undmak" layoutX="167.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleUnderleverandørAction" style="-fx-background-color: white;" text="Maker som sendt" textFill="#3300ff" />
+				<Button fx:id="SubsupplierPaneShipped" layoutX="168.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleSubsupplierAction" style="-fx-background-color: white;" text="Maker som sendt" textFill="#3300ff" />
 				<Label layoutX="300.0" layoutY="107.0" text="Ordre detajler:" />
-				<Button fx:id="undan" layoutX="167.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleUnderleverandørAction" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: white;" text="Anuller ordre" textFill="#3300ff" />
-				<ListView fx:id="undlist" layoutX="14.0" layoutY="31.0" prefHeight="350.0" prefWidth="140.0" />
-				<ListView fx:id="unddet" layoutX="300.0" layoutY="132.0" prefHeight="244.0" prefWidth="262.0" />
-            <Button fx:id="SupplyerPaneLogOff" layoutX="507.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleLogOffButtonAction" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: white;" text="Log af" textFill="#3300ff" />
+				<Button fx:id="SubsupplierPaneCanel" layoutX="168.0" layoutY="95.0" mnemonicParsing="false" onAction="#handleSubsupplierAction" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: white;" text="Anuller ordre" textFill="#3300ff" />
+				<ListView fx:id="SubsupplierPaneOverview" layoutX="14.0" layoutY="31.0" prefHeight="350.0" prefWidth="140.0" />
+				<ListView fx:id="SubsupplierPaneDetailed" layoutX="300.0" layoutY="132.0" prefHeight="244.0" prefWidth="262.0" />
+            <Button fx:id="SubsupplierPaneLogOff" layoutX="507.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleLogOffButtonAction" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: white;" text="Log af" textFill="#3300ff" />
+            <Button fx:id="SubsupplierPaneView" layoutX="167.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleSubsupplierAction" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: white;" text="Se ordre detaljer" textFill="#3300ff" />
 			</children>
 		</AnchorPane>
 		<AnchorPane fx:id="kampagnePane" prefHeight="400.0" prefWidth="600.0" visible="false">
