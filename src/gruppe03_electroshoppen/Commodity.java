@@ -15,12 +15,14 @@ public abstract class Commodity{
 	double RetailPrice;
 	private String CompanyId;
 
-	public double getPris() {
+	public double getPrice() {
+		
 		return this.RetailPrice;
 
 	}
 
-	public void setPris(double price) {
+	public void setPrice(double price) {
+		
 		this.RetailPrice = price;
 
 	}

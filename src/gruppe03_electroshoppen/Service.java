@@ -14,6 +14,7 @@ public class Service extends Commodity{
 	private String navn;
 
 	public Service(String CompanyId, String navn, double RetailPrice) {
+		
 		super(RetailPrice, CompanyId);
 		this.navn = navn;
 
