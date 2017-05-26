@@ -45,8 +45,12 @@ import javafx.scene.control.SpinnerValueFactory;
 public class MenuFXMLController implements Initializable {
 
 	private Mediator mediator;
-	private String stedtiludlevering = null;
 
+	private int id = 1;
+	private String deliveryPlace = null;
+	private Customer customer;
+    private List<Commodity> listOfCommodities;
+	
 	//Shop Pane
 	@FXML
 	private AnchorPane shopPane;
@@ -79,7 +83,7 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private RadioButton kat;
 	@FXML
-	private RadioButton id;
+	private RadioButton searchPaneId;
 	@FXML
 	private TextField søgid;
 	@FXML
@@ -662,7 +666,7 @@ public class MenuFXMLController implements Initializable {
 			return;
 		}
 
-		stedtiludlevering = listButikker.getSelectionModel().getSelectedItem().toString();
+		deliveryPlace = listButikker.getSelectionModel().getSelectedItem().toString();
 		collectPane.setVisible(false);
 	}
 
@@ -701,15 +705,29 @@ public class MenuFXMLController implements Initializable {
 	@FXML
 	private void handleGoToReceiptAction(ActionEvent event) {
 
-		//listOfVarer<> =cart.getItems();
+		
+		//Creates an Order-object for the particular order.
+		Order order = new Order(id, deliveryPlace, customer, listOfCommodities);
+	
+		//Creates a Date-Object for the payment of an order.
+		Date date = new Date();
+
+		//The amount the customer has to pay.
+		double amount = 10;
+
+//order.getTotalPrice();
+
+		//Creates an Payment-object for the particular order.
+		Payment payment = new Payment(amount, date, customer, order);
+
+
+		
 		
 		setAllPaneInvisibleButOne(receiptPane);
 		receiptPaneTotalPrice.setText(totalpris.getText());
 		receiptPaneMessage.setText("Tak for din bestilling" + "\n" + "Vi har sendt din kvittering til " + invoiceInfoPaneEmail.getText());
 		
-		
-		//Order order = new Order(id, stedtiludlevering, kunde, totalpris, listOfVarer);
-       //Betaling betaling = new Betaling(totalpris, dato, kunde, order);
+	
 		
 	}
 
@@ -1046,7 +1064,7 @@ public class MenuFXMLController implements Initializable {
 
 		RadioButton but = (RadioButton) group.getSelectedToggle();
 
-		if (but == id) {
+		if (but == searchPaneId) {
 
 			søgkat.setVisible(false);
 			søgid.setVisible(true);

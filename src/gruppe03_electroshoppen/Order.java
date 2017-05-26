@@ -12,7 +12,6 @@ public class Order {
 
 	private int id;
 	private String deliveryPlace;
-	private double amount;
 	Customer customer;
 	List<Commodity> listOfCommodities;
 
@@ -22,14 +21,12 @@ public class Order {
 	 * @param id
 	 * @param deliveryPlace
 	 * @param customer
-	 * @param amount
 	 * @param listOfCommodities
 	 */
-	public Order(int id, String deliveryPlace, Customer customer, double amount, List<Commodity> listOfCommodities) {
+	public Order(int id, String deliveryPlace, Customer customer, List<Commodity> listOfCommodities) {
 
 		this.id = id;
 		this.deliveryPlace = deliveryPlace;
-		this.amount = amount;
 		this.customer = customer;
 		this.listOfCommodities = listOfCommodities;
 

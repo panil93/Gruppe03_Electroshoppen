@@ -78,7 +78,7 @@ public class LoadCustomers extends Loader {
 					double orderPrice = Double.parseDouble((key[2]));
 					List<Commodity> listOfVarer = mediator.getListOfVarerById(scanner.nextLine());
 					String placetiludlevering = scanner.nextLine();
-					Order order = new Order(orderid, placetiludlevering, kundetilorder, orderPrice, listOfVarer);
+					Order order = new Order(orderid, placetiludlevering, kundetilorder, listOfVarer);
 					order_list.add(order);
 					break;
 				case "[Betaling]:":

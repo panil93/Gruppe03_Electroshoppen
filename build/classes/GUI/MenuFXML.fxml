@@ -38,7 +38,7 @@
 				<ListView fx:id="banner" layoutX="12.0" layoutY="13.0" prefHeight="55.0" prefWidth="406.0" />
 				<Pane fx:id="soegpane" layoutX="15.0" layoutY="7.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<children>
-						<RadioButton fx:id="id" layoutX="52.0" layoutY="49.0" mnemonicParsing="false" onAction="#handleSøgningAction" text="Søg efter id-nummer">
+						<RadioButton fx:id="searchPaneId" layoutX="52.0" layoutY="49.0" mnemonicParsing="false" onAction="#handleSøgningAction" text="Søg efter id-nummer">
 							<toggleGroup>
 								<ToggleGroup fx:id="group" />
 							</toggleGroup>
