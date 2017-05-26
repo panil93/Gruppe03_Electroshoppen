@@ -343,13 +343,20 @@
 						<Label layoutX="54.0" layoutY="144.0" prefHeight="25.0" prefWidth="85.0" text="\% besparelse:" />
 						<Label fx:id="formedarb" layoutX="131.0" layoutY="106.0" />
                   <Button fx:id="nykampPanelogaff" layoutX="492.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleKampagneAction" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: white;" text="Log af" textFill="#3300ff" />
-                  <RadioButton fx:id="newCampaignPanePersonal" layoutX="52.0" layoutY="123.0" mnemonicParsing="false" text="Personligt tilbud">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="kamptog1" />
-                     </toggleGroup>
-                  </RadioButton>
+                  <RadioButton fx:id="newCampaignPanePersonal" layoutX="52.0" layoutY="123.0" mnemonicParsing="false" onAction="#handlePerosnalCampaignRadioButtonAction" text="Personligt tilbud" toggleGroup="$kamptog" />
 					</children>
 				</Pane>
+            <Pane fx:id="perosnalCampaignPane" layoutX="10.0" layoutY="10.0" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: lightblue;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="perosnalCampaignPaneChooseButton" layoutX="225.0" layoutY="67.0" mnemonicParsing="false" onAction="#handlePerosnalCampaignPaneChooseButtonAction" prefHeight="30.0" prefWidth="72.0" text="Vælg" textFill="#3300ff" />
+                  <ListView fx:id="perosnalCampaignPaneCustomers" layoutX="21.0" layoutY="67.0" prefHeight="275.0" prefWidth="183.0" />
+                  <Label layoutX="21.0" layoutY="35.0" text="Vælg kunde:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
 			</children>
 		</AnchorPane>
 	</children>
