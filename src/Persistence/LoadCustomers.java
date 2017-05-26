@@ -36,7 +36,6 @@ public class LoadCustomers extends Loader {
 
 	@Override
 	public void load(Mediator ref_m) {
-		
 		this.mediator = ref_m;
 		this.kunde_list = new ArrayList(); //husk at init variabler
 		this.order_list = new ArrayList();
@@ -79,7 +78,7 @@ public class LoadCustomers extends Loader {
 					double orderPrice = Double.parseDouble((key[2]));
 					List<Commodity> listOfVarer = mediator.getListOfVarerById(scanner.nextLine());
 					String placetiludlevering = scanner.nextLine();
-					Order order = new Order(orderid, placetiludlevering, kundetilorder, listOfVarer);
+					Order order = new Order(orderid, placetiludlevering, kundetilorder, orderPrice, listOfVarer);
 					order_list.add(order);
 					break;
 				case "[Betaling]:":

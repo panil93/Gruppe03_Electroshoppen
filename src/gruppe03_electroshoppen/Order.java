@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * This class represent an order in the webshop. An order contains a list of all
- * the products and services a customer wishes to buy. An order has a unique ID.
+ * the products and services a customer wishes to buy. An order has a unique ID.   
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
@@ -12,6 +12,7 @@ public class Order {
 
 	private int id;
 	private String deliveryPlace;
+	private double amount;
 	Customer customer;
 	List<Commodity> listOfCommodities;
 
@@ -21,35 +22,16 @@ public class Order {
 	 * @param id
 	 * @param deliveryPlace
 	 * @param customer
+	 * @param amount
 	 * @param listOfCommodities
 	 */
-	public Order(int id, String deliveryPlace, Customer customer, List<Commodity> listOfCommodities) {
+	public Order(int id, String deliveryPlace, Customer customer, double amount, List<Commodity> listOfCommodities) {
 
 		this.id = id;
 		this.deliveryPlace = deliveryPlace;
+		this.amount = amount;
 		this.customer = customer;
 		this.listOfCommodities = listOfCommodities;
-
-	}
-
-	/**
-	 *
-	 * @return The total price of the order.
-	 */
-	public double getTotalPrice() {
-
-		double totalPrice = 0;
-		double temp;
-		
-		//Get the price of all the commodities in the order and add the price to total price. 
-		for (Commodity commodity : listOfCommodities) {
-
-			temp = commodity.getPrice();
-			totalPrice = temp;
-
-		}
-
-		return totalPrice;
 
 	}
 

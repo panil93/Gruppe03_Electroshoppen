@@ -29,13 +29,11 @@ public class Mediator {
 	List<Store> listofshops = new ArrayList<Store>();
 	List<Subsupplier> listofunderleverandor = new ArrayList<Subsupplier>();
 	List<Order> listoforder = new ArrayList<Order>();
-	
+
 	public Mediator() {
-		
 		l.load();
 		k.load(this);
 		lB.load(this);
-		
 	}
 
 	public List<Commodity> getListOfVarer() {

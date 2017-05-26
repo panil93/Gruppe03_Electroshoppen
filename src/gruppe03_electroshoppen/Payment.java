@@ -2,7 +2,6 @@ package gruppe03_electroshoppen;
 
 import java.util.Date;
 
-
 /**
  * This class represent a payment in the webshop. It is a payment of an
  * order. The class has 4 accessor methods. One for each of the attributes.
