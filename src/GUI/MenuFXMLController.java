@@ -876,9 +876,12 @@ return null;
             reklamprod.getItems().add(i);
         }
         Commodity item_to_complaint = (Commodity) reklamprod.getSelectionModel().getSelectedItem();
+        reklamprod.getItems().removeAll();
+        reklamprod.getItems().remove(item_to_complaint);
         reklamlist.getItems().add(item_to_complaint);
 
     }
+   
 	@FXML
 	private void handleKundeKontoAction(ActionEvent event) {
 
@@ -888,6 +891,7 @@ return null;
 
 			reklampane.setVisible(true);
                         reklamord.getItems().addAll(kundeorderer.getItems());
+                       
 
                 }else if (pressed_button == opretreklam && reklamationer.getSelectedToggle().isSelected() == true && reklamlist.getItems().isEmpty() == false) {
                 List<Commodity> varerTilBytte = reklamlist.getItems();
