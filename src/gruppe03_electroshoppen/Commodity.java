@@ -6,6 +6,8 @@
  */
 package gruppe03_electroshoppen;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
@@ -16,7 +18,9 @@ public abstract class Commodity{
 	private String CompanyId;
 
 	public double getPris() {
-		return this.RetailPrice;
+            DecimalFormat formatter = new DecimalFormat("$0.00");
+            
+		return this.RetailPrice; // WTF ?!
 
 	}
 

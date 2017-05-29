@@ -5,6 +5,8 @@
  */
 package gruppe03_electroshoppen;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
@@ -25,7 +27,8 @@ public class Service extends Commodity{
 
 	@Override
 	public String toString() {
-		return (this.navn + " " + RetailPrice);
+            DecimalFormat formatter = new DecimalFormat("0.00");
+		return (this.navn + " " + formatter.format(RetailPrice));
 
 	}
 }

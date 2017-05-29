@@ -29,6 +29,40 @@ public class Reclamation{
 		this.erÅbnet = erÅbnet;
 		this.byttevare = byttevare;
 		this.id = id;
+                this.customer = customer;
+                this.varerTilBytte = varerTilBytte;
+                this.order = order;
 	}
-
+        public int getId(){
+            return this.id;
+        }
+        public String getChangeItem(){
+            return this.byttevare;
+        }
+        public List<Commodity> getListOfCommodities(){
+            return this.varerTilBytte;
+        }
+        public Order getOrder(){
+            return this.order;
+        }
+        
+        public String getReason(){
+            return this.årsag;
+        }
+        public Customer getClient(){
+            return this.customer;
+        }
+        public String getDate()
+        {
+            return this.dato.toString();
+        }
+        public boolean isOpen()
+        {
+            return this.erÅbnet;
+        }
+        @Override
+        public String toString()
+        {
+            return String.valueOf(this.id);
+        }
 }

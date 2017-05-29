@@ -5,6 +5,7 @@
  */
 package gruppe03_electroshoppen;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 /**
@@ -63,7 +64,8 @@ public class Product extends Commodity{
 
 	@Override
 	public String toString() {
-		return (this.SupplierName + " " + RetailPrice);
+            DecimalFormat formatter = new DecimalFormat("0.00");
+		return (this.SupplierName + " " + formatter.format(RetailPrice));
 
 	}
 

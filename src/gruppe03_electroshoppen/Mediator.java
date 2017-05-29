@@ -11,7 +11,11 @@ import Persistence.LoadCommodities;
 import java.util.ArrayList;
 import java.util.List;
 import Persistence.Loader;
+import java.sql.SQLException;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,41 +40,41 @@ public class Mediator {
 		lB.load(this);
 	}
 
-	public List<Commodity> getListOfVarer() {
+	public List<Commodity> getListOfCommodites() {
 
-		return l.getProduktKatalog();
+		return l.getProductKatalog();
 	}
 
-	public List<Customer> getListOfKunder() {
-		return k.getListOfKunder();
+	public List<Customer> getListOfClients() {
+		return k.getListOfClients();
 	}
 
-	public List<Employee> getListOfMedarbeder() {
-		return this.lB.getListOfMedarbejder();
+	public List<Employee> getListOfEmployees() {
+		return this.lB.getListOfEmploee();
 	}
 
-	public List<Store> getListOfButikker() {
-		return this.lB.getListOfButikker();
+	public List<Store> getListOfStores() {
+		return this.lB.getListOfShops();
 	}
 
-	public List<Subsupplier> getListOfUnderleverandører() {
+	public List<Subsupplier> getListOfSubsuppliers() {
 		return this.listofunderleverandor;
 	}
 
-	public List<Order> getListOfOrder() {
+	public List<Order> getListOfOrders() {
 		return k.getListOfOrder();
 	}
 
-	public List<Payment> getListOfBetalinger() {
-		return k.getListOfBetalinger();
+	public List<Payment> getListOfPayments() {
+		return k.getListOfPayments();
 	}
 
-	public List<Reclamation> getListOfReklamationer() {
-		return k.getListOfReklamationer();
+	public List<Reclamation> getListOfReclamations() {
+		return k.getListOfComplaints();
 	}
 
-	public Customer getKundeByLogin(String login) {
-		List<Customer> listeofkunde = k.getListOfKunder();
+	public Customer getClientByLogin(String login) {
+		List<Customer> listeofkunde = k.getListOfClients();
 		for (Customer kunde : listeofkunde) {
 			if (kunde.getLogin().compareTo(login) == 0) {
 				return kunde;
@@ -88,7 +92,7 @@ public class Mediator {
 		return false;
 	}
 
-	public Commodity getVarerByid(String s) {
+	public Commodity getCommodityByid(String s) {
 		for (Commodity v : produktkatalog) {
 
 			if (v.getId().compareTo(s) == 0) {
@@ -101,7 +105,7 @@ public class Mediator {
 
 	public List<Commodity> getVarerByOrder(int orders_id) {
 
-		for (Order o : this.getListOfOrder()) {
+		for (Order o : this.getListOfOrders()) {
 			if (o.getId() == orders_id) {
 				return o.getCommodities();
 			}
@@ -110,7 +114,7 @@ public class Mediator {
 	}
 
 	public Order getOrderByid(String s) {
-		for (Order o : this.getListOfOrder()) {
+		for (Order o : this.getListOfOrders()) {
 			if (o.getId() == Integer.parseInt(s)) {
 				return o;
 			}
@@ -118,8 +122,8 @@ public class Mediator {
 		return null;
 	}
 
-	public Commodity getVarerById(String n) {
-		for (Commodity v : produktkatalog) {
+	public Commodity getCommoditiesById(String n) {
+		for (Commodity v : l.getProductKatalog()) {
 			if (v.getId().compareTo(n) == 0) {
 
 				return v;
@@ -129,7 +133,7 @@ public class Mediator {
 		return null;
 	}
 
-	public Employee getMedarbejderByLogin(String l) {
+	public Employee getEmployeeByLogin(String l) {
 		for (Employee m : medarblist) {
 			if (m.getLogin().compareTo(l) == 0) {
 				return m;
@@ -138,7 +142,7 @@ public class Mediator {
 		return null;
 	}
 
-	public Store getButikByAdresse(String a) {
+	public Store getStoreByAdress(String a) {
 		for (Store b : listofshops) {
 			if (b.getAdresse().compareTo(a) == 0) {
 				return b;
@@ -147,8 +151,8 @@ public class Mediator {
 		return null;
 	}
 
-	public List<Commodity> getListOfVarerById(String st) {
-		List<Commodity> varelist = this.l.getProduktKatalog();
+	public List<Commodity> getListOfCommoditiesById(String st) {
+		List<Commodity> varelist = this.l.getProductKatalog();
 		List<Commodity> newlistofvarer = new ArrayList();
 		String[] ids = st.split(",");
 		for (Commodity v : varelist) {
@@ -181,22 +185,22 @@ public class Mediator {
 		List<Employee> medarbliste = new ArrayList<>();
 		String[] stringarray = str.split(",");
 		for (int i = 0; i < stringarray.length; i++) {
-			Employee m = this.getMedarbejderByLogin(stringarray[i]);
+			Employee m = this.getEmployeeByLogin(stringarray[i]);
 			medarbliste.add(m);
 		}
 		return medarbliste;
 	}
 
-	public Customer getKundeByLoginAndPassword(String log, String pass) {
-		for (Customer kund : k.getListOfKunder()) {
-			if ((kund.getLogin().compareTo(log) == 0) && (kund.getAdgangskode().compareTo(pass) == 0)) {
+	public Customer getClientByLoginAndPassword(String log, String pass) {
+		for (Customer kund : k.getListOfClients()) {
+			if ((kund.getLogin().compareTo(log) == 0) && (kund.getPassword().compareTo(pass) == 0)) {
 				return kund;
 			}
 		}
 		return null;
 	}
 
-	public Customer getKundeByOrder(int ordernrnr) {
+	public Customer getClientByOrder(int ordernrnr) {
 		for (Order ordi : k.getListOfOrder()) {
 			if (ordi.getId() == ordernrnr) {
 				return ordi.getCustomer();
@@ -205,13 +209,64 @@ public class Mediator {
 		return null;
 	}
 
-	public List<Order> getAllOrdersByKunde(Customer kundzik) {
+	public List<Order> getAllOrdersByClient(Customer kundzik) {
 		List<Order> orderlist0 = new ArrayList<>();
-		for (Order ord : this.getListOfOrder()) {
-			if (ord.getCustomer() == kundzik) {
+		for (Order ord : this.getListOfOrders()) {
+			if (ord.getCustomer().getLogin().compareTo(kundzik.getLogin()) == 0) {
 				orderlist0.add(ord);
+                                
 			}
 		}
 		return orderlist0;
 	}
+        public List<Reclamation> getAllReclamationsByCustomer(Customer customer){
+            List<Reclamation> listToReturn = new ArrayList<>();
+            
+            for(Reclamation r: this.getListOfReclamations()){
+                if(r.getClient().equals(customer)){
+                    listToReturn.add(r);
+                }
+                }
+        
+            return listToReturn;
+        }
+        public int getIDforOrder(){
+            int returnId= 0;
+            List<Integer> intowa = null;
+            for (Order o: this.getListOfOrders()){
+                intowa.add(o.getId());
+            Collections.sort(intowa);
+            returnId= intowa.get((intowa.size())-1)+1;
+            }
+            return returnId;
+        }
+        public int getIDforReclamation(){
+            int returnId=0;
+            List<Integer> intowa = null;
+            for (Reclamation r: this.getListOfReclamations()){
+                intowa.add(r.getId());
+                Collections.sort(intowa);
+                returnId=intowa.get((intowa.size())-1)+1;
+            }
+            return returnId;
+            
+        }
+        public boolean addNewReclamation(Reclamation r)
+        {
+             try {
+                return this.k.addNewReclamation(r);
+            } catch (SQLException ex) {
+                Logger.getLogger(Mediator.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        }
+        public boolean addNewOrder(Order o)
+        {
+            try {
+                return k.addNewOrder(o);
+            } catch (SQLException ex) {
+                Logger.getLogger(Mediator.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        }
 }

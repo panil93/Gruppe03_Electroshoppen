@@ -71,6 +71,9 @@ public class Order {
 		return this.customer;
 
 	}
+        public List<Commodity> getListOfCommodities(){
+            return this.listOfCommodities;
+        }
 
 	/**
 	 *

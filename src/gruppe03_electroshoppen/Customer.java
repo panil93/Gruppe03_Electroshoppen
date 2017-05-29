@@ -16,19 +16,21 @@ public class Customer {
 	private String login;
 	private String adgangskode;
 	private int telefonnr;
+        private int personligtilbud;
 
 	/**
 	 *
 	 *
 	 * @param
 	 */
-	public Customer(String fuldnavn, String adresse, String login, String adgangskode, int telefonnr) {
+	public Customer(String fuldnavn, String adresse, String login, String adgangskode, int telefonnr, int personligtilbud) {
 
 		this.fuldnavn = fuldnavn;
 		this.adresse = adresse;
 		this.login = login;
 		this.adgangskode = adgangskode;
 		this.telefonnr = telefonnr;
+                this.personligtilbud=personligtilbud;
 	}
 
 	/**
@@ -65,7 +67,7 @@ public class Customer {
 	 *
 	 *
 	 */
-	public String getAdgangskode() {
+	public String getPassword() {
 		
 		return this.adgangskode;
 		
@@ -97,7 +99,7 @@ public class Customer {
 	 *
 	 * @param
 	 */
-	public void setAdgangskode(String adgang) {
+	public void setPassword(String adgang) {
 		
 		this.adgangskode = adgang;
 		
@@ -119,11 +121,17 @@ public class Customer {
 	 *
 	 * @param
 	 */
-	public void setFuldnavn(String namey) {
+	public void setFullname(String namey) {
 
 		this.fuldnavn = namey;
 		
 	}
+        public void setPersonTilbud(int i){
+            this.personligtilbud = i;
+        }
+        public int getPersonTilbud(){
+            return this.personligtilbud;
+        }
 
 	/**
 	 *

@@ -275,7 +275,6 @@
       		</Pane>
       		<Pane fx:id="reklampane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       			<children>
-      				<TextField fx:id="reklamlist" editable="false" layoutX="338.0" layoutY="43.0" onAction="#handleKundeKontoAction" prefHeight="142.0" prefWidth="149.0" />
       				<Label layoutX="26.0" layoutY="14.0" text="Vælg order" />
       				<Label layoutX="174.0" layoutY="14.0" text="Vælg produkter" />
       				<Label layoutX="338.0" layoutY="14.0" text="Din reklamationsliste:" />
@@ -291,6 +290,7 @@
       				<Label layoutX="29.0" layoutY="219.0" text="Årsag:" />
       				<ListView fx:id="reklamord" layoutX="14.0" layoutY="43.0" prefHeight="142.0" prefWidth="149.0" />
       				<ListView fx:id="reklamprod" layoutX="174.0" layoutY="43.0" prefHeight="142.0" prefWidth="158.0" />
+                  <ListView fx:id="reklamlist" layoutX="338.0" layoutY="43.0" prefHeight="142.0" prefWidth="158.0" />
       			</children>
       		</Pane>
             
@@ -312,10 +312,10 @@
 		<AnchorPane fx:id="udlevendørePane" prefHeight="400.0" prefWidth="600.0" visible="false">
 			<children>
 				<Label layoutX="19.0" layoutY="14.0" text="Ordre oversigt:" />
-				<Button fx:id="undmak" layoutX="167.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleUnderleverandørAction" style="-fx-background-color: white;" text="Maker som sendt" textFill="#3300ff" />
+				<Button fx:id="undmak" layoutX="167.0" layoutY="31.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Maker som sendt" textFill="#3300ff" />
 				<Label layoutX="300.0" layoutY="107.0" text="Ordre detajler:" />
-				<Button fx:id="undan" layoutX="167.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleUnderleverandørAction" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: white;" text="Anuller ordre" textFill="#3300ff" />
-				<ListView fx:id="undlist" layoutX="14.0" layoutY="31.0" prefHeight="350.0" prefWidth="140.0" />
+				<Button fx:id="undan" layoutX="167.0" layoutY="65.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: white;" text="Anuller ordre" textFill="#3300ff" />
+				<ListView fx:id="undlist" layoutX="14.0" layoutY="31.0" onMouseClicked="#handleOrderDetailsForSupplierAction" prefHeight="350.0" prefWidth="140.0" />
 				<ListView fx:id="unddet" layoutX="300.0" layoutY="132.0" prefHeight="244.0" prefWidth="262.0" />
             <Button fx:id="SupplyerPaneLogOff" layoutX="507.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleLogOffButtonAction" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: white;" text="Log af" textFill="#3300ff" />
 			</children>
