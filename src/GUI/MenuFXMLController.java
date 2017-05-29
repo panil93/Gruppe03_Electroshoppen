@@ -654,9 +654,10 @@ newPrice = ((Product) v).calculatePriceWithRabat((Integer) rabat.getValue(), v.g
 		}
                 
                 else if(perosnalCampaignPaneCustomers.getSelectionModel().getSelectedItem() == customer){
-                    if(mediator.getClientByOrder((Integer)(kundeorderer.getItems().get(0)))==customer){
-                         kundetilbud.setText("Det er kun til dig hele "+(rabat.getValue().toString())+"% tilbud!!!!");
-                    }
+                    
+                         customer.setPersonTilbud((Integer)rabat.getValue());
+                        
+                    
                 }
 		
 		perosnalCampaignPane.setVisible(false);
@@ -1058,7 +1059,10 @@ updateKundeKonto();
 				register.setVisible(false);
 				logaf.setVisible(true);
 				kundekonto.setVisible(true);
-
+kundeoplys.clear();
+kundeorderer.getItems().clear();
+kundereklam.getItems().clear();
+kundetilbud.clear();
 				
 				Customer kundeczek = mediator.getClientByLogin(loginek.getText());
 				kundeoplys.setText(kundeczek.toString());
@@ -1066,6 +1070,7 @@ updateKundeKonto();
 				kundeorderer.getItems().addAll(tmp0);
                                 List<Reclamation> tmp01 = mediator.getAllReclamationsByCustomer(kundeczek);
                                 kundereklam.getItems().addAll(tmp01);
+                                kundetilbud.setText("Det er kun til dig hele "+(kundeczek.getPersonTilbud())+"% tilbud!!!!");
 				loginek.clear();
                                 password.clear();
 			}

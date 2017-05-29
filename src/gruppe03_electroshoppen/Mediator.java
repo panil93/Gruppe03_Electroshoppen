@@ -210,6 +210,7 @@ public class Mediator {
 	}
 
 	public List<Order> getAllOrdersByClient(Customer kundzik) {
+            
 		List<Order> orderlist0 = new ArrayList<>();
 		for (Order ord : this.getListOfOrders()) {
 			if (ord.getCustomer().getLogin().compareTo(kundzik.getLogin()) == 0) {
