@@ -36,11 +36,7 @@ public class Order {
 	 *
 	 * @return A list of all products and services in the order.
 	 */
-	public List<Commodity> getCommodities() {
-
-		return this.listOfCommodities;
-
-	}
+	
 
 	/**
 	 *

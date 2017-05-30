@@ -17,7 +17,7 @@ public class Campaign{
 	private boolean gælderIWebshop;
 	private boolean gælderIPoS;
 	private Date startdato;
-	private Date sluttdato;
+	private Date slutdato;
 
 	public Campaign(int procentTilbud, boolean gælderIWebshop, boolean gælderIPoS) {
 		

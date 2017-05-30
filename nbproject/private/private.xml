@@ -4,15 +4,22 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/Persistence/LoadStores.java</file>
+            <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/gruppe03_electroshoppen/Store.java</file>
             <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/GUI/MenuFXML.fxml</file>
-            <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/GUI/MenuFXMLController.java</file>
+            <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/gruppe03_electroshoppen/Storage.java</file>
             <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/Persistence/Loader.java</file>
+            <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/GUI/MenuFXMLController.java</file>
             <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/gruppe03_electroshoppen/Service.java</file>
             <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/GUI/ViewFXMain.java</file>
+            <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/gruppe03_electroshoppen/Employee.java</file>
+            <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/gruppe03_electroshoppen/Reclamation.java</file>
             <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/gruppe03_electroshoppen/Mediator.java</file>
+            <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/gruppe03_electroshoppen/Payment.java</file>
+            <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/gruppe03_electroshoppen/Subsupplier.java</file>
             <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/Persistence/LoadCustomers.java</file>
             <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/gruppe03_electroshoppen/Order.java</file>
             <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/gruppe03_electroshoppen/Commodity.java</file>
+            <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/gruppe03_electroshoppen/Campaign.java</file>
             <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/gruppe03_electroshoppen/Customer.java</file>
             <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/Persistence/LoadCommodities.java</file>
             <file>file:/C:/Users/Laura/Documents/NetBeansProjects/Gruppe03_Electroshoppen/src/Persistence/PostgreSQLConnection.java</file>

@@ -107,7 +107,7 @@ public class Mediator {
 
 		for (Order o : this.getListOfOrders()) {
 			if (o.getId() == orders_id) {
-				return o.getCommodities();
+				return o.getListOfCommodities();
 			}
 		}
 		return null;
@@ -224,7 +224,9 @@ public class Mediator {
             List<Reclamation> listToReturn = new ArrayList<>();
             
             for(Reclamation r: this.getListOfReclamations()){
-                if(r.getClient().equals(customer)){
+                String t = customer.getLogin();
+                String t2 = r.getClient().getLogin();
+                if(t2.compareTo(t) == 0){
                     listToReturn.add(r);
                 }
                 }
@@ -243,7 +245,7 @@ public class Mediator {
         }
         public int getIDforReclamation(){
             int returnId=0;
-            List<Integer> intowa = null;
+            List<Integer> intowa = new ArrayList<>();
             for (Reclamation r: this.getListOfReclamations()){
                 intowa.add(r.getId());
                 Collections.sort(intowa);

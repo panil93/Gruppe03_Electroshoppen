@@ -371,6 +371,7 @@ public class MenuFXMLController implements Initializable {
 	private Label kunneik;
         
         private Customer loggedInCu = null;
+        private Store selectedStore = null;
 	/**
 	 * This
 	 *
@@ -739,8 +740,9 @@ public class MenuFXMLController implements Initializable {
 					invoiceInfoPaneDiffrentAddress.disableProperty();
 
 				}
+                                
 			}
-                        return ((Store)listButikker.getSelectionModel().getSelectedItem()).getAdresse();
+                       return ((Store)listButikker.getSelectionModel().getSelectedItem()).getAdresse(); 
 
 		} else if (radiob == hjem) {
 
@@ -750,6 +752,7 @@ return mediator.getClientByOrder((Integer)kundeorderer.getItems().get(0)).getAdr
 		}
 return null;
 	}
+        
 
 	/**
 	 * This method handles the ChooseButton button on Collect Pane on Order
@@ -808,6 +811,7 @@ return null;
 		//Creates an Order-object for the particular order.
                 int oid = mediator.getIDforOrder();
                 Customer cu = this.loggedInCu;
+                if(hente.getSelectedToggle()==hjem){
                 String t = cu.getAdresse();
                 /*int virkerikke = (Integer)kundeorderer.getItems().get(0); ubruligt*/
                  //Get the logged in user.
@@ -820,12 +824,30 @@ return null;
 
 		//The amount the customer has to pay.
 		double amount = 10;
-
-//order.getTotalPrice();
-		//Creates an Payment-object for the particular order.
-                this.mediator.addNewOrder(order);
+this.mediator.addNewOrder(order);
 		Payment payment = new Payment(amount, date, customer, order);
                 this.updateKundeKonto();
+//order.getTotalPrice();
+		//Creates an Payment-object for the particular order.
+                }
+                else if(hente.getSelectedToggle()==collect){
+                    String t = cu.getAdresse();
+                /*int virkerikke = (Integer)kundeorderer.getItems().get(0); ubruligt*/
+                 //Get the logged in user.
+                List<Commodity> items = (List<Commodity>)orderPaneOrder.getItems();
+                Order order = new Order(oid,t,cu,items);
+		
+
+		//Creates a Date-Object for the payment of an order.
+		Date date = new Date();
+
+		//The amount the customer has to pay.
+		double amount = 10;
+                   this.mediator.addNewOrder(order);
+		Payment payment = new Payment(amount, date, customer, order);
+                this.updateKundeKonto(); 
+                }
+                
 		setAllPaneInvisibleButOne(receiptPane);
 		receiptPaneTotalPrice.setText(totalpris.getText());
 		receiptPaneMessage.setText("Tak for din bestilling" + "\n" + "Vi har sendt din kvittering til " + invoiceInfoPaneEmail.getText());
@@ -886,7 +908,7 @@ return null;
     private void handleReklamPaneAction() {
         String s = String.valueOf(reklamord.getSelectionModel().getSelectedItem());
         Order o = (mediator.getOrderByid(s));
-        for (Commodity i : o.getCommodities()) {
+        for (Commodity i : o.getListOfCommodities()) {
             reklamprod.getItems().add(i);
         }
         
@@ -911,7 +933,8 @@ return null;
                 String changeitem =this.handleRadioButtonsForReclamationAction();
                 int id_reclam=mediator.getIDforReclamation();
                 Customer customer_reclam=mediator.getClientByOrder(o.getId());
-                mediator.addNewReclamation(new Reclamation(reasonto, new Date(), true, changeitem, id_reclam, customer_reclam, varerTilBytte, o));
+                Reclamation t = new Reclamation(reasonto, new Date(), true, changeitem, id_reclam, customer_reclam, varerTilBytte, o);
+                mediator.addNewReclamation(t);
                 updateKundeKonto();
 //here shold we add this new reclamation to db
 
@@ -1091,9 +1114,9 @@ kundeoplys.setVisible(true);
         int orders_id_in_supplier = (Integer)undlist.getSelectionModel().getSelectedItem();
         unddet.getItems().clear();
         Order o = mediator.getOrderByid(Integer.toString(orders_id_in_supplier));
-        for (Commodity i : o.getCommodities()) {
+        for (Commodity i : o.getListOfCommodities()) {
             unddet.getItems().add(0, o.getDeliveryPlace());
-            unddet.getItems().add(1, o.getCommodities());
+            unddet.getItems().add(1, o.getListOfCommodities());
             undlist.getItems().clear();
             this.updateSupplier();
         }
@@ -1107,7 +1130,7 @@ kundeoplys.setVisible(true);
 		if (pressed_button == kunde) {
 
 			if (mediator.getClientByLoginAndPassword(loginek.getText(), password.getText()) != null) {
-updateKundeKonto();
+
 				loggingPane.setVisible(false);
 				shopPane.setVisible(true);
 				logpaa.setVisible(false);
@@ -1143,6 +1166,7 @@ kundetilbud.clear();
 
                                 }
                                 updateKatalog(); 
+                                updateKundeKonto();
                                 
                                 
 			}
@@ -1330,15 +1354,16 @@ kundetilbud.clear();
                 this.kundetilbud.clear();
                 
 		this.kundeoplys.setText(null);
-		List<Customer> clients = mediator.getListOfClients();
-
+		//List<Customer> clients = mediator.getListOfClients();
+                List<Customer> clients = new ArrayList<>();
+                clients.add(this.loggedInCu);
 		//
 		for (Customer kudin : clients) {
 
 			this.kundeoplys.setText(kudin.toString());
                         this.kundeorderer.getItems().addAll(mediator.getAllOrdersByClient(kudin));
                         this.kundereklam.getItems().addAll(mediator.getAllReclamationsByCustomer(kudin));
-                             this.kundetilbud.setText("Du har "+kudin.getPersonTilbud()+"% rabat");
+                        this.kundetilbud.setText("Du har "+kudin.getPersonTilbud()+"% rabat");
                              
 		}
 	}

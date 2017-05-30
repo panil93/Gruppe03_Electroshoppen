@@ -20,6 +20,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -222,7 +224,7 @@ public class PostgreSQLConnection {
     {
         List<Commodity> returnItems = new ArrayList<>();
         Statement st1 = this.connection.createStatement();
-        ResultSet rs1 = st1.executeQuery("SELECT * FROM public.\"itemsToOrder\"");
+        ResultSet rs1 = st1.executeQuery("SELECT * FROM public.\"itemsToOrder\" WHERE order_to_item = '"+order_id+"'");
         List<String> item_id = new ArrayList<>();
         while (rs1.next())
         {
@@ -335,10 +337,12 @@ public class PostgreSQLConnection {
         /*
         Opret Entry i Complaint tabel
         */
+        
         Statement st3 = this.connection.createStatement();
-        int rs3 = st3.executeUpdate("INSERT INTO public.\"Complaint\" (\"date\",\"isOpen\",\"id\",\"reason\",\"customer_to\",\"order_to_complaint\",\"item_to_change\") VALUE (" +
-                r.getDate()+","+r.isOpen()+ ","+r.getId()+","+r.getReason()+","+r.getClient()+","+r.getOrder()+","+r.getChangeItem()+
-                ")");
+        String Query = "INSERT INTO public.\"Complaint\" (\"date\",\"isOpen\",\"id\",\"reason\",\"customer_to\",\"order_to_complaint\",\"item_to_change\") VALUES"
+                + " ('" +r.getDate()+"',"+r.isOpen()+ ","+r.getId()+",'"+r.getReason()+"','"+r.getClient().getLogin()+"',"+r.getOrder().getId()+",'"+r.getChangeItem()+
+                "')";
+        int rs3 = st3.executeUpdate(Query);
         if(rs3 == 0)
         {
            return false; 
@@ -358,18 +362,19 @@ public class PostgreSQLConnection {
     }
     public boolean GetListOfItemsByReclamationsId(Reclamation r) throws SQLException
     {
+        
         for (Commodity c: r.getListOfCommodities()){
          Statement st3 = this.connection.createStatement();
         int rs3 = st3.executeUpdate("INSERT INTO public.\"items_to_Complaint\" (\"fk_item_to_complaint\",\"fk_complaint_to_item\") VALUES (" +
                 c.getId()+","+r.getId()+ 
                 ")");
-        if(rs3 == 0)
-        {
-           return false; 
-        }
+            if(rs3 == 0)
+            {
+               return false; 
+            }
         
-        return true;}
-        return false;
+        }
+        return true;
 }
     public boolean insertNewOrder(Order o) throws SQLException
     {

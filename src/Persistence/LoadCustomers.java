@@ -65,10 +65,11 @@ public class LoadCustomers extends Loader {
     }
     public boolean addNewReclamation(Reclamation r) throws SQLException
     {
+        this.reklamation_list.add(r);
         this.db.openDB();
         this.db.insertNewReclamation(r);
         this.db.closeDB();
-        this.reklamation_list.add(r);
+        
         return true;
     }
     public boolean addNewOrder(Order o) throws SQLException
