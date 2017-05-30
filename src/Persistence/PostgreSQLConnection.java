@@ -273,10 +273,10 @@ public class PostgreSQLConnection {
                 Its a service.
                 */
                 Statement sst = this.connection.createStatement();
-                ResultSet srs = sst.executeQuery("SELECT * FROM public.\"Service\" WHERE company_id = \"" +rs2.getString("CompanyId") +"\"");
+                ResultSet srs = sst.executeQuery("SELECT * FROM public.\"Service\" WHERE company_id = '" +rs2.getString("CompanyId") +"'");
                 while (srs.next())
                 {
-                    returnItems.add(new Service(rs2.getString("CompanyId"),srs.getString("navn"),rs2.getDouble("RetailPrice")));
+                    returnItems.add(new Service(rs2.getString("CompanyId"),srs.getString("name"),rs2.getDouble("RetailPrice")));
                 }
             }
         }
@@ -336,7 +336,7 @@ public class PostgreSQLConnection {
         Opret Entry i Complaint tabel
         */
         Statement st3 = this.connection.createStatement();
-        int rs3 = st3.executeUpdate("INSERT INTO public.\"Complaint\" VALUE (" +
+        int rs3 = st3.executeUpdate("INSERT INTO public.\"Complaint\" (\"date\",\"isOpen\",\"id\",\"reason\",\"customer_to\",\"order_to_complaint\",\"item_to_change\") VALUE (" +
                 r.getDate()+","+r.isOpen()+ ","+r.getId()+","+r.getReason()+","+r.getClient()+","+r.getOrder()+","+r.getChangeItem()+
                 ")");
         if(rs3 == 0)
@@ -360,7 +360,7 @@ public class PostgreSQLConnection {
     {
         for (Commodity c: r.getListOfCommodities()){
          Statement st3 = this.connection.createStatement();
-        int rs3 = st3.executeUpdate("INSERT INTO public.\"items_to_Complaint\" VALUE (" +
+        int rs3 = st3.executeUpdate("INSERT INTO public.\"items_to_Complaint\" (\"fk_item_to_complaint\",\"fk_complaint_to_item\") VALUES (" +
                 c.getId()+","+r.getId()+ 
                 ")");
         if(rs3 == 0)
@@ -374,9 +374,10 @@ public class PostgreSQLConnection {
     public boolean insertNewOrder(Order o) throws SQLException
     {
         Statement st3 = this.connection.createStatement();
-        int rs3 = st3.executeUpdate("INSERT INTO public.\"Order\" VALUE (" +
-                o.getId()+","+o.getDeliveryPlace()+ ","+o.getCustomer()+
-                ")");
+        String Query = "INSERT INTO public.\"Order\" (\"id\", \"placeToReception\", \"client_to_order\") VALUES (" +
+                o.getId()+",'"+o.getDeliveryPlace()+ "','"+o.getCustomer().getLogin()+
+                "')";
+        int rs3 = st3.executeUpdate(Query);
         if(rs3 == 0)
         {
            return false;         
@@ -388,9 +389,10 @@ public class PostgreSQLConnection {
     {
         for (Commodity c: r.getListOfCommodities()){
          Statement st3 = this.connection.createStatement();
-        int rs3 = st3.executeUpdate("INSERT INTO public.\"itemsToOrder\" VALUE (" +
-                c.getId()+","+r.getId()+ 
-                ")");
+         String query = "INSERT INTO public.\"itemsToOrder\" (\"item_to_order\", \"order_to_item\") VALUES ('" +
+                c.getId()+"',"+r.getId()+ 
+                ")";
+        int rs3 = st3.executeUpdate(query);
         if(rs3 == 0)
         {
            return false; 

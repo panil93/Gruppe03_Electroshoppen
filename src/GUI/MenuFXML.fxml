@@ -278,18 +278,18 @@
             <Label layoutX="26.0" layoutY="14.0" text="Vælg order" />
             <Label layoutX="174.0" layoutY="14.0" text="Vælg produkter" />
             <Label layoutX="338.0" layoutY="14.0" text="Din reklamationsliste:" />
-            <Button fx:id="opretreklam" layoutX="518.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" style="-fx-background-color: white;" text="Opret" textFill="#3300ff" />
-            <RadioButton fx:id="penge" layoutX="487.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" text="Penge">
+            <Button fx:id="opretreklam" layoutX="518.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleNewReclamationButtonAction" style="-fx-background-color: white;" text="Opret" textFill="#3300ff" />
+            <RadioButton fx:id="penge" layoutX="487.0" layoutY="52.0" mnemonicParsing="false" text="Penge">
                <toggleGroup>
                   <ToggleGroup fx:id="reklamationer" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="varer" layoutX="487.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleKundeKontoAction" text="Varer" toggleGroup="$reklamationer" />
+            <RadioButton fx:id="varer" layoutX="487.0" layoutY="85.0" mnemonicParsing="false" text="Varer" toggleGroup="$reklamationer" />
             <Label layoutX="498.0" layoutY="23.0" text="Du ønsker dig:" />
             <TextField fx:id="reklamaars" layoutX="29.0" layoutY="244.0" onAction="#handleKundeKontoAction" prefHeight="41.0" prefWidth="456.0" />
             <Label layoutX="48.0" layoutY="212.0" text="Årsag:" />
             <ListView fx:id="reklamord" layoutX="14.0" layoutY="43.0" onMouseClicked="#handleReklamPaneAction" prefHeight="142.0" prefWidth="149.0" />
-            <ListView fx:id="reklamprod" layoutX="174.0" layoutY="43.0" onMouseClicked="#handleReklamPaneAction" prefHeight="142.0" prefWidth="158.0" />
+            <ListView fx:id="reklamprod" layoutX="174.0" layoutY="43.0" onMouseClicked="#handleReklamPaneSelectItemAction" prefHeight="142.0" prefWidth="158.0" />
             <ListView fx:id="reklamlist" layoutX="338.0" layoutY="40.0" prefHeight="149.0" prefWidth="150.0" />
          </children>
       		</Pane>

@@ -233,7 +233,7 @@ public class Mediator {
         }
         public int getIDforOrder(){
             int returnId= 0;
-            List<Integer> intowa = null;
+            List<Integer> intowa = new ArrayList<>();
             for (Order o: this.getListOfOrders()){
                 intowa.add(o.getId());
             Collections.sort(intowa);
