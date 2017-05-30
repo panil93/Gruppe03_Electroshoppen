@@ -27,6 +27,7 @@ import gruppe03_electroshoppen.Order;
 import gruppe03_electroshoppen.Product;
 import gruppe03_electroshoppen.Commodity;
 import gruppe03_electroshoppen.Reclamation;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -427,7 +428,8 @@ public class MenuFXMLController implements Initializable {
 				if (Integer.parseInt(test) == (ordy.getId())) {
 
 					Customer t = mediator.getClientByOrder(ordy.getId());
-					String t2 = mediator.getClientByOrder(ordy.getId()).getAdresse();
+                                        String t2= ordy.getDeliveryPlace();
+					//String t2 = mediator.getClientByOrder(ordy.getId()).getAdresse();
 					pakkemodtag.setText(t.getName() + "\n" + t2);
 
 					//
@@ -723,7 +725,7 @@ public class MenuFXMLController implements Initializable {
 	 * @param event
 	 */
 	@FXML
-	private String handleForsendelseAction(ActionEvent event) {
+	private void handleForsendelseAction(ActionEvent event) {
 
 		RadioButton radiob = (RadioButton) hente.getSelectedToggle();
 
@@ -742,15 +744,14 @@ public class MenuFXMLController implements Initializable {
 				}
                                 
 			}
-                       return ((Store)listButikker.getSelectionModel().getSelectedItem()).getAdresse(); 
+                       
 
 		} else if (radiob == hjem) {
 
-			listButikker.getItems().clear();
-                        
-return mediator.getClientByOrder((Integer)kundeorderer.getItems().get(0)).getAdresse();
+			
+
 		}
-return null;
+
 	}
         
 
@@ -831,7 +832,9 @@ this.mediator.addNewOrder(order);
 		//Creates an Payment-object for the particular order.
                 }
                 else if(hente.getSelectedToggle()==collect){
-                    String t = cu.getAdresse();
+                    this.selectedStore = mediator.getStoreByAdress((String)listButikker.getSelectionModel().getSelectedItem());
+                    
+                    String t = this.selectedStore.getAdresse();
                 /*int virkerikke = (Integer)kundeorderer.getItems().get(0); ubruligt*/
                  //Get the logged in user.
                 List<Commodity> items = (List<Commodity>)orderPaneOrder.getItems();
@@ -1251,7 +1254,9 @@ kundetilbud.clear();
 			for (Commodity v : cart.getItems()) {
 
 				totalPris += v.getPris();
-				String total2 = String.valueOf(totalPris);
+                                DecimalFormat formatter = new DecimalFormat("0.00");
+				String total2 = String.valueOf(formatter.format(totalPris));
+                                
 				totalpris.setText(total2);
 			}
 

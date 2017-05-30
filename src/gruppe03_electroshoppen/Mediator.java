@@ -143,7 +143,7 @@ public class Mediator {
 	}
 
 	public Store getStoreByAdress(String a) {
-		for (Store b : listofshops) {
+		for (Store b : lB.getListOfShops()) {
 			if (b.getAdresse().compareTo(a) == 0) {
 				return b;
 			}
