@@ -38,7 +38,7 @@ public class LoadCommodities extends Loader {
         this.db = new PostgreSQLConnection();
         try {
             this.db.openDB();
-            this.product_list = this.db.GetAllItems();
+            this.product_list = this.db.GetAllCommodities();
             this.db.closeDB();
         } catch (SQLException ex) {
             Logger.getLogger(LoadCommodities.class.getName()).log(Level.SEVERE, null, ex);

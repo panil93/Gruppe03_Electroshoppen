@@ -27,12 +27,12 @@ public class Mediator {
 	LoadCustomers k = new LoadCustomers();
 	LoadStores lB = new LoadStores();
 
-	List<Commodity> produktkatalog = new ArrayList<Commodity>();
-	List<Customer> listofkunder = new ArrayList<Customer>();
-	List<Employee> medarblist = new ArrayList<Employee>();
+	List<Commodity> productcatalog = new ArrayList<Commodity>();
+	List<Customer> listofcustomers = new ArrayList<Customer>();
+	List<Employee> listofemployee = new ArrayList<Employee>();
 	List<Store> listofshops = new ArrayList<Store>();
-	List<Subsupplier> listofunderleverandor = new ArrayList<Subsupplier>();
-	List<Order> listoforder = new ArrayList<Order>();
+	List<Subsupplier> listofsubsuppliers = new ArrayList<Subsupplier>();
+	List<Order> listoforders = new ArrayList<Order>();
 
 	public Mediator() {
 		l.load();
@@ -45,8 +45,8 @@ public class Mediator {
 		return l.getProductKatalog();
 	}
 
-	public List<Customer> getListOfClients() {
-		return k.getListOfClients();
+	public List<Customer> getListOfCustomers() {
+		return k.getListOfCustomers();
 	}
 
 	public List<Employee> getListOfEmployees() {
@@ -54,15 +54,15 @@ public class Mediator {
 	}
 
 	public List<Store> getListOfStores() {
-		return this.lB.getListOfShops();
+		return this.lB.getListOfStores();
 	}
 
 	public List<Subsupplier> getListOfSubsuppliers() {
-		return this.listofunderleverandor;
+		return this.listofsubsuppliers;
 	}
 
 	public List<Order> getListOfOrders() {
-		return k.getListOfOrder();
+		return k.getListOfOrders();
 	}
 
 	public List<Payment> getListOfPayments() {
@@ -70,151 +70,142 @@ public class Mediator {
 	}
 
 	public List<Reclamation> getListOfReclamations() {
-		return k.getListOfComplaints();
+		return k.getListOfReclamations();
 	}
 
 	public Customer getClientByLogin(String login) {
-		List<Customer> listeofkunde = k.getListOfClients();
-		for (Customer kunde : listeofkunde) {
-			if (kunde.getLogin().compareTo(login) == 0) {
-				return kunde;
+		List<Customer> listofclients = k.getListOfCustomers();
+		for (Customer customer_to_loop : listofclients) {
+			if (customer_to_loop.getLogin().compareTo(login) == 0) {
+				return customer_to_loop;
 			}
 		}
 		return null;
 	}
 
-	public boolean IsEmpoloeeInSystem(String login, String adgangskode) {
-		for (Employee m : medarblist) {
-			if (m.getLogin().compareTo(login) == 0 && m.getAdgangskode().compareTo(adgangskode) == 0) {
+	public boolean IsEmpoloyeeInSystem(String login, String password) {
+		for (Employee employee_to_loop : listofemployee) {
+			if (employee_to_loop.getLogin().compareTo(login) == 0 && employee_to_loop.getPassword().compareTo(password) == 0) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public Commodity getCommodityByid(String s) {
-		for (Commodity v : produktkatalog) {
+	
 
-			if (v.getId().compareTo(s) == 0) {
-				return v;
-			}
-		}
+	public List<Commodity> getCommoditiesByOrder(int orders_id) {
 
-		return null;
-	}
-
-	public List<Commodity> getVarerByOrder(int orders_id) {
-
-		for (Order o : this.getListOfOrders()) {
-			if (o.getId() == orders_id) {
-				return o.getListOfCommodities();
+		for (Order order : this.getListOfOrders()) {
+			if (order.getId() == orders_id) {
+				return order.getListOfCommodities();
 			}
 		}
 		return null;
 	}
 
-	public Order getOrderByid(String s) {
-		for (Order o : this.getListOfOrders()) {
-			if (o.getId() == Integer.parseInt(s)) {
-				return o;
+	public Order getOrderByid(String orders_id) {
+		for (Order order : this.getListOfOrders()) {
+			if (order.getId() == Integer.parseInt(orders_id)) {
+				return order;
 			}
 		}
 		return null;
 	}
 
-	public Commodity getCommoditiesById(String n) {
-		for (Commodity v : l.getProductKatalog()) {
-			if (v.getId().compareTo(n) == 0) {
+	public Commodity getCommoditiesById(String commodities_id) {
+		for (Commodity commodity_to_loop : l.getProductKatalog()) {
+			if (commodity_to_loop.getId().compareTo(commodities_id) == 0) {
 
-				return v;
+				return commodity_to_loop;
 			}
 
 		}
 		return null;
 	}
 
-	public Employee getEmployeeByLogin(String l) {
-		for (Employee m : medarblist) {
-			if (m.getLogin().compareTo(l) == 0) {
-				return m;
+	public Employee getEmployeeByLogin(String employeeslogin) {
+		for (Employee employee_to_loop : listofemployee  ) {
+			if (employee_to_loop.getLogin().compareTo(employeeslogin) == 0) {
+				return employee_to_loop;
 			}
 		}
 		return null;
 	}
 
-	public Store getStoreByAdress(String a) {
-		for (Store b : lB.getListOfShops()) {
-			if (b.getAdresse().compareTo(a) == 0) {
-				return b;
+	public Store getStoreByAdress(String adress_to_store) {
+		for (Store storetoloop : lB.getListOfStores()) {
+			if (storetoloop.getAdresse().compareTo(adress_to_store) == 0) {
+				return storetoloop;
 			}
 		}
 		return null;
 	}
 
-	public List<Commodity> getListOfCommoditiesById(String st) {
-		List<Commodity> varelist = this.l.getProductKatalog();
-		List<Commodity> newlistofvarer = new ArrayList();
-		String[] ids = st.split(",");
-		for (Commodity v : varelist) {
+	public List<Commodity> getListOfCommoditiesById(String commodities_id) {
+		List<Commodity> commodity_list = this.l.getProductKatalog();
+		List<Commodity> newlistofcommodities = new ArrayList();
+		String[] ids = commodities_id.split(",");
+		for (Commodity commodity_to_loop : commodity_list) {
 			for (String id : ids) {
-				if (v.getId().compareTo(id) == 0) {
-					newlistofvarer.add(v);
+				if (commodity_to_loop.getId().compareTo(id) == 0) {
+					newlistofcommodities.add(commodity_to_loop);
 				}
 
 			}
 		}
 
-		return newlistofvarer;
+		return newlistofcommodities;
 	}
 
-	public List<Order> getListOfOrder(String intowy) {
-		List<Order> orderlist = this.k.getListOfOrder();
-		String[] strinkowaarray = intowy.split(",");
+	public List<Order> getListOfOrders(String string_to_split) {
+		List<Order> orderlist = this.k.getListOfOrders();
+		String[] strinkowaarray = string_to_split.split(",");
 		for (int i = 0; i < strinkowaarray.length; i++) {
-			Order orderek = this.getOrderByid((strinkowaarray[i]));
-			orderlist.add(orderek);
+			Order order_to = this.getOrderByid((strinkowaarray[i]));
+			orderlist.add(order_to);
 		}
 		return orderlist;
 	}
 
-	public void RemoveListOfOrder(Order o) {
-		this.k.getListOfOrder().remove(o);
+	public void RemoveOrderFromList(Order order_to_remove) {
+		this.k.getListOfOrders().remove(order_to_remove);
 	}
 
-	public List<Employee> getListOfMedarbejderByLogin(String str) {
-		List<Employee> medarbliste = new ArrayList<>();
-		String[] stringarray = str.split(",");
+	public List<Employee> getListOfEmployeeByLogin(String employeeslogin) {
+		List<Employee> employeeslist = new ArrayList<>();
+		String[] stringarray = employeeslogin.split(",");
 		for (int i = 0; i < stringarray.length; i++) {
 			Employee m = this.getEmployeeByLogin(stringarray[i]);
-			medarbliste.add(m);
+			employeeslist.add(m);
 		}
-		return medarbliste;
+		return employeeslist;
 	}
 
-	public Customer getClientByLoginAndPassword(String log, String pass) {
-		for (Customer kund : k.getListOfClients()) {
-			if ((kund.getLogin().compareTo(log) == 0) && (kund.getPassword().compareTo(pass) == 0)) {
-				return kund;
+	public Customer getCustomerByLoginAndPassword(String login, String password) {
+		for (Customer customer_to_loop : k.getListOfCustomers()) {
+			if ((customer_to_loop.getLogin().compareTo(login) == 0) && (customer_to_loop.getPassword().compareTo(password) == 0)) {
+				return customer_to_loop;
 			}
 		}
 		return null;
 	}
 
-	public Customer getClientByOrder(int ordernrnr) {
-		for (Order ordi : k.getListOfOrder()) {
-			if (ordi.getId() == ordernrnr) {
-				return ordi.getCustomer();
+	public Customer getCustomerByOrder(int ordernrnr) {
+		for (Order order_to_loop : k.getListOfOrders()) {
+			if (order_to_loop.getId() == ordernrnr) {
+				return order_to_loop.getCustomer();
 			}
 		}
 		return null;
 	}
 
-	public List<Order> getAllOrdersByClient(Customer kundzik) {
+	public List<Order> getAllOrdersByCustomer(Customer customer_to_orders) {
             
 		List<Order> orderlist0 = new ArrayList<>();
-		for (Order ord : this.getListOfOrders()) {
-			if (ord.getCustomer().getLogin().compareTo(kundzik.getLogin()) == 0) {
-				orderlist0.add(ord);
+		for (Order order_to_loop : this.getListOfOrders()) {
+			if (order_to_loop.getCustomer().getLogin().compareTo(customer_to_orders.getLogin()) == 0) {
+				orderlist0.add(order_to_loop);
                                 
 			}
 		}
@@ -223,11 +214,11 @@ public class Mediator {
         public List<Reclamation> getAllReclamationsByCustomer(Customer customer){
             List<Reclamation> listToReturn = new ArrayList<>();
             
-            for(Reclamation r: this.getListOfReclamations()){
-                String t = customer.getLogin();
-                String t2 = r.getClient().getLogin();
-                if(t2.compareTo(t) == 0){
-                    listToReturn.add(r);
+            for(Reclamation reclamation_to_loop: this.getListOfReclamations()){
+                String customers_login = customer.getLogin();
+                String customers_login_to_reclamation = reclamation_to_loop.getCustomer().getLogin();
+                if(customers_login_to_reclamation.compareTo(customers_login) == 0){
+                    listToReturn.add(reclamation_to_loop);
                 }
                 }
         
@@ -235,38 +226,38 @@ public class Mediator {
         }
         public int getIDforOrder(){
             int returnId= 0;
-            List<Integer> intowa = new ArrayList<>();
-            for (Order o: this.getListOfOrders()){
-                intowa.add(o.getId());
-            Collections.sort(intowa);
-            returnId= intowa.get((intowa.size())-1)+1;
+            List<Integer> listOfInts = new ArrayList<>();
+            for (Order order_to_id: this.getListOfOrders()){
+                listOfInts.add(order_to_id.getId());
+            Collections.sort(listOfInts);
+            returnId= listOfInts.get((listOfInts.size())-1)+1;
             }
             return returnId;
         }
         public int getIDforReclamation(){
             int returnId=0;
-            List<Integer> intowa = new ArrayList<>();
-            for (Reclamation r: this.getListOfReclamations()){
-                intowa.add(r.getId());
-                Collections.sort(intowa);
-                returnId=intowa.get((intowa.size())-1)+1;
+            List<Integer> listOfInts = new ArrayList<>();
+            for (Reclamation reclamation_to_id: this.getListOfReclamations()){
+                listOfInts.add(reclamation_to_id.getId());
+                Collections.sort(listOfInts);
+                returnId=listOfInts.get((listOfInts.size())-1)+1;
             }
             return returnId;
             
         }
-        public boolean addNewReclamation(Reclamation r)
+        public boolean addNewReclamation(Reclamation reclamation)
         {
              try {
-                return this.k.addNewReclamation(r);
+                return this.k.addNewReclamation(reclamation);
             } catch (SQLException ex) {
                 Logger.getLogger(Mediator.class.getName()).log(Level.SEVERE, null, ex);
                 return false;
             }
         }
-        public boolean addNewOrder(Order o)
+        public boolean addNewOrder(Order order)
         {
             try {
-                return k.addNewOrder(o);
+                return k.addNewOrder(order);
             } catch (SQLException ex) {
                 Logger.getLogger(Mediator.class.getName()).log(Level.SEVERE, null, ex);
                 return false;

@@ -29,8 +29,8 @@ import java.util.logging.Logger;
  */
 public class LoadStores extends Loader {
 
-    private List<Store> butikker_list;
-    private List<Employee> medarbejder_list;
+    private List<Store> stores_list;
+    private List<Employee> employees_list;
     //private List<Stock> lager_list;
     Mediator mediator;
     PostgreSQLConnection db = null;
@@ -40,22 +40,22 @@ public class LoadStores extends Loader {
         this.mediator = ref_m;
         try {
             this.db.openDB();
-            this.butikker_list = this.db.getAllShops();
-            this.medarbejder_list = this.db.getAllEmploee();
+            this.stores_list = this.db.getAllStores();
+            this.employees_list = this.db.getAllEmployees();
             this.db.closeDB();
         } catch (SQLException ex) {
             Logger.getLogger(LoadStores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public List<Store> getListOfShops() {
-        if (this.butikker_list == null) {
+    public List<Store> getListOfStores() {
+        if (this.stores_list == null) {
             return new ArrayList<Store>();
         }
-        return this.butikker_list;
+        return this.stores_list;
     }
 
     public List<Employee> getListOfEmploee() {
-        return this.medarbejder_list;
+        return this.employees_list;
     }
 }

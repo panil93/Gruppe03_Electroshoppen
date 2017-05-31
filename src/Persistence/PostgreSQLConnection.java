@@ -54,56 +54,56 @@ public class PostgreSQLConnection {
     public void closeDB() throws SQLException{
         this.connection.close();
     } 
-   public List<Customer> getAllClients() throws SQLException{
-       List<Customer> returnClient = new ArrayList<Customer>();
+   public List<Customer> getAllCustomers() throws SQLException{
+       List<Customer> returnCustomer = new ArrayList<Customer>();
        
-        Statement st1 = this.connection.createStatement();
-        ResultSet rs1 = st1.executeQuery("SELECT fullname,adress,login,password,telefonnr,personligtilbud FROM public.\"Client\" ");
-        while (rs1.next())
+        Statement statement1 = this.connection.createStatement();
+        ResultSet resultset1 = statement1.executeQuery("SELECT fullname,adress,login,password,telefonnr,personligtilbud FROM public.\"Client\" ");
+        while (resultset1.next())
         {
-            returnClient.add(new Customer(rs1.getString("fullname"),rs1.getString("adress"),
-                    rs1.getString("login"),rs1.getString("password"),rs1.getInt("telefonnr"), rs1.getInt("personligtilbud")));
+            returnCustomer.add(new Customer(resultset1.getString("fullname"),resultset1.getString("adress"),
+                    resultset1.getString("login"),resultset1.getString("password"),resultset1.getInt("telefonnr"), resultset1.getInt("personligtilbud")));
         }
        
         
-        return returnClient;
+        return returnCustomer;
    }
-    public List<Store> getAllShops() throws SQLException{
-       List<Store> returnShop = new ArrayList<Store>();
+    public List<Store> getAllStores() throws SQLException{
+       List<Store> returnStore = new ArrayList<Store>();
        
-        Statement st1 = this.connection.createStatement();
-        ResultSet rs1 = st1.executeQuery("SELECT * FROM public.\"Shop\"");
-        while (rs1.next())
+        Statement statement1 = this.connection.createStatement();
+        ResultSet resultset1 = statement1.executeQuery("SELECT * FROM public.\"Shop\"");
+        while (resultset1.next())
         {
-            List<Employee> e = this.getAllEmploeeForShop(rs1.getString("adress"));
-            returnShop.add(new Store(rs1.getString("adress"),rs1.getString("mail"),e));
+            List<Employee> e = this.getAllEmployeesForStore(resultset1.getString("adress"));
+            returnStore.add(new Store(resultset1.getString("adress"),resultset1.getString("mail"),e));
         }
        
         
-        return returnShop;
+        return returnStore;
    }
-    public List<Employee> getAllEmploeeForShop(String addr) throws SQLException
+    public List<Employee> getAllEmployeesForStore(String addr) throws SQLException
     {
         
         //this.openDB();
-        List<Employee> EmploeeList = new ArrayList<Employee>();
-        Statement st1 = this.connection.createStatement();
-        ResultSet rs1 = st1.executeQuery("SELECT * FROM public.\"EmploeeInShop\" where shop_to_='"+addr+"'");
-        List<String> em_id = new ArrayList<String>();
-        while (rs1.next())
+        List<Employee> employeesList = new ArrayList<Employee>();
+        Statement statement1 = this.connection.createStatement();
+        ResultSet resultset1 = statement1.executeQuery("SELECT * FROM public.\"EmploeeInShop\" where shop_to_='"+addr+"'");
+        List<String> employees_id_list = new ArrayList<String>();
+        while (resultset1.next())
         {
-            em_id.add(rs1.getString("employee_to"));
+            employees_id_list.add(resultset1.getString("employee_to"));
         }
-        if(em_id.size() == 0)
+        if(employees_id_list.size() == 0)
         {
-            return EmploeeList;
+            return employeesList;
         }
         /*
         Construct query string
         */
         String Query = "SELECT * FROM public.\"Emploee\" where ";
         int counter = 0;
-        for(String id: em_id)
+        for(String id: employees_id_list)
         {
             if(counter == 0)
             {
@@ -120,119 +120,119 @@ public class PostgreSQLConnection {
         /*
         Fetch the employees
         */
-        Statement st2 = this.connection.createStatement();
-        ResultSet rs2 = st1.executeQuery(Query);
+        Statement statement2 = this.connection.createStatement();
+        ResultSet resultset2 = statement1.executeQuery(Query);
         
-         while (rs2.next())
+         while (resultset2.next())
         {
-            EmploeeList.add(new Employee(rs2.getString("fullname"),rs2.getString("login"),rs2.getString("password"),rs2.getString("type")));
+            employeesList.add(new Employee(resultset2.getString("fullname"),resultset2.getString("login"),resultset2.getString("password"),resultset2.getString("type")));
         }
         //this.closeDB();
-        return EmploeeList;
+        return employeesList;
     }
-    public List<Employee> getAllEmploee() throws SQLException{
+    public List<Employee> getAllEmployees() throws SQLException{
         
-        List<Employee> returnEmploee = new ArrayList<Employee>();
+        List<Employee> returnEmplyoees = new ArrayList<Employee>();
        
-        Statement st3 = this.connection.createStatement();
-        ResultSet rs3 = st3.executeQuery("SELECT * FROM public.\"Emploee\"");
-        while (rs3.next())
+        Statement statement3 = this.connection.createStatement();
+        ResultSet resultset3 = statement3.executeQuery("SELECT * FROM public.\"Emploee\"");
+        while (resultset3.next())
         {
-            returnEmploee.add(new Employee(rs3.getString("Fullname"),rs3.getString("Login"),rs3.getString("Password"),rs3.getString("Type")));
+            returnEmplyoees.add(new Employee(resultset3.getString("Fullname"),resultset3.getString("Login"),resultset3.getString("Password"),resultset3.getString("Type")));
         }
        
         
-        return returnEmploee;
+        return returnEmplyoees;
     }
-    public List<Reclamation> getAllComplaints(Mediator ref) throws SQLException{
-      List<Reclamation> returnComplaint = new ArrayList<Reclamation>();
-      Statement st4 = this.connection.createStatement();
+    public List<Reclamation> getAllReclamations(Mediator reference_to_mediator) throws SQLException{
+      List<Reclamation> returnReclamations = new ArrayList<Reclamation>();
+      Statement statement4 = this.connection.createStatement();
       
-        ResultSet rs4 = st4.executeQuery("SELECT * FROM public.\"Complaint\"");
-        while (rs4.next())
+        ResultSet resultset4 = statement4.executeQuery("SELECT * FROM public.\"Complaint\"");
+        while (resultset4.next())
         {
-            String test = rs4.getString("order_to_complaint");
-            Order o = ref.getOrderByid(test);
-            Customer cu = ref.getClientByLogin(rs4.getString("customer_to"));
-            List<Commodity> co = this.getAllItemsForComplaint(rs4.getInt("id"),ref);
-            returnComplaint.add(new Reclamation(rs4.getString("reason"),rs4.getDate("date"), rs4.getBoolean("isOpen"),
-                    rs4.getString("item_to_change"), rs4.getInt("id"),cu,
-                    co, o));
+            String orders_id = resultset4.getString("order_to_complaint");
+            Order order = reference_to_mediator.getOrderByid(orders_id);
+            Customer cu = reference_to_mediator.getClientByLogin(resultset4.getString("customer_to"));
+            List<Commodity> commodities_list = this.getAllCommoditiesForReclamation(resultset4.getInt("id"),reference_to_mediator);
+            returnReclamations.add(new Reclamation(resultset4.getString("reason"),resultset4.getDate("date"), resultset4.getBoolean("isOpen"),
+                    resultset4.getString("item_to_change"), resultset4.getInt("id"),cu,
+                    commodities_list, order));
             //String årsag, Date dato, boolean erÅbnet, String byttevare, int id,
             //Customer customer, List<Commodity> varerTilBytte, Order order
             //returnComplaint.add(new Reclamation(rs4.getString("reason"),rs4.getDate("date"),rs4.getBoolean("isOpen"),"",0,null,null,null));
         }
        
         
-        return returnComplaint;
+        return returnReclamations;
     }
-    public List<Commodity> getAllItemsForComplaint(int complaints_id,Mediator ref) throws SQLException
+    public List<Commodity> getAllCommoditiesForReclamation(int complaints_id,Mediator reference_to_mediator) throws SQLException
     {
-        List<Commodity> returnItemsToComplaint = new ArrayList<Commodity>();
-      Statement st4 = this.connection.createStatement();
+        List<Commodity> returnCommoditiesToReclamation = new ArrayList<Commodity>();
+      Statement statement4 = this.connection.createStatement();
       
-        ResultSet rs4 = st4.executeQuery("SELECT * FROM public.\"items_to_Complaint\" WHERE fk_complaint_to_item = '" + complaints_id + "'");
-        while (rs4.next())
+        ResultSet resultset4 = statement4.executeQuery("SELECT * FROM public.\"items_to_Complaint\" WHERE fk_complaint_to_item = '" + complaints_id + "'");
+        while (resultset4.next())
         {
-            Commodity co = ref.getCommoditiesById(rs4.getString("fk_item_to_complaint"));
-           returnItemsToComplaint.add(co);
+            Commodity commodity_to_reclamation = reference_to_mediator.getCommoditiesById(resultset4.getString("fk_item_to_complaint"));
+           returnCommoditiesToReclamation.add(commodity_to_reclamation);
         }
        
         
-        return returnItemsToComplaint;
+        return returnCommoditiesToReclamation;
     }
      
-    public List<Customer> GetAllClients() throws SQLException
+    public List<Customer> GetAllEmployees() throws SQLException
     {
-        List<Customer> returnEmploee = new ArrayList<Customer>();
+        List<Customer> returnEmployees = new ArrayList<Customer>();
        
-        Statement st3 = this.connection.createStatement();
-        ResultSet rs3 = st3.executeQuery("SELECT * FROM public.\"Emploee\"");
-        while (rs3.next())
+        Statement statement3 = this.connection.createStatement();
+        ResultSet resultset3 = statement3.executeQuery("SELECT * FROM public.\"Emploee\"");
+        while (resultset3.next())
         {
             //String fuldnavn,String adresse,String login,String adgangskode,int telefonnr
-            returnEmploee.add(new Customer(rs3.getString("fullname"),rs3.getString("adress"),
-            rs3.getString("login"),rs3.getString("password"),rs3.getInt("telefonnr"), rs3.getInt("personligtilbud")));
+            returnEmployees.add(new Customer(resultset3.getString("fullname"),resultset3.getString("adress"),
+resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt("telefonnr"), resultset3.getInt("personligtilbud")));
         }
-        return returnEmploee;
+        return returnEmployees;
     }
     public List<Order> GetAllOrders() throws SQLException
     {
         List<Order> returnOrders = new ArrayList<Order>();
-        Statement st3 = this.connection.createStatement();
-        ResultSet rs3 = st3.executeQuery("SELECT * FROM public.\"Order\"");
-        while (rs3.next())
+        Statement statement3 = this.connection.createStatement();
+        ResultSet resultset3 = statement3.executeQuery("SELECT * FROM public.\"Order\"");
+        while (resultset3.next())
         {
             //int id,String stedtiludlevering, Client kunde, double orderPrice, List<Item>listOfVarer
-            List<Commodity> c = this.GetListOfItemsByOrderId(rs3.getInt("id"));
-            Statement cs = this.connection.createStatement();
-            ResultSet cs3 = cs.executeQuery("SELECT * FROM public.\"Client\" where login = '"+rs3.getString("client_to_order")+"'");
-            Customer cu = null;
-            while (cs3.next())
+            List<Commodity> commodity = this.GetListOfCommoditiesByOrdersId(resultset3.getInt("id"));
+            Statement createdstatement = this.connection.createStatement();
+            ResultSet createdresultset = createdstatement.executeQuery("SELECT * FROM public.\"Client\" where login = '"+resultset3.getString("client_to_order")+"'");
+            Customer customer = null;
+            while (createdresultset.next())
             {
                 //String fuldnavn,String adresse,String login,String adgangskode,int telefonnr
-                cu = new Customer(cs3.getString("fullname"),cs3.getString("adress")
-                ,cs3.getString("login"),cs3.getString("password"),cs3.getInt("telefonnr"), cs3.getInt("personligtilbud"));
+                customer = new Customer(createdresultset.getString("fullname"),createdresultset.getString("adress")
+                ,createdresultset.getString("login"),createdresultset.getString("password"),createdresultset.getInt("telefonnr"), createdresultset.getInt("personligtilbud"));
             }
            
-            returnOrders.add(new Order(rs3.getInt("id"),rs3.getString("placeToReception"),cu,
-            c));
+            returnOrders.add(new Order(resultset3.getInt("id"),resultset3.getString("placeToReception"),customer,
+            commodity));
         }
         return returnOrders;
     }
-    public List<Commodity> GetListOfItemsByOrderId(int order_id) throws SQLException
+    public List<Commodity> GetListOfCommoditiesByOrdersId(int orders_id) throws SQLException
     {
-        List<Commodity> returnItems = new ArrayList<>();
-        Statement st1 = this.connection.createStatement();
-        ResultSet rs1 = st1.executeQuery("SELECT * FROM public.\"itemsToOrder\" WHERE order_to_item = '"+order_id+"'");
-        List<String> item_id = new ArrayList<>();
-        while (rs1.next())
+        List<Commodity> returnCommodities = new ArrayList<>();
+        Statement statement1 = this.connection.createStatement();
+        ResultSet resultset1 = statement1.executeQuery("SELECT * FROM public.\"itemsToOrder\" WHERE order_to_item = '"+orders_id+"'");
+        List<String> commodities_ids = new ArrayList<>();
+        while (resultset1.next())
         {
-            item_id.add(rs1.getString("item_to_order"));
+            commodities_ids.add(resultset1.getString("item_to_order"));
         }
         String Query = "SELECT * FROM public.\"Item\" WHERE ";
         int counter = 0;
-        for(String id: item_id)
+        for(String id: commodities_ids)
         {
             if(counter == 0)
             {
@@ -245,27 +245,27 @@ public class PostgreSQLConnection {
             }
         }
         Query += ";";
-        Statement st2 = this.connection.createStatement();
-        ResultSet rs2 = st2.executeQuery(Query);
-        while (rs2.next())
+        Statement statement2 = this.connection.createStatement();
+        ResultSet resultset2 = statement2.executeQuery(Query);
+        while (resultset2.next())
         {
-            if(rs2.getString("type").compareTo("Product") == 0)
+            if(resultset2.getString("type").compareTo("Product") == 0)
             {
-                Statement pst = this.connection.createStatement();
-                ResultSet prs = pst.executeQuery("SELECT * FROM public.\"Product\" WHERE title = '" + rs2.getString("CompanyId") + "'");
-                while (prs.next())
+                Statement productstatement = this.connection.createStatement();
+                ResultSet productresultset = productstatement.executeQuery("SELECT * FROM public.\"Product\" WHERE title = '" + resultset2.getString("CompanyId") + "'");
+                while (productresultset.next())
                 {
-                    returnItems.add(new Product(rs2.getDouble("RetailPrice"),rs2.getString("CompanyId"),
-                    prs.getString("SupplierName"), prs.getInt("SupplierId"), prs.getString("SupplierProductCode"),
-                    prs.getString("ProductCategory"),prs.getString("Brand"),prs.getDouble("CostPrice"),
-                    prs.getDouble("CostPriceFreightFrom"),prs.getDouble("CostPriceFreightTo"),
-                    prs.getDouble("CostPriceHandlingFee"), prs.getDouble("CostPriceWeeFee"),prs.getString("EAN"),
-                    prs.getBoolean("Expired"),prs.getDate("ExpiredDate"),prs.getInt("StockQuantity"),
-                    prs.getDate("LastRestocked"),prs.getString("ShortReelDescription"),prs.getString("LongDescription"),
-                    prs.getString("ShortDescription"),prs.getString("Title"),prs.getInt("DeliveryTime"),
-                    prs.getDouble("Weight"),prs.getDouble("Lenght"),prs.getDouble("Width"),prs.getDouble("Height"),
-                    prs.getDate("ConvertedDate"),prs.getDate("Created"),prs.getDate("Modified"),
-                    prs.getInt("NextDeliveryQuantity"),prs.getDate("DeliveryDate"),prs.getDate("PriceLastModified"))); 
+                    returnCommodities.add(new Product(resultset2.getDouble("RetailPrice"),resultset2.getString("CompanyId"),
+                    productresultset.getString("SupplierName"), productresultset.getInt("SupplierId"), productresultset.getString("SupplierProductCode"),
+                    productresultset.getString("ProductCategory"),productresultset.getString("Brand"),productresultset.getDouble("CostPrice"),
+                    productresultset.getDouble("CostPriceFreightFrom"),productresultset.getDouble("CostPriceFreightTo"),
+                    productresultset.getDouble("CostPriceHandlingFee"), productresultset.getDouble("CostPriceWeeFee"),productresultset.getString("EAN"),
+                    productresultset.getBoolean("Expired"),productresultset.getDate("ExpiredDate"),productresultset.getInt("StockQuantity"),
+                    productresultset.getDate("LastRestocked"),productresultset.getString("ShortReelDescription"),productresultset.getString("LongDescription"),
+                    productresultset.getString("ShortDescription"),productresultset.getString("Title"),productresultset.getInt("DeliveryTime"),
+                    productresultset.getDouble("Weight"),productresultset.getDouble("Lenght"),productresultset.getDouble("Width"),productresultset.getDouble("Height"),
+                    productresultset.getDate("ConvertedDate"),productresultset.getDate("Created"),productresultset.getDate("Modified"),
+                    productresultset.getInt("NextDeliveryQuantity"),productresultset.getDate("DeliveryDate"),productresultset.getDate("PriceLastModified"))); 
                 }
                 
             }
@@ -274,51 +274,51 @@ public class PostgreSQLConnection {
                 /*
                 Its a service.
                 */
-                Statement sst = this.connection.createStatement();
-                ResultSet srs = sst.executeQuery("SELECT * FROM public.\"Service\" WHERE company_id = '" +rs2.getString("CompanyId") +"'");
-                while (srs.next())
+                Statement servicestatement = this.connection.createStatement();
+                ResultSet serviceresultset = servicestatement.executeQuery("SELECT * FROM public.\"Service\" WHERE company_id = '" +resultset2.getString("CompanyId") +"'");
+                while (serviceresultset.next())
                 {
-                    returnItems.add(new Service(rs2.getString("CompanyId"),srs.getString("name"),rs2.getDouble("RetailPrice")));
+                    returnCommodities.add(new Service(resultset2.getString("CompanyId"),serviceresultset.getString("name"),resultset2.getDouble("RetailPrice")));
                 }
             }
         }
-        return returnItems;
+        return returnCommodities;
     }
-    public List<Commodity> GetAllItems() throws SQLException
+    public List<Commodity> GetAllCommodities() throws SQLException
     {
-       List<Commodity> returnItems = new ArrayList<Commodity>();
+       List<Commodity> returnCommodities = new ArrayList<Commodity>();
        
-        Statement st1 = this.connection.createStatement();
-        ResultSet rs1 = st1.executeQuery("SELECT * FROM public.\"Product\" join public.\"Item\" on \"Product\".title = \"Item\".\"CompanyId\" ");
-        while (rs1.next())
+        Statement statement1 = this.connection.createStatement();
+        ResultSet resultset1 = statement1.executeQuery("SELECT * FROM public.\"Product\" join public.\"Item\" on \"Product\".title = \"Item\".\"CompanyId\" ");
+        while (resultset1.next())
         {
             
-            returnItems.add(new Product(rs1.getDouble("RetailPrice"),rs1.getString("CompanyId"),
-                    rs1.getString("SupplierName"), rs1.getInt("SupplierId"), rs1.getString("SupplierProductCode"),
-                    rs1.getString("ProductCategory"),rs1.getString("Brand"),rs1.getDouble("CostPrice"),
-                    rs1.getDouble("CostPriceFreightFrom"),rs1.getDouble("CostPriceFreightTo"),
-                    rs1.getDouble("CostPriceHandlingFee"), rs1.getDouble("CostPriceWeeFee"),rs1.getString("EAN"),
-                    rs1.getBoolean("Expired"),rs1.getDate("ExpiredDate"),rs1.getInt("StockQuantity"),
-                    rs1.getDate("LastRestocked"),rs1.getString("ShortReelDescription"),rs1.getString("LongDescription"),
-                    rs1.getString("ShortDescription"),rs1.getString("Title"),rs1.getInt("DeliveryTime"),
-                    rs1.getDouble("Weight"),rs1.getDouble("Lenght"),rs1.getDouble("Width"),rs1.getDouble("Height"),
-                    rs1.getDate("ConvertedDate"),rs1.getDate("Created"),rs1.getDate("Modified"),
-                    rs1.getInt("NextDeliveryQuantity"),rs1.getDate("DeliveryDate"),rs1.getDate("PriceLastModified"))); 		
+            returnCommodities.add(new Product(resultset1.getDouble("RetailPrice"),resultset1.getString("CompanyId"),
+                    resultset1.getString("SupplierName"), resultset1.getInt("SupplierId"), resultset1.getString("SupplierProductCode"),
+                    resultset1.getString("ProductCategory"),resultset1.getString("Brand"),resultset1.getDouble("CostPrice"),
+                    resultset1.getDouble("CostPriceFreightFrom"),resultset1.getDouble("CostPriceFreightTo"),
+                    resultset1.getDouble("CostPriceHandlingFee"), resultset1.getDouble("CostPriceWeeFee"),resultset1.getString("EAN"),
+                    resultset1.getBoolean("Expired"),resultset1.getDate("ExpiredDate"),resultset1.getInt("StockQuantity"),
+                    resultset1.getDate("LastRestocked"),resultset1.getString("ShortReelDescription"),resultset1.getString("LongDescription"),
+                    resultset1.getString("ShortDescription"),resultset1.getString("Title"),resultset1.getInt("DeliveryTime"),
+                    resultset1.getDouble("Weight"),resultset1.getDouble("Lenght"),resultset1.getDouble("Width"),resultset1.getDouble("Height"),
+                    resultset1.getDate("ConvertedDate"),resultset1.getDate("Created"),resultset1.getDate("Modified"),
+                    resultset1.getInt("NextDeliveryQuantity"),resultset1.getDate("DeliveryDate"),resultset1.getDate("PriceLastModified"))); 		
         }
         /*
         Add the service products aswell
         */
-        Statement st2 = this.connection.createStatement();
-        ResultSet rs2 = st2.executeQuery("SELECT * FROM public.\"Service\" join public.\"Item\" on \"Service\".company_id = \"Item\".\"CompanyId\"");
-        while (rs2.next())
+        Statement statement2 = this.connection.createStatement();
+        ResultSet resultset2 = statement2.executeQuery("SELECT * FROM public.\"Service\" join public.\"Item\" on \"Service\".company_id = \"Item\".\"CompanyId\"");
+        while (resultset2.next())
         {
             /* String CompanyId, String navn, double RetailPrice */
-            returnItems.add(new Service(rs2.getString("CompanyId"),rs2.getString("name"),rs2.getDouble("RetailPrice")));
+            returnCommodities.add(new Service(resultset2.getString("CompanyId"),resultset2.getString("name"),resultset2.getDouble("RetailPrice")));
         }
         
-        return returnItems;
+        return returnCommodities;
     }
-    public List<Payment> GetAllPayments(Mediator ref_m) throws SQLException
+    public List<Payment> GetAllPayments(Mediator reference_to_mediator) throws SQLException
     {
         List<Payment> returnPayments = new ArrayList<>();
         Statement st3 = this.connection.createStatement();
@@ -326,24 +326,24 @@ public class PostgreSQLConnection {
         while (rs3.next())
         {
             //double amount, Date date, Customer customer, Order order
-            Order Payment_order = ref_m.getOrderByid(rs3.getString("order_to_payment"));
+            Order Payment_order = reference_to_mediator.getOrderByid(rs3.getString("order_to_payment"));
             returnPayments.add(new Payment(rs3.getDouble("amount"),rs3.getDate("date"),Payment_order.getCustomer(),Payment_order));
             
         }
         return returnPayments;
     }
-    public boolean insertNewReclamation(Reclamation r) throws SQLException
+    public boolean insertNewReclamation(Reclamation reclamation) throws SQLException
     {
         /*
         Opret Entry i Complaint tabel
         */
         
-        Statement st3 = this.connection.createStatement();
+        Statement statement3 = this.connection.createStatement();
         String Query = "INSERT INTO public.\"Complaint\" (\"date\",\"isOpen\",\"id\",\"reason\",\"customer_to\",\"order_to_complaint\",\"item_to_change\") VALUES"
-                + " ('" +r.getDate()+"',"+r.isOpen()+ ","+r.getId()+",'"+r.getReason()+"','"+r.getClient().getLogin()+"',"+r.getOrder().getId()+",'"+r.getChangeItem()+
+                + " ('" +reclamation.getDate()+"',"+reclamation.isOpen()+ ","+reclamation.getId()+",'"+reclamation.getReason()+"','"+reclamation.getCustomer().getLogin()+"',"+reclamation.getOrder().getId()+",'"+reclamation.getChangeItem()+
                 "')";
-        int rs3 = st3.executeUpdate(Query);
-        if(rs3 == 0)
+        int resultset3 = statement3.executeUpdate(Query);
+        if(resultset3 == 0)
         {
            return false; 
         }
@@ -357,18 +357,18 @@ public class PostgreSQLConnection {
   item_to_change text,
         Opret rows for produkter til complaint
         */
-        GetListOfItemsByReclamationsId(r);
+        GetListOfCommoditiesByReclamationsId(reclamation);
         return true;
     }
-    public boolean GetListOfItemsByReclamationsId(Reclamation r) throws SQLException
+    public boolean GetListOfCommoditiesByReclamationsId(Reclamation reclamation) throws SQLException
     {
         
-        for (Commodity c: r.getListOfCommodities()){
-         Statement st3 = this.connection.createStatement();
-        int rs3 = st3.executeUpdate("INSERT INTO public.\"items_to_Complaint\" (\"fk_item_to_complaint\",\"fk_complaint_to_item\") VALUES (" +
-                c.getId()+","+r.getId()+ 
+        for (Commodity commodity: reclamation.getListOfCommodities()){
+         Statement statement3 = this.connection.createStatement();
+        int resultset3 = statement3.executeUpdate("INSERT INTO public.\"items_to_Complaint\" (\"fk_item_to_complaint\",\"fk_complaint_to_item\") VALUES (" +
+                commodity.getId()+","+reclamation.getId()+ 
                 ")");
-            if(rs3 == 0)
+            if(resultset3 == 0)
             {
                return false; 
             }
@@ -376,29 +376,29 @@ public class PostgreSQLConnection {
         }
         return true;
 }
-    public boolean insertNewOrder(Order o) throws SQLException
+    public boolean insertNewOrder(Order order) throws SQLException
     {
-        Statement st3 = this.connection.createStatement();
+        Statement statement3 = this.connection.createStatement();
         String Query = "INSERT INTO public.\"Order\" (\"id\", \"placeToReception\", \"client_to_order\") VALUES (" +
-                o.getId()+",'"+o.getDeliveryPlace()+ "','"+o.getCustomer().getLogin()+
+                order.getId()+",'"+order.getDeliveryPlace()+ "','"+order.getCustomer().getLogin()+
                 "')";
-        int rs3 = st3.executeUpdate(Query);
-        if(rs3 == 0)
+        int resultset3 = statement3.executeUpdate(Query);
+        if(resultset3 == 0)
         {
            return false;         
     }
-        GetListOfItemsToOrder(o);
+        GetListOfCommoditiesToOrder(order);
         return false; 
 } 
-    public boolean GetListOfItemsToOrder(Order r) throws SQLException
+    public boolean GetListOfCommoditiesToOrder(Order order) throws SQLException
     {
-        for (Commodity c: r.getListOfCommodities()){
-         Statement st3 = this.connection.createStatement();
+        for (Commodity commodity: order.getListOfCommodities()){
+         Statement statement3 = this.connection.createStatement();
          String query = "INSERT INTO public.\"itemsToOrder\" (\"item_to_order\", \"order_to_item\") VALUES ('" +
-                c.getId()+"',"+r.getId()+ 
+                commodity.getId()+"',"+order.getId()+ 
                 ")";
-        int rs3 = st3.executeUpdate(query);
-        if(rs3 == 0)
+        int resultset3 = statement3.executeUpdate(query);
+        if(resultset3 == 0)
         {
            return false; 
         }

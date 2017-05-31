@@ -14,18 +14,18 @@ import java.util.List;
  */
 public class Store {
 
-	private String adresse;
+	private String adress;
 	private String mail;
-	private List<Employee> medarbejderList;
+	private List<Employee> employeesList;
 
-	public Store(String adresse, String mail, List<Employee> medarbejderList) {
-		this.adresse = adresse;
+	public Store(String adress, String mail, List<Employee> employeesList) {
+		this.adress = adress;
 		this.mail = mail;
 
 	}
 
 	public String getAdresse() {
-		return this.adresse;
+		return this.adress;
 	}
 
 }

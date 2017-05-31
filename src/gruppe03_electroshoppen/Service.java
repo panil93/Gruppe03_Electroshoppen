@@ -13,22 +13,22 @@ import java.text.DecimalFormat;
  */
 public class Service extends Commodity{
 
-	private String navn;
+	private String name;
 
-	public Service(String CompanyId, String navn, double RetailPrice) {
+	public Service(String CompanyId, String name, double RetailPrice) {
 		super(RetailPrice, CompanyId);
-		this.navn = navn;
+		this.name = name;
 
 	}
 
 	public String getNavn() {
-		return this.navn;
+		return this.name;
 	}
 
 	@Override
 	public String toString() {
             DecimalFormat formatter = new DecimalFormat("0.00");
-		return (this.navn + " " + formatter.format(RetailPrice));
+		return (this.name + " " + formatter.format(RetailPrice));
 
 	}
 }

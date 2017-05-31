@@ -51,11 +51,11 @@ public class Product extends Commodity{
 		this.SupplierName = SupplierName;
 	}
 
-	public double calculatePriceWithRabat(int rabat, double spris) {
+	public double calculatePriceWithRabat(int rabat, double startPrice) {
 		double factor = ((double) rabat) / 100;
-		double total_rabat = spris * factor;
+		double total_rabat = startPrice * factor;
 
-		return spris - total_rabat;
+		return startPrice - total_rabat;
 	}
 
 	public String getCategory() {
