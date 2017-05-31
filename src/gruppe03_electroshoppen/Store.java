@@ -24,7 +24,7 @@ public class Store {
 
 	}
 
-	public String getAdresse() {
+	public String getAdress() {
 		return this.adress;
 	}
 

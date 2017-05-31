@@ -21,7 +21,7 @@ public class Service extends Commodity{
 
 	}
 
-	public String getNavn() {
+	public String getName() {
 		return this.name;
 	}
 

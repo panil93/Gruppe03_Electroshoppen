@@ -732,7 +732,7 @@ public class MenuFXMLController implements Initializable {
 
 				if (store != null) {
 
-					listButikker.getItems().add(store.getAdresse());
+					listButikker.getItems().add(store.getAdress());
 					invoiceInfoPaneDiffrentAddress.disableProperty();
 
 				}
@@ -828,7 +828,7 @@ this.mediator.addNewOrder(order);
                 else if(hente.getSelectedToggle()==collect){
                     this.selectedStore = mediator.getStoreByAdress((String)listButikker.getSelectionModel().getSelectedItem());
                     
-                    String t = this.selectedStore.getAdresse();
+                    String t = this.selectedStore.getAdress();
                 /*int virkerikke = (Integer)kundeorderer.getItems().get(0); ubruligt*/
                  //Get the logged in user.
                 List<Commodity> items = (List<Commodity>)orderPaneOrder.getItems();

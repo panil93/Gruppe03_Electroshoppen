@@ -92,8 +92,6 @@ public class Mediator {
 		return false;
 	}
 
-	
-
 	public List<Commodity> getCommoditiesByOrder(int orders_id) {
 
 		for (Order order : this.getListOfOrders()) {
@@ -135,7 +133,7 @@ public class Mediator {
 
 	public Store getStoreByAdress(String adress_to_store) {
 		for (Store storetoloop : lB.getListOfStores()) {
-			if (storetoloop.getAdresse().compareTo(adress_to_store) == 0) {
+			if (storetoloop.getAdress().compareTo(adress_to_store) == 0) {
 				return storetoloop;
 			}
 		}
