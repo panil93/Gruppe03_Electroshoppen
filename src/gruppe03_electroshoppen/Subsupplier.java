@@ -12,12 +12,12 @@ package gruppe03_electroshoppen;
 public class Subsupplier{
 
 	private String login;
-	private String adgangskode;
+	private String password;
 
-	public Subsupplier(String login, String adgangskode) {
+	public Subsupplier(String login, String password) {
 
 		this.login = login;
-		this.adgangskode = adgangskode;
+		this.password = password;
 
 	}
 

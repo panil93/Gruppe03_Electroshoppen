@@ -30,10 +30,10 @@ import java.util.logging.Logger;
  */
 public class LoadCustomers extends Loader {
 
-    private List<Customer> kunde_list;
-    private List<Order> order_list;
-    private List<Reclamation> reklamation_list;
-    private List<Payment> betaling_list;
+    private List<Customer> customers_list;
+    private List<Order> orders_list;
+    private List<Reclamation> reclamations_list;
+    private List<Payment> payments_list;
     Mediator mediator;
         PostgreSQLConnection db = null;
         
@@ -48,41 +48,41 @@ public class LoadCustomers extends Loader {
         this.db = new PostgreSQLConnection();
         try {
             this.db.openDB();
-            this.kunde_list = this.db.getAllClients();
-            this.order_list = this.db.GetAllOrders();
-            this.reklamation_list = this.db.getAllComplaints(this.mediator);
-            this.betaling_list = this.db.GetAllPayments(ref_m);
+            this.customers_list = this.db.getAllCustomers();
+            this.orders_list = this.db.GetAllOrders();
+            this.reclamations_list = this.db.getAllReclamations(this.mediator);
+            this.payments_list = this.db.GetAllPayments(ref_m);
             this.db.closeDB();
         } catch (SQLException ex) {
             Logger.getLogger(LoadCustomers.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public List <Customer> getListOfClients(){ 
-        return this.kunde_list;
+    public List <Customer> getListOfCustomers(){ 
+        return this.customers_list;
     }
-    public List<Order> getListOfOrder(){
-        return this.order_list;
+    public List<Order> getListOfOrders(){
+        return this.orders_list;
     }
     public List<Payment> getListOfPayments(){
-        return this.betaling_list;
+        return this.payments_list;
     }
-    public List <Reclamation> getListOfComplaints(){
-        return this.reklamation_list;
+    public List <Reclamation> getListOfReclamations(){
+        return this.reclamations_list;
     }
-    public boolean addNewReclamation(Reclamation r) throws SQLException
+    public boolean addNewReclamation(Reclamation reclamation) throws SQLException
     {
-        this.reklamation_list.add(r);
+        this.reclamations_list.add(reclamation);
         this.db.openDB();
-        this.db.insertNewReclamation(r);
+        this.db.insertNewReclamation(reclamation);
         this.db.closeDB();
         
         return true;
     }
-    public boolean addNewOrder(Order o) throws SQLException
+    public boolean addNewOrder(Order order) throws SQLException
     {
         this.db.openDB();
-        this.order_list.add(o);
-        this.db.insertNewOrder(o);
+        this.orders_list.add(order);
+        this.db.insertNewOrder(order);
         this.db.closeDB();
         return true;
     }

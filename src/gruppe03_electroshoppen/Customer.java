@@ -11,26 +11,26 @@ package gruppe03_electroshoppen;
  */
 public class Customer {
 
-	private String fuldnavn;
-	private String adresse;
+	private String fullname;
+	private String adress;
 	private String login;
-	private String adgangskode;
-	private int telefonnr;
-        private int personligtilbud;
+	private String password;
+	private int telefonnumber;
+        private int personalSale;
 
 	/**
 	 *
 	 *
 	 * @param
 	 */
-	public Customer(String fuldnavn, String adresse, String login, String adgangskode, int telefonnr, int personligtilbud) {
+	public Customer(String fullname, String adress, String login, String password, int telefonnumber, int personalSale) {
 
-		this.fuldnavn = fuldnavn;
-		this.adresse = adresse;
+		this.fullname = fullname;
+		this.adress = adress;
 		this.login = login;
-		this.adgangskode = adgangskode;
-		this.telefonnr = telefonnr;
-                this.personligtilbud=personligtilbud;
+		this.password = password;
+		this.telefonnumber = telefonnumber;
+                this.personalSale=personalSale;
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class Customer {
 	 */
 	public String getName() {
 		
-		return this.fuldnavn;
+		return this.fullname;
 		
 	}
 
@@ -57,9 +57,9 @@ public class Customer {
 	 *
 	 *
 	 */
-	public String getAdresse() {
+	public String getAdress() {
 		
-		return this.adresse;
+		return this.adress;
 		
 	}
 
@@ -69,7 +69,7 @@ public class Customer {
 	 */
 	public String getPassword() {
 		
-		return this.adgangskode;
+		return this.password;
 		
 	}
 
@@ -79,7 +79,7 @@ public class Customer {
 	 */
 	public int getTelefonnr() {
 		
-		return this.telefonnr;
+		return this.telefonnumber;
 		
 	}
 
@@ -88,20 +88,9 @@ public class Customer {
 	 *
 	 * @param
 	 */
-	public void setTelefonnr(int telly) {
+	public void setTelefonnr(int telefonnumberToSetting) {
 		
-		this.telefonnr = telly;
-		
-	}
-
-	/**
-	 *
-	 *
-	 * @param
-	 */
-	public void setPassword(String adgang) {
-		
-		this.adgangskode = adgang;
+		this.telefonnumber = telefonnumberToSetting;
 		
 	}
 
@@ -110,9 +99,9 @@ public class Customer {
 	 *
 	 * @param
 	 */
-	public void setAdresse(String adres) {
+	public void setPassword(String passwordToSetting) {
 		
-		this.adresse = adres;
+		this.password = passwordToSetting;
 		
 	}
 
@@ -121,16 +110,27 @@ public class Customer {
 	 *
 	 * @param
 	 */
-	public void setFullname(String namey) {
-
-		this.fuldnavn = namey;
+	public void setAdress(String adressToSetting) {
+		
+		this.adress = adressToSetting;
 		
 	}
-        public void setPersonTilbud(int i){
-            this.personligtilbud = i;
+
+	/**
+	 *
+	 *
+	 * @param
+	 */
+	public void setFullname(String nameToSetting) {
+
+		this.fullname = nameToSetting;
+		
+	}
+        public void setPersonalSale(int procentSaleToSetting){
+            this.personalSale = procentSaleToSetting;
         }
-        public int getPersonTilbud(){
-            return this.personligtilbud;
+        public int getPersonalSale(){
+            return this.personalSale;
         }
 
 	/**
@@ -140,7 +140,7 @@ public class Customer {
 	@Override
 	public String toString() {
 
-		return this.fuldnavn + "\n" + this.adresse + "\n" + this.telefonnr;
+		return this.fullname + "\n" + this.adress + "\n" + this.telefonnumber;
 
 	}
 

@@ -389,9 +389,15 @@ public class MenuFXMLController implements Initializable {
 		//
 		setRefAndInitialData(new Mediator());
 		//
-		updateKatalog();
+		updateCatalog();
 		//
+<<<<<<< HEAD
 		updateButikker();
+=======
+		updateStores();
+                
+                
+>>>>>>> origin/master
 
 	}
 
@@ -401,7 +407,7 @@ public class MenuFXMLController implements Initializable {
 	 * @param event
 	 */
 	@FXML
-	private void handleMedarbejderAction(ActionEvent event) {
+	private void handleEmployeeAction(ActionEvent event) {
 
 		pakkedetaj.getItems().removeAll();
 		Button pressed_button = (Button) event.getSource();
@@ -421,47 +427,46 @@ public class MenuFXMLController implements Initializable {
 			for (Order ordy : mediator.getListOfOrders()) {
 
 				//
-				String test = pakkeoplys.getText();
+				String id_to_use = pakkeoplys.getText();
 
 				//
-				if (Integer.parseInt(test) == (ordy.getId())) {
+				if (Integer.parseInt(id_to_use) == (ordy.getId())) {
 
-					Customer t = mediator.getClientByOrder(ordy.getId());
-                                        String t2= ordy.getDeliveryPlace();
-					//String t2 = mediator.getClientByOrder(ordy.getId()).getAdresse();
-					pakkemodtag.setText(t.getName() + "\n" + t2);
+					Customer customer = mediator.getCustomerByOrder(ordy.getId());
+                                        String place_to_Delivery= ordy.getDeliveryPlace();
+					
+					pakkemodtag.setText(customer.getName() + "\n" + place_to_Delivery);
 
 					//
-					for (Commodity v : mediator.getVarerByOrder(ordy.getId())) {
+					for (Commodity commodity_to_loop : mediator.getCommoditiesByOrder(ordy.getId())) {
 
 						//
-						if (v != null) {
+						if (commodity_to_loop != null) {
 
-							pakkedetaj.getItems().add(v);
+							pakkedetaj.getItems().add(commodity_to_loop);
 
 						}
 					} 
 				} else {
 
-					//pakkemodtag.setText("Findes ikke");
-					//pakkedetaj.getItems().add("Findes ikke");
+					
 				}
 			}
 		} else if (pressed_button == markmed) {
 
-			List<Order> ord = mediator.getListOfOrders();
-			Iterator<Order> i = ord.iterator();
+			List<Order> orders_list = mediator.getListOfOrders();
+			Iterator<Order> iterator_to_orders_list = orders_list.iterator();
 
 			//
-			while (i.hasNext()) {
+			while (iterator_to_orders_list.hasNext()) {
 
 				//
-				Order o = i.next();
+				Order o = iterator_to_orders_list.next();
 
 				//
 				if (o.getId() == Integer.parseInt(pakkeoplys.getText())) {
 
-					mediator.RemoveListOfOrder(o);
+					mediator.RemoveOrderFromList(o);
 
 				}
 			}
@@ -479,7 +484,7 @@ public class MenuFXMLController implements Initializable {
 	 * @param event
 	 */
 	@FXML
-	private void handleKampagneAction(ActionEvent event) {
+	private void handleCampaignAction(ActionEvent event) {
 
 		Button pressed_button = (Button) event.getSource();
 
@@ -491,7 +496,7 @@ public class MenuFXMLController implements Initializable {
 			logpaa.setVisible(true);
 			kundekonto.setVisible(false);
 			logaf.setVisible(false);
-                        updateKatalog();
+                        updateCatalog();
 
 		} else if (pressed_button == nykamp) {
 
@@ -499,7 +504,7 @@ public class MenuFXMLController implements Initializable {
 
 		} else if (pressed_button == opretbutton) {
 
-			this.handleKampagnePaneAction(event);
+			this.handleCampaignPaneAction(event);
 
 		} else if (pressed_button == nykampPanelogaff) {
 
@@ -518,7 +523,7 @@ public class MenuFXMLController implements Initializable {
 	 *
 	 * @param event
 	 */
-	private void handleKampagnePaneAction(ActionEvent event) {
+	private void handleCampaignPaneAction(ActionEvent event) {
 
 		double newPrice = 0;
 		RadioButton radiusek = (RadioButton) kamptog.getSelectedToggle();
@@ -531,13 +536,13 @@ public class MenuFXMLController implements Initializable {
 
 				if (v instanceof Product) {
 
-					newPrice = ((Product) v).calculatePriceWithRabat((Integer) rabat.getValue(), v.getPris());
-					v.setPris(newPrice);
+					newPrice = ((Product) v).calculatePriceWithRabat((Integer) rabat.getValue(), v.getPrice());
+					v.setPrice(newPrice);
 					formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i Webshoppen");
 
 					if ((stardate.getValue().isBefore(LocalDate.now()) && slutdate.getValue().isAfter(LocalDate.now()))) {
 
-						banner.getItems().add("Vild tilbud! hele " + rabat.getValue() + "% kun i Webshoppen");
+						banner.getItems().add("Vild tilbud! hele " + rabat.getValue() + "% kun i Webshoppen, indtil den."+slutdate.getValue());
 
 					}
 
@@ -563,9 +568,9 @@ public class MenuFXMLController implements Initializable {
 
 				if (v instanceof Product) {
 
-					newPrice = ((Product) v).calculatePriceWithRabat((Integer) rabat.getValue(), v.getPris());
+					newPrice = ((Product) v).calculatePriceWithRabat((Integer) rabat.getValue(), v.getPrice());
 
-					v.setPris(newPrice);
+					v.setPrice(newPrice);
 					formedarb.setText("Du har opretter kampagne med " + rabat.getValue() + "% rabat i både Webshoppen og Points of Sale");
 
 					if ((stardate.getValue().isBefore(LocalDate.now()) && slutdate.getValue().isAfter(LocalDate.now()))) {
@@ -576,7 +581,7 @@ public class MenuFXMLController implements Initializable {
 				}
 
 			}
-			updateKatalog();
+			updateCatalog();
 		} 
                 else if(radiusek ==newCampaignPanePersonal){
                     Customer clientToPersonalCampaign = perosnalCampaignPaneCustomers.getSelectionModel().getSelectedItem();
@@ -590,9 +595,8 @@ public class MenuFXMLController implements Initializable {
 					formedarb.setText("Du har opretter kampagne til " + rabat.getValue() + "% rabat til kunde "+clientToPersonalCampaign.getLogin());
 
 					if ((stardate.getValue().isBefore(LocalDate.now()) && (slutdate.getValue().isAfter(LocalDate.now())))) {
-/*newPrice = ((Product) v).calculatePriceWithRabat((Integer) rabat.getValue(), v.getPris());
-					v.setPris(newPrice);*/
-                                        clientToPersonalCampaign.setPersonTilbud((Integer)rabat.getValue());
+
+                                        clientToPersonalCampaign.setPersonalSale((Integer)rabat.getValue());
                                         
 						
 
@@ -600,16 +604,12 @@ public class MenuFXMLController implements Initializable {
 
 				}
                         }
-                        updateKatalog();
+                        updateCatalog();
                 }
         }
         
 
-                    /*nykampPane.setVisible(false);
-		perosnalCampaignPane.setVisible(true);
-		
-		perosnalCampaignPaneCustomers.getItems().clear();*/
-                
+                 
 	
 
 	
@@ -627,7 +627,7 @@ public class MenuFXMLController implements Initializable {
 		
 		perosnalCampaignPaneCustomers.getItems().clear();
 			
-			for (Customer getCustomer : mediator.getListOfClients()) {
+			for (Customer getCustomer : mediator.getListOfCustomers()) {
 
 				if (getCustomer != null) {
 
@@ -652,7 +652,7 @@ public class MenuFXMLController implements Initializable {
 	 */
 	@FXML
 	private void handlePerosnalCampaignPaneChooseButtonAction(ActionEvent event) {
-            for (Customer customer :mediator.getListOfClients()){
+            for (Customer customer :mediator.getListOfCustomers()){
 
 		//Handels if no customer is chosen. When clicked nothing happens on the screen. 
 		if (perosnalCampaignPaneCustomers.getSelectionModel().getSelectedItem() == null) {
@@ -662,7 +662,7 @@ public class MenuFXMLController implements Initializable {
                 
                 else if(perosnalCampaignPaneCustomers.getSelectionModel().getSelectedItem() == customer){
                     
-                         customer.setPersonTilbud((Integer)rabat.getValue());
+                         customer.setPersonalSale((Integer)rabat.getValue());
                         
                     
                 }
@@ -679,7 +679,7 @@ public class MenuFXMLController implements Initializable {
 	 * @param event
 	 */
 	@FXML
-	private void handleKasseAction(ActionEvent event) {
+	private void handleRegisterAction(ActionEvent event) {
 
 		Button b = (Button) event.getSource();
 		int id = 0;
@@ -712,7 +712,7 @@ public class MenuFXMLController implements Initializable {
                     */
                    
                 //here should we add new order to DB
-                updateKundeKonto();
+                updateCustomerAccount();
                 }
                 
 
@@ -724,7 +724,7 @@ public class MenuFXMLController implements Initializable {
 	 * @param event
 	 */
 	@FXML
-	private void handleForsendelseAction(ActionEvent event) {
+	private void handleShippingAction(ActionEvent event) {
 
 		RadioButton radiob = (RadioButton) hente.getSelectedToggle();
 
@@ -737,7 +737,7 @@ public class MenuFXMLController implements Initializable {
 
 				if (store != null) {
 
-					listButikker.getItems().add(store.getAdresse());
+					listButikker.getItems().add(store.getAdress());
 					invoiceInfoPaneDiffrentAddress.disableProperty();
 
 				}
@@ -783,7 +783,7 @@ public class MenuFXMLController implements Initializable {
 
 		setAllPaneInvisibleButOne(invoiceInfoPane);
 		invoiceInfoPaneTotalPrice.setText(totalpris.getText());
-		invoiceInfoPaneCountry.setValue("Danmark");
+		
 
 	}
 
@@ -812,7 +812,7 @@ public class MenuFXMLController implements Initializable {
                 int oid = mediator.getIDforOrder();
                 Customer cu = this.loggedInCu;
                 if(hente.getSelectedToggle()==hjem){
-                String t = cu.getAdresse();
+                String t = cu.getAdress();
                 /*int virkerikke = (Integer)kundeorderer.getItems().get(0); ubruligt*/
                  //Get the logged in user.
                 List<Commodity> items = (List<Commodity>)orderPaneOrder.getItems();
@@ -826,14 +826,14 @@ public class MenuFXMLController implements Initializable {
 		double amount = 10;
 this.mediator.addNewOrder(order);
 		Payment payment = new Payment(amount, date, customer, order);
-                this.updateKundeKonto();
+                this.updateCustomerAccount();
 //order.getTotalPrice();
 		//Creates an Payment-object for the particular order.
                 }
                 else if(hente.getSelectedToggle()==collect){
                     this.selectedStore = mediator.getStoreByAdress((String)listButikker.getSelectionModel().getSelectedItem());
                     
-                    String t = this.selectedStore.getAdresse();
+                    String t = this.selectedStore.getAdress();
                 /*int virkerikke = (Integer)kundeorderer.getItems().get(0); ubruligt*/
                  //Get the logged in user.
                 List<Commodity> items = (List<Commodity>)orderPaneOrder.getItems();
@@ -847,7 +847,7 @@ this.mediator.addNewOrder(order);
 		double amount = 10;
                    this.mediator.addNewOrder(order);
 		Payment payment = new Payment(amount, date, customer, order);
-                this.updateKundeKonto(); 
+                this.updateCustomerAccount(); 
                 }
                 
 		setAllPaneInvisibleButOne(receiptPane);
@@ -880,7 +880,7 @@ this.mediator.addNewOrder(order);
 	private void handleReceiptPaneBackButtonAction(ActionEvent event) {
 
 		setAllPaneInvisibleButOne(shopPane);
-		clearAllItemsAndTotalprice();
+		clearAllCommoditiesAndTotalprice();
 
 	}
 
@@ -896,8 +896,8 @@ this.mediator.addNewOrder(order);
 		logpaa.setVisible(true);
 		logaf.setVisible(false);
 		setAllPaneInvisibleButOne(shopPane);
-		clearAllItemsAndTotalprice();
-                updateKatalog();
+		clearAllCommoditiesAndTotalprice();
+                updateCatalog();
 
 	}
 
@@ -907,7 +907,7 @@ this.mediator.addNewOrder(order);
 	 * @param event
 	 */
          @FXML
-    private void handleReklamPaneAction() {
+    private void handleReclamationPaneAction() {
         String s = String.valueOf(reklamord.getSelectionModel().getSelectedItem());
         Order o = (mediator.getOrderByid(s));
         for (Commodity i : o.getListOfCommodities()) {
@@ -919,7 +919,7 @@ this.mediator.addNewOrder(order);
         //Get reklamation og opdater GUI ?!
     }
    @FXML
-    private void handleReklamPaneSelectItemAction() {
+    private void handleReclamationPaneSelecttionOfCommodityAction() {
         Commodity item_to_complaint = (Commodity) reklamprod.getSelectionModel().getSelectedItem();
         //reklamprod.getItems().removeAll();
         reklamprod.getItems().remove(item_to_complaint);
@@ -934,10 +934,10 @@ this.mediator.addNewOrder(order);
                 String reasonto = reklamaars.getText();
                 String changeitem =this.handleRadioButtonsForReclamationAction();
                 int id_reclam=mediator.getIDforReclamation();
-                Customer customer_reclam=mediator.getClientByOrder(o.getId());
+                Customer customer_reclam=mediator.getCustomerByOrder(o.getId());
                 Reclamation t = new Reclamation(reasonto, new Date(), true, changeitem, id_reclam, customer_reclam, varerTilBytte, o);
                 mediator.addNewReclamation(t);
-                updateKundeKonto();
+                updateCustomerAccount();
 //here shold we add this new reclamation to db
 
                 reklampane.setVisible(false);
@@ -953,7 +953,7 @@ this.mediator.addNewOrder(order);
         return "Penge";
     }
 	@FXML
-	private void handleKundeKontoAction(ActionEvent event) {
+	private void handleCustomerAccountAction(ActionEvent event) {
 
 		
 		Button pressed_button = (Button) event.getSource();
@@ -961,18 +961,8 @@ this.mediator.addNewOrder(order);
 
 			reklampane.setVisible(true);
                         reklamord.getItems().addAll(kundeorderer.getItems());
-                       
-
-               /* }else if (pressed_button == opretreklam && reklamationer.getSelectedToggle().isSelected() == true && reklamlist.getItems().isEmpty() == false) {
-                List<Commodity> varerTilBytte = reklamlist.getItems();
-                String s = String.valueOf(reklamord.getSelectionModel().getSelectedItem());
-                Order o = (mediator.getOrderByid(s));
-                mediator.addNewReclamation(new Reclamation(reklamaars.getText(), new Date(), true, reklamationer.getSelectedToggle().toString(), mediator.getIDforReclamation(), mediator.getClientByOrder(o.getId()), varerTilBytte, o));
-                updateKundeKonto();
-//here shold we add this new reclamation to db
-                reklampane.setVisible(false);*/
-                
-            
+              
+                     
                 } else if (pressed_button == logafff) {
 
 			kundekontoPane.setVisible(false);
@@ -983,10 +973,10 @@ this.mediator.addNewOrder(order);
 			register.setVisible(true);
 			kundekonto.setVisible(false);
 			logaf.setVisible(false);
-                        updateKundeKonto();
+                        updateCustomerAccount();
                         
                         katalog.getItems().addAll(mediator.getListOfCommodites());
-                        updateKatalog();
+                        updateCatalog();
                         
 
 		} else if (pressed_button == redigopl) {
@@ -1006,7 +996,7 @@ kundeoplys.setVisible(true);
 
 				redigeringsPane.setVisible(false);
 
-				for (Customer kundas : mediator.getListOfClients()) {
+				for (Customer kundas : mediator.getListOfCustomers()) {
 
 					if (kundas.toString().compareTo(kundeoplys.getText()) == 0) {
 
@@ -1015,33 +1005,33 @@ kundeoplys.setVisible(true);
 							kundas.setPassword(redignypass.getText());
 							rediggampass.setVisible(false);
 							redignypass.setVisible(false);
-							updateKundeKonto();
+							updateCustomerAccount();
 
 						}
 
 						if (redigname.getText().isEmpty() == false) {
 
 							kundas.setFullname(redigname.getText());
-							updateKundeKonto();
+							updateCustomerAccount();
 
 						}
 
 						if (redigtel.getText().isEmpty() == false) {
 
 							kundas.setTelefonnr(Integer.parseInt(redigtel.getText()));
-							updateKundeKonto();
+							updateCustomerAccount();
 						}
 
 						if (redigadd.getText().isEmpty() == false) {
 
-							kundas.setAdresse(redigadd.getText());
-							updateKundeKonto();
+							kundas.setAdress(redigadd.getText());
+							updateCustomerAccount();
 
 						}
 						if (redignypass.getText().isEmpty() == true && redigname.getText().isEmpty() == true && redigadd.getText().isEmpty() == true && redigtel.getText().isEmpty() == true) {
 
 							kunneik.setText("Ugyldig værdig");
-							updateKundeKonto();
+							updateCustomerAccount();
 
 						}
 					}
@@ -1050,13 +1040,13 @@ kundeoplys.setVisible(true);
 
 				redignypass.setVisible(true);
 				rediggampass.setVisible(true);
-				updateKundeKonto();
+				updateCustomerAccount();
 
 			} else if (pressed_button == tilbage0) {
 
 				kundekontoPane.setVisible(false);
 				shopPane.setVisible(true);
-				updateKundeKonto();
+				updateCustomerAccount();
 			}
 		}
 
@@ -1068,7 +1058,7 @@ kundeoplys.setVisible(true);
 	 * @param event
 	 */
 	@FXML
-	private void handleRegistrationAction(ActionEvent event) {
+	private void handleRegisteryAction(ActionEvent event) {
 
 		Button pressed_button = (Button) event.getSource();
 
@@ -1076,14 +1066,14 @@ kundeoplys.setVisible(true);
 
 			if ((regname.getText().isEmpty() == false) && (regaddr.getText().isEmpty() == false) && (regtel.getText().isEmpty() == false) && (reglog.getText().isEmpty() == false) && (redadg.getText().isEmpty() == false)) {
 
-				mediator.getListOfClients().add(new Customer(regname.getText(), regaddr.getText(), reglog.getText(), redadg.getText(), Integer.parseInt(regtel.getText()), 0));
+				mediator.getListOfCustomers().add(new Customer(regname.getText(), regaddr.getText(), reglog.getText(), redadg.getText(), Integer.parseInt(regtel.getText()), 0));
 				registerPane.setVisible(false);
 				shopPane.setVisible(true);
 				logpaa.setVisible(false);
 				register.setVisible(false);
 				logaf.setVisible(true);
 				kundekonto.setVisible(true);
-				mediator.getListOfClients().add(new Customer(regname.getText(), regaddr.getText(), reglog.getText(), redadg.getText(), Integer.parseInt(regtel.getText()),0));
+				mediator.getListOfCustomers().add(new Customer(regname.getText(), regaddr.getText(), reglog.getText(), redadg.getText(), Integer.parseInt(regtel.getText()),0));
 
 			} else {
 
@@ -1129,7 +1119,7 @@ kundeoplys.setVisible(true);
 
 		if (pressed_button == kunde) {
 
-			if (mediator.getClientByLoginAndPassword(loginek.getText(), password.getText()) != null) {
+			if (mediator.getCustomerByLoginAndPassword(loginek.getText(), password.getText()) != null) {
 
 				loggingPane.setVisible(false);
 				shopPane.setVisible(true);
@@ -1144,29 +1134,29 @@ kundetilbud.clear();
 				
 				Customer kundeczek = mediator.getClientByLogin(loginek.getText());
 				kundeoplys.setText(kundeczek.toString());
-				List<Order> tmp0 = mediator.getAllOrdersByClient(kundeczek);
+				List<Order> tmp0 = mediator.getAllOrdersByCustomer(kundeczek);
 				kundeorderer.getItems().addAll(tmp0);
                                 List<Reclamation> tmp01 = mediator.getAllReclamationsByCustomer(kundeczek);
                                 kundereklam.getItems().addAll(tmp01);
                                 
-                                kundetilbud.setText("Det er kun til dig hele "+(kundeczek.getPersonTilbud())+"% tilbud!!!!");
+                                kundetilbud.setText("Det er kun til dig hele "+(kundeczek.getPersonalSale())+"% tilbud!!!!");
 				loginek.clear();
                                 password.clear();
                                 this.loggedInCu = kundeczek;
                                 Iterator <Commodity> iterator = katalog.getItems().iterator();
                                 while (iterator.hasNext()) {
                                     Commodity next = iterator.next();
-                                    if((next instanceof Product)&&(kundeczek.getPersonTilbud()!=0)&&kundeoplys.getText().isEmpty()!=true){
+                                    if((next instanceof Product)&&(kundeczek.getPersonalSale()!=0)&&kundeoplys.getText().isEmpty()!=true){
                                        
                                         double newPrice = 0;
                                         
-                                        newPrice = ((Product) next).calculatePriceWithRabat((Integer) kundeczek.getPersonTilbud(), next.getPris());
-					next.setPris(newPrice);
+                                        newPrice = ((Product) next).calculatePriceWithRabat((Integer) kundeczek.getPersonalSale(), next.getPrice());
+					next.setPrice(newPrice);
                                     }
 
                                 }
-                                updateKatalog(); 
-                                updateKundeKonto();
+                                updateCatalog(); 
+                                updateCustomerAccount();
                                 
                                 
 			}
@@ -1250,7 +1240,7 @@ kundetilbud.clear();
 
 			for (Commodity v : cart.getItems()) {
 
-				totalPris += v.getPris();
+				totalPris += v.getPrice();
                                 DecimalFormat formatter = new DecimalFormat("0.00");
 				String total2 = String.valueOf(formatter.format(totalPris));
                                 
@@ -1295,7 +1285,7 @@ kundetilbud.clear();
 	 * @param event
 	 */
 	@FXML
-	private void handleSøgningAction(ActionEvent event) {
+	private void handleSearchingAction(ActionEvent event) {
 
 		RadioButton but = (RadioButton) group.getSelectedToggle();
 
@@ -1328,7 +1318,7 @@ kundetilbud.clear();
 	 * This method handles the updating of the catalog.
 	 *
 	 */
-	private void updateKatalog() {
+	private void updateCatalog() {
 		this.katalog.getItems().clear();
 		List<Commodity> objects = mediator.getListOfCommodites();
 
@@ -1349,7 +1339,7 @@ kundetilbud.clear();
 	 * This method handles the updating of the custome account.
 	 *
 	 */
-	private void updateKundeKonto() {
+	private void updateCustomerAccount() {
                 this.kundeoplys.clear();
                 this.kundeorderer.getItems().clear();
                 this.kundereklam.getItems().clear();
@@ -1363,9 +1353,9 @@ kundetilbud.clear();
 		for (Customer kudin : clients) {
 
 			this.kundeoplys.setText(kudin.toString());
-                        this.kundeorderer.getItems().addAll(mediator.getAllOrdersByClient(kudin));
+                        this.kundeorderer.getItems().addAll(mediator.getAllOrdersByCustomer(kudin));
                         this.kundereklam.getItems().addAll(mediator.getAllReclamationsByCustomer(kudin));
-                        this.kundetilbud.setText("Du har "+kudin.getPersonTilbud()+"% rabat");
+                        this.kundetilbud.setText("Du har "+kudin.getPersonalSale()+"% rabat");
                              
 		}
 	}
@@ -1382,7 +1372,7 @@ kundetilbud.clear();
 	 * This method handles the updating of the shops list.
 	 *
 	 */
-	private void updateButikker() {
+	private void updateStores() {
 
 		this.listButikker.getItems().removeAll();
 		List<Store> butikker = mediator.getListOfStores();
@@ -1458,7 +1448,7 @@ kundetilbud.clear();
 	 * This method clears all selected items and totalprice in the webshop.
 	 *
 	 */
-	private void clearAllItemsAndTotalprice() {
+	private void clearAllCommoditiesAndTotalprice() {
 
 		cart.getItems().clear();
 		orderPaneOrder.getItems().clear();

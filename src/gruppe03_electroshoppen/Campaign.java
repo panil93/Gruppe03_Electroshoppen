@@ -13,23 +13,23 @@ import java.util.Date;
  */
 public class Campaign{
 
-	private int procentTilbud;
-	private boolean gælderIWebshop;
-	private boolean gælderIPoS;
-	private Date startdato;
-	private Date slutdato;
+	private int precentSaved;
+	private boolean isInWebshop;
+	private boolean idInPoS;
+	private Date startdate;
+	private Date finaldate;
 
-	public Campaign(int procentTilbud, boolean gælderIWebshop, boolean gælderIPoS) {
+	public Campaign(int precentSaved, boolean isInWebshop, boolean idInPoS) {
 		
-		this.procentTilbud = procentTilbud;
-		this.gælderIWebshop = gælderIWebshop;
-		this.gælderIPoS = gælderIPoS;
+		this.precentSaved = precentSaved;
+		this.isInWebshop = isInWebshop;
+		this.idInPoS = idInPoS;
 	
 	}
 
-	public int getProcentTilbud() {
+	public int getPrecentSaved() {
 	
-		return this.procentTilbud;
+		return this.precentSaved;
 	
 	}
 }

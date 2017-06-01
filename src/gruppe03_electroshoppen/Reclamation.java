@@ -14,51 +14,51 @@ import java.util.List;
  */
 public class Reclamation{
 
-	private String årsag;
-	private Date dato;
-	private boolean erÅbnet;
-	private String byttevare;
+	private String reason;
+	private Date date;
+	private boolean isOpen;
+	private String refoundOrCommodity;
 	private int id;
 	Customer customer;
-	List<Commodity> varerTilBytte;
+	List<Commodity> commoditiesToChange;
 	Order order;
 
-	public Reclamation(String årsag, Date dato, boolean erÅbnet, String byttevare, int id, Customer customer, List<Commodity> varerTilBytte, Order order) {
-		this.årsag = årsag;
-		this.dato = dato;
-		this.erÅbnet = erÅbnet;
-		this.byttevare = byttevare;
+	public Reclamation(String reason, Date date, boolean isOpen, String refoundOrCommodity, int id, Customer customer, List<Commodity> commoditiesToChange, Order order) {
+		this.reason = reason;
+		this.date = date;
+		this.isOpen = isOpen;
+		this.refoundOrCommodity = refoundOrCommodity;
 		this.id = id;
                 this.customer = customer;
-                this.varerTilBytte = varerTilBytte;
+                this.commoditiesToChange = commoditiesToChange;
                 this.order = order;
 	}
         public int getId(){
             return this.id;
         }
         public String getChangeItem(){
-            return this.byttevare;
+            return this.refoundOrCommodity;
         }
         public List<Commodity> getListOfCommodities(){
-            return this.varerTilBytte;
+            return this.commoditiesToChange;
         }
         public Order getOrder(){
             return this.order;
         }
         
         public String getReason(){
-            return this.årsag;
+            return this.reason;
         }
-        public Customer getClient(){
+        public Customer getCustomer(){
             return this.customer;
         }
         public String getDate()
         {
-            return this.dato.toString();
+            return this.date.toString();
         }
         public boolean isOpen()
         {
-            return this.erÅbnet;
+            return this.isOpen;
         }
         @Override
         public String toString()

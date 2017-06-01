@@ -17,14 +17,14 @@ public abstract class Commodity{
 	double RetailPrice;
 	private String CompanyId;
 
-	public double getPris() {
+	public double getPrice() {
             DecimalFormat formatter = new DecimalFormat("$0.00");
             
 		return this.RetailPrice; // WTF ?!
 
 	}
 
-	public void setPris(double price) {
+	public void setPrice(double price) {
 		this.RetailPrice = price;
 
 	}
