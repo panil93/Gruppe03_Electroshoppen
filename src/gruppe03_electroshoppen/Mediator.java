@@ -22,7 +22,11 @@ import java.util.logging.Logger;
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class Mediator {
-
+/**
+	 * Loaders
+	 *
+	 * 
+	 */
 	LoadCommodities l = new LoadCommodities();
 	LoadCustomers k = new LoadCustomers();
 	LoadStores lB = new LoadStores();
@@ -34,6 +38,11 @@ public class Mediator {
 	List<Subsupplier> listofunderleverandor = new ArrayList<Subsupplier>();
 	List<Order> listoforder = new ArrayList<Order>();
 
+        /**
+	 * Mediator
+	 *
+	 * 
+	 */
 	public Mediator() {
 		l.load();
 		k.load(this);
@@ -83,6 +92,12 @@ public class Mediator {
 		return null;
 	}
 
+        /**
+	 * Employee login
+	 *
+	 * @param String login - the login
+                   * @param String adgangskode - the password
+	 */
 	public boolean IsEmpoloeeInSystem(String login, String adgangskode) {
 		for (Employee m : medarblist) {
 			if (m.getLogin().compareTo(login) == 0 && m.getAdgangskode().compareTo(adgangskode) == 0) {
@@ -92,6 +107,12 @@ public class Mediator {
 		return false;
 	}
 
+                /**
+	 * Gets commodities by ID
+	 *
+	 * @param String s
+                   * 
+	 */
 	public Commodity getCommodityByid(String s) {
 		for (Commodity v : produktkatalog) {
 
@@ -103,6 +124,12 @@ public class Mediator {
 		return null;
 	}
 
+                /**
+	 * Gets goods by order
+	 *
+	 * @param int orders_id - the id of the orders
+                   * 
+	 */
 	public List<Commodity> getVarerByOrder(int orders_id) {
 
 		for (Order o : this.getListOfOrders()) {
@@ -112,7 +139,13 @@ public class Mediator {
 		}
 		return null;
 	}
-
+        
+                /**
+	 * Gets orders by ID
+	 *
+	 * @param String s
+                   * 
+	 */
 	public Order getOrderByid(String s) {
 		for (Order o : this.getListOfOrders()) {
 			if (o.getId() == Integer.parseInt(s)) {
@@ -122,6 +155,12 @@ public class Mediator {
 		return null;
 	}
 
+                /**
+	 * Gets commodities by ID
+	 *
+	 * @param String s
+                   * 
+	 */
 	public Commodity getCommoditiesById(String n) {
 		for (Commodity v : l.getProductKatalog()) {
 			if (v.getId().compareTo(n) == 0) {
@@ -133,6 +172,12 @@ public class Mediator {
 		return null;
 	}
 
+                /**
+	 * Gets employees by login
+	 *
+	 * @param String l
+                   * 
+	 */
 	public Employee getEmployeeByLogin(String l) {
 		for (Employee m : medarblist) {
 			if (m.getLogin().compareTo(l) == 0) {
@@ -142,6 +187,12 @@ public class Mediator {
 		return null;
 	}
 
+                /**
+	 * Gets stores by adress
+	 *
+	 * @param String a
+                   * 
+	 */
 	public Store getStoreByAdress(String a) {
 		for (Store b : lB.getListOfShops()) {
 			if (b.getAdresse().compareTo(a) == 0) {
@@ -151,6 +202,12 @@ public class Mediator {
 		return null;
 	}
 
+                /**
+	 * Gets list of commodities by ID
+	 *
+	 * @param String st
+                   * 
+	 */
 	public List<Commodity> getListOfCommoditiesById(String st) {
 		List<Commodity> varelist = this.l.getProductKatalog();
 		List<Commodity> newlistofvarer = new ArrayList();
@@ -167,6 +224,12 @@ public class Mediator {
 		return newlistofvarer;
 	}
 
+                /**
+	 * Gets list of order
+	 *
+	 * @param String intowy
+                   * 
+	 */
 	public List<Order> getListOfOrder(String intowy) {
 		List<Order> orderlist = this.k.getListOfOrder();
 		String[] strinkowaarray = intowy.split(",");
@@ -177,10 +240,22 @@ public class Mediator {
 		return orderlist;
 	}
 
+                /**
+	 * Removes list of order
+	 *
+	 * @param String o
+                   * 
+	 */
 	public void RemoveListOfOrder(Order o) {
 		this.k.getListOfOrder().remove(o);
 	}
 
+                /**
+	 * Gets list of employee by login
+	 *
+	 * @param String str
+                   * 
+	 */
 	public List<Employee> getListOfMedarbejderByLogin(String str) {
 		List<Employee> medarbliste = new ArrayList<>();
 		String[] stringarray = str.split(",");
@@ -190,7 +265,14 @@ public class Mediator {
 		}
 		return medarbliste;
 	}
-
+        
+                /**
+	 * Gets clients by login and password
+	 *
+	 * @param String log - the login
+                   *@param pass - the password   
+                   * 
+	 */
 	public Customer getClientByLoginAndPassword(String log, String pass) {
 		for (Customer kund : k.getListOfClients()) {
 			if ((kund.getLogin().compareTo(log) == 0) && (kund.getPassword().compareTo(pass) == 0)) {
@@ -200,6 +282,12 @@ public class Mediator {
 		return null;
 	}
 
+                /**
+	 * Gets client by order
+	 *
+	 * @param int ordernr - the number of the order
+                   * 
+	 */
 	public Customer getClientByOrder(int ordernrnr) {
 		for (Order ordi : k.getListOfOrder()) {
 			if (ordi.getId() == ordernrnr) {
@@ -209,6 +297,12 @@ public class Mediator {
 		return null;
 	}
 
+                /**
+	 * Gets all orders by client
+	 *
+	 * @param Customer kundzik
+                   * 
+	 */
 	public List<Order> getAllOrdersByClient(Customer kundzik) {
             
 		List<Order> orderlist0 = new ArrayList<>();
@@ -220,6 +314,13 @@ public class Mediator {
 		}
 		return orderlist0;
 	}
+        
+                /**
+	 * Gets all the reclamations by customer
+	 *
+	 * @param Customer customer
+                   * 
+	 */
         public List<Reclamation> getAllReclamationsByCustomer(Customer customer){
             List<Reclamation> listToReturn = new ArrayList<>();
             
@@ -233,6 +334,13 @@ public class Mediator {
         
             return listToReturn;
         }
+        
+                /**
+	 * Gets the ID for an order
+	 *
+	 * 
+                   * 
+	 */
         public int getIDforOrder(){
             int returnId= 0;
             List<Integer> intowa = new ArrayList<>();
@@ -243,6 +351,13 @@ public class Mediator {
             }
             return returnId;
         }
+        
+                /**
+	 * Gets ID for reclamation
+	 *
+	 * @param String s
+                   * 
+	 */
         public int getIDforReclamation(){
             int returnId=0;
             List<Integer> intowa = new ArrayList<>();
@@ -254,6 +369,13 @@ public class Mediator {
             return returnId;
             
         }
+        
+                /**
+	 * Adds new reclamation
+	 *
+	 * @param Reclamation r
+                   * 
+	 */
         public boolean addNewReclamation(Reclamation r)
         {
              try {
@@ -263,6 +385,13 @@ public class Mediator {
                 return false;
             }
         }
+        
+                /**
+	 * Adds new order
+	 *
+	 * @param Order o
+                   * 
+	 */
         public boolean addNewOrder(Order o)
         {
             try {

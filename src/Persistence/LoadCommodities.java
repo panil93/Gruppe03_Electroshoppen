@@ -26,13 +26,18 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Laura
+ * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class LoadCommodities extends Loader {
-
+                   
     private List<Commodity> product_list = new ArrayList();
     PostgreSQLConnection db = null;
-
+    
+                  /**
+	 * Loads commodities in the system
+	 *
+	 * 
+	 */
     @Override
     public void load() {
         this.db = new PostgreSQLConnection();
