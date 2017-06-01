@@ -400,7 +400,7 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-	 * This method handles the ''Medarbejder'' functionality, this is an event handler.
+	 * This method handles the ''employee'' functionality, this is an event handler.
 	 *
 	 * @param event
 	 */
@@ -477,7 +477,7 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-	 * This method handles the ''Kampagner''' functionality, this is an event handler.
+	 * This method handles the ''campaigns''' functionality, this is an event handler.
 	 *
 	 * @param event
 	 */
@@ -517,7 +517,7 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-	 * This method handles the ''Kampagne'' Pane, and brings up the ''Kampagne'' informations.
+	 * This method handles the ''campaigns'' Pane, and brings up the ''campaigns'' informations.
 	 *
 	 * @param event
 	 */
@@ -672,7 +672,7 @@ public class MenuFXMLController implements Initializable {
 	}
         }
 	/**
-	 * This method handles the ''Indkøbskurv'' functionality, this is an event handler.
+	 * This method handles the final ''shopping cart'' visibility, this is an event handler.
 	 *
 	 * @param event
 	 */
@@ -705,11 +705,10 @@ public class MenuFXMLController implements Initializable {
 		}
                 else if(b==orderPaneContinue){
                     /*
-                    Bliver aldrig kaldt , burde kaldes når et køb er betalt
-                    og bekræftet.
+                    Was never called, should be called when something is paid for.
                     */
                    
-                //here should we add new order to DB
+                //here we should add new order to DB
                 updateCustomerAccount();
                 }
                 
@@ -900,7 +899,7 @@ this.mediator.addNewOrder(order);
 	}
 
 	/**
-	 * This method handles the the ''Reklame''' pane.
+	 * This method handles the the ''reclamation''' pane.
 	 *
 	 * @param event
 	 */
@@ -912,9 +911,9 @@ this.mediator.addNewOrder(order);
             reklamprod.getItems().add(i);
         }
         
-        //Opret reklamations object!
+        //Create reclamation object!
         
-        //Get reklamation og opdater GUI ?!
+        //Get reclamations nad update GUI ?!
     }
    @FXML
     private void handleReclamationPaneSelecttionOfCommodityAction() {
@@ -936,11 +935,17 @@ this.mediator.addNewOrder(order);
                 Reclamation t = new Reclamation(reasonto, new Date(), true, changeitem, id_reclam, customer_reclam, varerTilBytte, o);
                 mediator.addNewReclamation(t);
                 updateCustomerAccount();
-//here shold we add this new reclamation to db
+//here we should add this new reclamation to db
 
                 reklampane.setVisible(false);
                 //opretreklam- Buttons name
     }}
+    
+    /**
+	 * This method handles the the reclamation radioButtons.
+	 *
+	 * @param event
+	 */
     @FXML
     private String handleRadioButtonsForReclamationAction(){
         if(reklamationer.getSelectedToggle().equals(varer)){
@@ -950,6 +955,12 @@ this.mediator.addNewOrder(order);
         }
         return "Penge";
     }
+    
+     /**
+	 * This method handles the the customer account actions.
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void handleCustomerAccountAction(ActionEvent event) {
 
@@ -1390,7 +1401,7 @@ kundetilbud.clear();
 	/**
 	 * This method sets ''this'' for the Mediator.
 	 *
-	 * @param mediator
+	 * @param Mediator mediator
 	 */
 	void setRefAndInitialData(Mediator mediator) {
 
@@ -1401,7 +1412,7 @@ kundetilbud.clear();
 	/**
 	 * This method sets only one pane visible.
 	 *
-	 * @param pane
+	 * @param Pane pane
 	 */
 	private void setAllPaneInvisibleButOne(Pane pane) {
 

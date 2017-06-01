@@ -35,7 +35,7 @@ public class LoadStores extends Loader {
     PostgreSQLConnection db = null;
     
     /**
-	 * Loads customers in the system
+	 * Loads stores in the system
 	 *
 	 * @param Mediator
 	 */

@@ -92,7 +92,12 @@ public class Mediator {
 		return null;
 	}
 
-
+        /**
+	 * Employee login
+	 *
+	 * @param String login - the login
+                   * @param String adgangskode - the password
+	 */
 	public boolean IsEmpoloyeeInSystem(String login, String password) {
 		for (Employee employee_to_loop : listofemployee) {
 			if (employee_to_loop.getLogin().compareTo(login) == 0 && employee_to_loop.getPassword().compareTo(password) == 0) {
@@ -103,7 +108,12 @@ public class Mediator {
 		return false;
 	}
 
-
+  /**
+	 * Gets commodities by order
+	 *
+	 * @param int orders_id - the id of the orders
+                   * 
+	 */
 	public List<Commodity> getCommoditiesByOrder(int orders_id) {
 
 		for (Order order : this.getListOfOrders()) {
@@ -115,7 +125,12 @@ public class Mediator {
 		return null;
 	}
 
-
+                /**
+	 * Gets orders by ID
+	 *
+	 * @param orders_id
+                   * 
+	 */
 	public Order getOrderByid(String orders_id) {
 		for (Order order : this.getListOfOrders()) {
 			if (order.getId() == Integer.parseInt(orders_id)) {
@@ -126,7 +141,12 @@ public class Mediator {
 		return null;
 	}
 
-
+                /**
+	 * Gets commodities by ID
+	 *
+	 * @param commodities_id
+                   * 
+	 */
 	public Commodity getCommoditiesById(String commodities_id) {
 		for (Commodity commodity_to_loop : l.getProductKatalog()) {
 			if (commodity_to_loop.getId().compareTo(commodities_id) == 0) {
@@ -139,7 +159,12 @@ public class Mediator {
 		return null;
 	}
 
-
+      /**
+	 * Gets employee login
+	 *
+	 * @param employeeslogin
+                   * 
+	 */
 	public Employee getEmployeeByLogin(String employeeslogin) {
 		for (Employee employee_to_loop : listofemployee  ) {
 			if (employee_to_loop.getLogin().compareTo(employeeslogin) == 0) {
@@ -153,8 +178,8 @@ public class Mediator {
 
                 /**
 	 * Gets stores by adress
+                   * @param adress_to_store
 	 */
-
 	public Store getStoreByAdress(String adress_to_store) {
 		for (Store storetoloop : lB.getListOfStores()) {
 			if (storetoloop.getAdress().compareTo(adress_to_store) == 0) {
@@ -165,7 +190,10 @@ public class Mediator {
 		return null;
 	}
 
-
+                /**
+	 * Gets list of commodities by ID
+                   * @param commodities_id
+	 */
 	public List<Commodity> getListOfCommoditiesById(String commodities_id) {
 		List<Commodity> commodity_list = this.l.getProductKatalog();
 		List<Commodity> newlistofcommodities = new ArrayList();
@@ -183,6 +211,10 @@ public class Mediator {
 		return newlistofcommodities;
 	}
 
+             /**
+	 * Gets list of orders
+                   * @param string_to_split
+	 */
 	public List<Order> getListOfOrders(String string_to_split) {
 		List<Order> orderlist = this.k.getListOfOrders();
 		String[] strinkowaarray = string_to_split.split(",");
@@ -194,11 +226,20 @@ public class Mediator {
 		return orderlist;
 	}
 
-
+     /**
+	 * Removes order from list
+                   * @param order_to_remove
+	 */
 	public void RemoveOrderFromList(Order order_to_remove) {
 		this.k.getListOfOrders().remove(order_to_remove);
 	}
 
+                        /**
+	 * Gets list of employee by login
+	 *
+	 * @param employeeslogin
+                   * 
+	 */
 	public List<Employee> getListOfEmployeeByLogin(String employeeslogin) {
 		List<Employee> employeeslist = new ArrayList<>();
 		String[] stringarray = employeeslogin.split(",");
@@ -210,6 +251,13 @@ public class Mediator {
 		return employeeslist;
 	}
 
+                        /**
+	 * Gets custome login
+	 *
+	 * @param login - the login
+                   * @param password - the password
+                   * 
+	 */
 	public Customer getCustomerByLoginAndPassword(String login, String password) {
 		for (Customer customer_to_loop : k.getListOfCustomers()) {
 			if ((customer_to_loop.getLogin().compareTo(login) == 0) && (customer_to_loop.getPassword().compareTo(password) == 0)) {
@@ -220,7 +268,12 @@ public class Mediator {
 		return null;
 	}
 
-
+                /**
+	 * Gets lcustomer by order
+	 *
+	 * @param ordernr
+                   * 
+	 */
 	public Customer getCustomerByOrder(int ordernrnr) {
 		for (Order order_to_loop : k.getListOfOrders()) {
 			if (order_to_loop.getId() == ordernrnr) {
@@ -231,7 +284,12 @@ public class Mediator {
 		return null;
 	}
 
-
+                /**
+	 * Gets all orders by customer
+	 *
+	 * @param customer_to_orders
+                   * 
+	 */
 	public List<Order> getAllOrdersByCustomer(Customer customer_to_orders) {
 
             
@@ -300,6 +358,12 @@ public class Mediator {
             
         }
 
+                    /**
+	 * Adds new reclamation
+	 *
+	 * @param reclamation
+                   * 
+	 */
         public boolean addNewReclamation(Reclamation reclamation)
 
         {
@@ -311,8 +375,13 @@ public class Mediator {
             }
         }
 
+                    /**
+	 * Adds new order
+	 *
+	 * @param order
+                   * 
+	 */
         public boolean addNewOrder(Order order)
-
         {
             try {
                 return k.addNewOrder(order);

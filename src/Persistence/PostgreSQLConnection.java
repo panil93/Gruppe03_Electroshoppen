@@ -61,6 +61,12 @@ public class PostgreSQLConnection {
         this.connection.close();
 
     } 
+    
+      /**
+	 * This method gets all the clients in the system
+	 *
+	 * 
+	 */
    public List<Customer> getAllCustomers() throws SQLException{
        List<Customer> returnCustomer = new ArrayList<Customer>();
 
@@ -77,6 +83,12 @@ public class PostgreSQLConnection {
         return returnCustomer;
    }
 
+   
+     /**
+	 * This method gets all the shops  in the system
+	 *
+	 *
+	 */
     public List<Store> getAllStores() throws SQLException{
        List<Store> returnStore = new ArrayList<Store>();
 
@@ -92,7 +104,12 @@ public class PostgreSQLConnection {
         
         return returnStore;
    }
-
+    
+       /**
+	 * This method gets all the employees from the shop in the system
+	 *
+	 * @param addr
+	 */
     public List<Employee> getAllEmployeesForStore(String addr) throws SQLException
 
     {
@@ -143,6 +160,12 @@ public class PostgreSQLConnection {
         return employeesList;
     }
 
+    
+        /**
+	 * This method gets all the employees in the system
+	 *
+	 * 
+	 */
     public List<Employee> getAllEmployees() throws SQLException{
 
         
@@ -159,6 +182,11 @@ public class PostgreSQLConnection {
         return returnEmplyoees;
     }
 
+        /**
+	 * This method gets all the complaints in the system
+	 *
+	 * @param Mediator ref
+	 */
     public List<Reclamation> getAllReclamations(Mediator reference_to_mediator) throws SQLException{
       List<Reclamation> returnReclamations = new ArrayList<Reclamation>();
       Statement statement4 = this.connection.createStatement();
@@ -183,6 +211,12 @@ public class PostgreSQLConnection {
         return returnReclamations;
     }
 
+      /**
+	 * This method gets all the clients in the system
+	 *
+	 * @param int complaints_id
+                   * @param Mediator ref
+	 */
     public List<Commodity> getAllCommoditiesForReclamation(int complaints_id,Mediator reference_to_mediator) throws SQLException
 
     {
@@ -200,7 +234,11 @@ public class PostgreSQLConnection {
         return returnCommoditiesToReclamation;
     }
      
-
+                   /**
+	 * This method gets all the clients in the system
+	 *
+	 * 
+	 */
     public List<Customer> GetAllEmployees() throws SQLException
 
     {
@@ -247,6 +285,12 @@ resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt
         return returnOrders;
     }
 
+        /**
+	 * This method gets all the items in the system
+	 *
+	 * @param int order_id
+                   * @exception 
+	 */
     public List<Commodity> GetListOfCommoditiesByOrdersId(int orders_id) throws SQLException
 
     {
@@ -312,7 +356,13 @@ resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt
         }
         return returnCommodities;
     }
-
+    
+    
+    /**
+	 * This method gets all the items in the system
+	 *
+	 * 
+	 */
     public List<Commodity> GetAllCommodities() throws SQLException
 
     {
@@ -371,7 +421,11 @@ resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt
         }
         return returnPayments;
     }
-
+    
+    /**
+	 * This method inserts new reclamation in the system
+	 * @param Reclamation r
+	 */
     public boolean insertNewReclamation(Reclamation reclamation) throws SQLException
 
     {
@@ -402,6 +456,11 @@ resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt
         return true;
     }
 
+        /**
+	 * This method gets all items in the system that is in a reclamation
+	 *
+	 * @param Reclamation r
+	 */
     public boolean GetListOfCommoditiesByReclamationsId(Reclamation reclamation) throws SQLException
 
     {
