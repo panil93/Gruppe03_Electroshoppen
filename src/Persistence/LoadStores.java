@@ -31,7 +31,6 @@ public class LoadStores extends Loader {
 
     private List<Store> stores_list;
     private List<Employee> employees_list;
-    //private List<Stock> lager_list;
     Mediator mediator;
     PostgreSQLConnection db = null;
     @Override
