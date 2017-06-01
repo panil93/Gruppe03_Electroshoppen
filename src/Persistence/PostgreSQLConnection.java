@@ -28,15 +28,20 @@ import java.util.List;
 
 /**
  *
- * @author Laura
+ * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class PostgreSQLConnection {
     //Mediator mediator= new Mediator();
   Connection connection = null;
+  
+  /**
+	 * This method handles the connects to the databse.
+	 *
+	 * 
+	 */
     public void openDB() throws SQLException{
         try {
-
-			Class.forName("org.postgresql.Driver");
+            Class.forName("org.postgresql.Driver");
                         
 		} catch (ClassNotFoundException e) {
 
@@ -51,11 +56,14 @@ public class PostgreSQLConnection {
 					"gruppe3");
 
     };
+    
     public void closeDB() throws SQLException{
         this.connection.close();
+
     } 
    public List<Customer> getAllCustomers() throws SQLException{
        List<Customer> returnCustomer = new ArrayList<Customer>();
+
        
         Statement statement1 = this.connection.createStatement();
         ResultSet resultset1 = statement1.executeQuery("SELECT fullname,adress,login,password,telefonnr,personligtilbud FROM public.\"Client\" ");
@@ -68,8 +76,10 @@ public class PostgreSQLConnection {
         
         return returnCustomer;
    }
+
     public List<Store> getAllStores() throws SQLException{
        List<Store> returnStore = new ArrayList<Store>();
+
        
         Statement statement1 = this.connection.createStatement();
         ResultSet resultset1 = statement1.executeQuery("SELECT * FROM public.\"Shop\"");
@@ -82,7 +92,9 @@ public class PostgreSQLConnection {
         
         return returnStore;
    }
+
     public List<Employee> getAllEmployeesForStore(String addr) throws SQLException
+
     {
         
         //this.openDB();
@@ -130,7 +142,9 @@ public class PostgreSQLConnection {
         //this.closeDB();
         return employeesList;
     }
+
     public List<Employee> getAllEmployees() throws SQLException{
+
         
         List<Employee> returnEmplyoees = new ArrayList<Employee>();
        
@@ -144,9 +158,11 @@ public class PostgreSQLConnection {
         
         return returnEmplyoees;
     }
+
     public List<Reclamation> getAllReclamations(Mediator reference_to_mediator) throws SQLException{
       List<Reclamation> returnReclamations = new ArrayList<Reclamation>();
       Statement statement4 = this.connection.createStatement();
+
       
         ResultSet resultset4 = statement4.executeQuery("SELECT * FROM public.\"Complaint\"");
         while (resultset4.next())
@@ -166,7 +182,9 @@ public class PostgreSQLConnection {
         
         return returnReclamations;
     }
+
     public List<Commodity> getAllCommoditiesForReclamation(int complaints_id,Mediator reference_to_mediator) throws SQLException
+
     {
         List<Commodity> returnCommoditiesToReclamation = new ArrayList<Commodity>();
       Statement statement4 = this.connection.createStatement();
@@ -182,7 +200,9 @@ public class PostgreSQLConnection {
         return returnCommoditiesToReclamation;
     }
      
+
     public List<Customer> GetAllEmployees() throws SQLException
+
     {
         List<Customer> returnEmployees = new ArrayList<Customer>();
        
@@ -196,6 +216,12 @@ resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt
         }
         return returnEmployees;
     }
+    
+    /**
+	 * This method gets all the orders in the system
+	 *
+	 *
+	 */
     public List<Order> GetAllOrders() throws SQLException
     {
         List<Order> returnOrders = new ArrayList<Order>();
@@ -220,7 +246,9 @@ resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt
         }
         return returnOrders;
     }
+
     public List<Commodity> GetListOfCommoditiesByOrdersId(int orders_id) throws SQLException
+
     {
         List<Commodity> returnCommodities = new ArrayList<>();
         Statement statement1 = this.connection.createStatement();
@@ -284,7 +312,9 @@ resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt
         }
         return returnCommodities;
     }
+
     public List<Commodity> GetAllCommodities() throws SQLException
+
     {
        List<Commodity> returnCommodities = new ArrayList<Commodity>();
        
@@ -318,7 +348,16 @@ resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt
         
         return returnCommodities;
     }
+
+    
+    /**
+	 * This method gets all the payments in the system
+	 *
+	 * @param Mediator ref_m
+	 */
+
     public List<Payment> GetAllPayments(Mediator reference_to_mediator) throws SQLException
+
     {
         List<Payment> returnPayments = new ArrayList<>();
         Statement st3 = this.connection.createStatement();
@@ -332,7 +371,9 @@ resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt
         }
         return returnPayments;
     }
+
     public boolean insertNewReclamation(Reclamation reclamation) throws SQLException
+
     {
         /*
         Opret Entry i Complaint tabel
@@ -360,7 +401,9 @@ resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt
         GetListOfCommoditiesByReclamationsId(reclamation);
         return true;
     }
+
     public boolean GetListOfCommoditiesByReclamationsId(Reclamation reclamation) throws SQLException
+
     {
         
         for (Commodity commodity: reclamation.getListOfCommodities()){
@@ -376,7 +419,9 @@ resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt
         }
         return true;
 }
+
     public boolean insertNewOrder(Order order) throws SQLException
+
     {
         Statement statement3 = this.connection.createStatement();
         String Query = "INSERT INTO public.\"Order\" (\"id\", \"placeToReception\", \"client_to_order\") VALUES (" +
@@ -390,7 +435,9 @@ resultset3.getString("login"),resultset3.getString("password"),resultset3.getInt
         GetListOfCommoditiesToOrder(order);
         return false; 
 } 
+
     public boolean GetListOfCommoditiesToOrder(Order order) throws SQLException
+
     {
         for (Commodity commodity: order.getListOfCommodities()){
          Statement statement3 = this.connection.createStatement();

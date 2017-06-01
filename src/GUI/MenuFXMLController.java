@@ -373,8 +373,9 @@ public class MenuFXMLController implements Initializable {
         
         private Customer loggedInCu = null;
         private Store selectedStore = null;
+        
 	/**
-	 * This
+	 * 
 	 *
 	 * @param url, rb
 	 */
@@ -390,14 +391,16 @@ public class MenuFXMLController implements Initializable {
 		//
 		updateCatalog();
 		//
+
 		updateStores();
                 
                 
 
+
 	}
 
 	/**
-	 * This method handles the...
+	 * This method handles the ''Medarbejder'' functionality, this is an event handler.
 	 *
 	 * @param event
 	 */
@@ -474,7 +477,7 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-	 * This method handles the...
+	 * This method handles the ''Kampagner''' functionality, this is an event handler.
 	 *
 	 * @param event
 	 */
@@ -514,7 +517,7 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-	 * This method handles the...
+	 * This method handles the ''Kampagne'' Pane, and brings up the ''Kampagne'' informations.
 	 *
 	 * @param event
 	 */
@@ -610,7 +613,7 @@ public class MenuFXMLController implements Initializable {
 	
 	/**
 	 * This method handles the ChooseButton button on Personal Campaign Pane on
-	 * Campaing Pane.
+	 * Campaign Pane.
 	 *
 	 * @param event
 	 */
@@ -669,7 +672,7 @@ public class MenuFXMLController implements Initializable {
 	}
         }
 	/**
-	 * This method handles the...
+	 * This method handles the ''Indkøbskurv'' functionality, this is an event handler.
 	 *
 	 * @param event
 	 */
@@ -714,7 +717,7 @@ public class MenuFXMLController implements Initializable {
 	}
 
 	/**
-	 * This method handles the Radio buttons on
+	 * This method handles the Radio buttons that leads to the collectPane.
 	 *
 	 * @param event
 	 */
@@ -880,7 +883,7 @@ this.mediator.addNewOrder(order);
 	}
 
 	/**
-	 * This method handles the...
+	 * This method handles the the logoff button.
 	 *
 	 * @param event
 	 */
@@ -897,7 +900,7 @@ this.mediator.addNewOrder(order);
 	}
 
 	/**
-	 * This method handles the...
+	 * This method handles the the ''Reklame''' pane.
 	 *
 	 * @param event
 	 */
@@ -1048,14 +1051,7 @@ kundeoplys.setVisible(true);
     }
 
 	/**
-	 * This method handles the...
-	 *
-	 * @param event
-	 */
-	
-
-	/**
-	 * This method handles the...
+	 * This method handles the register button action.
 	 *
 	 * @param event
 	 */
@@ -1091,7 +1087,7 @@ kundeoplys.setVisible(true);
 	}
 
 	/**
-	 * This method handles the...
+	 * This method handles the order details for the suppliers.
 	 *
 	 * @param event
 	 */
@@ -1108,7 +1104,12 @@ kundeoplys.setVisible(true);
             this.updateSupplier();
         }
     }
-
+    
+    /**
+	 * This method handles the login button action.
+	 *
+	 * @param event
+	 */
         @FXML
 	private void handleLogginAction(ActionEvent event) {
 
@@ -1196,7 +1197,7 @@ kundetilbud.clear();
 	}
 
 	/**
-	 * This method handles the...
+	 * This method handles the shop pane action.
 	 *
 	 * @param event
 	 */
@@ -1277,7 +1278,7 @@ kundetilbud.clear();
 	}
 
 	/**
-	 * This method handles the...
+	 * This method handles the search pane action.
 	 *
 	 * @param event
 	 */
@@ -1312,7 +1313,7 @@ kundetilbud.clear();
 	}
 
 	/**
-	 * This method handles the...
+	 * This method handles the updating of the catalog.
 	 *
 	 */
 	private void updateCatalog() {
@@ -1333,7 +1334,7 @@ kundetilbud.clear();
 	}
 
 	/**
-	 * This method handles the...
+	 * This method handles the updating of the custome account.
 	 *
 	 */
 	private void updateCustomerAccount() {
@@ -1366,7 +1367,7 @@ kundetilbud.clear();
         }
 
 	/**
-	 * This method handles the...
+	 * This method handles the updating of the shops list.
 	 *
 	 */
 	private void updateStores() {
@@ -1387,7 +1388,7 @@ kundetilbud.clear();
 	}
 
 	/**
-	 * This method handles the...
+	 * This method sets ''this'' for the Mediator.
 	 *
 	 * @param mediator
 	 */

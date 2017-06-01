@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Laura
+ * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class LoadStores extends Loader {
 
@@ -33,6 +33,12 @@ public class LoadStores extends Loader {
     private List<Employee> employees_list;
     Mediator mediator;
     PostgreSQLConnection db = null;
+    
+    /**
+	 * Loads customers in the system
+	 *
+	 * @param Mediator
+	 */
     @Override
     public void load(Mediator ref_m) {
         this.db = new PostgreSQLConnection();

@@ -22,7 +22,11 @@ import java.util.logging.Logger;
  * @author Termproject - SI2-ORG-U1 - Group 3 (Spring 2017)
  */
 public class Mediator {
-
+/**
+	 * Loaders
+	 *
+	 * 
+	 */
 	LoadCommodities l = new LoadCommodities();
 	LoadCustomers k = new LoadCustomers();
 	LoadStores lB = new LoadStores();
@@ -34,6 +38,11 @@ public class Mediator {
 	List<Subsupplier> listofsubsuppliers = new ArrayList<Subsupplier>();
 	List<Order> listoforders = new ArrayList<Order>();
 
+        /**
+	 * Mediator
+	 *
+	 * 
+	 */
 	public Mediator() {
 		l.load();
 		k.load(this);
@@ -83,37 +92,45 @@ public class Mediator {
 		return null;
 	}
 
+
 	public boolean IsEmpoloyeeInSystem(String login, String password) {
 		for (Employee employee_to_loop : listofemployee) {
 			if (employee_to_loop.getLogin().compareTo(login) == 0 && employee_to_loop.getPassword().compareTo(password) == 0) {
+
 				return true;
 			}
 		}
 		return false;
 	}
 
+
 	public List<Commodity> getCommoditiesByOrder(int orders_id) {
 
 		for (Order order : this.getListOfOrders()) {
 			if (order.getId() == orders_id) {
 				return order.getListOfCommodities();
+
 			}
 		}
 		return null;
 	}
+
 
 	public Order getOrderByid(String orders_id) {
 		for (Order order : this.getListOfOrders()) {
 			if (order.getId() == Integer.parseInt(orders_id)) {
 				return order;
+
 			}
 		}
 		return null;
 	}
 
+
 	public Commodity getCommoditiesById(String commodities_id) {
 		for (Commodity commodity_to_loop : l.getProductKatalog()) {
 			if (commodity_to_loop.getId().compareTo(commodities_id) == 0) {
+
 
 				return commodity_to_loop;
 			}
@@ -122,29 +139,39 @@ public class Mediator {
 		return null;
 	}
 
+
 	public Employee getEmployeeByLogin(String employeeslogin) {
 		for (Employee employee_to_loop : listofemployee  ) {
 			if (employee_to_loop.getLogin().compareTo(employeeslogin) == 0) {
 				return employee_to_loop;
+
 			}
 		}
 		return null;
 	}
 
+
+                /**
+	 * Gets stores by adress
+	 */
+
 	public Store getStoreByAdress(String adress_to_store) {
 		for (Store storetoloop : lB.getListOfStores()) {
 			if (storetoloop.getAdress().compareTo(adress_to_store) == 0) {
 				return storetoloop;
+
 			}
 		}
 		return null;
 	}
+
 
 	public List<Commodity> getListOfCommoditiesById(String commodities_id) {
 		List<Commodity> commodity_list = this.l.getProductKatalog();
 		List<Commodity> newlistofcommodities = new ArrayList();
 		String[] ids = commodities_id.split(",");
 		for (Commodity commodity_to_loop : commodity_list) {
+
 			for (String id : ids) {
 				if (commodity_to_loop.getId().compareTo(id) == 0) {
 					newlistofcommodities.add(commodity_to_loop);
@@ -159,12 +186,14 @@ public class Mediator {
 	public List<Order> getListOfOrders(String string_to_split) {
 		List<Order> orderlist = this.k.getListOfOrders();
 		String[] strinkowaarray = string_to_split.split(",");
+
 		for (int i = 0; i < strinkowaarray.length; i++) {
 			Order order_to = this.getOrderByid((strinkowaarray[i]));
 			orderlist.add(order_to);
 		}
 		return orderlist;
 	}
+
 
 	public void RemoveOrderFromList(Order order_to_remove) {
 		this.k.getListOfOrders().remove(order_to_remove);
@@ -173,6 +202,7 @@ public class Mediator {
 	public List<Employee> getListOfEmployeeByLogin(String employeeslogin) {
 		List<Employee> employeeslist = new ArrayList<>();
 		String[] stringarray = employeeslogin.split(",");
+
 		for (int i = 0; i < stringarray.length; i++) {
 			Employee m = this.getEmployeeByLogin(stringarray[i]);
 			employeeslist.add(m);
@@ -184,21 +214,26 @@ public class Mediator {
 		for (Customer customer_to_loop : k.getListOfCustomers()) {
 			if ((customer_to_loop.getLogin().compareTo(login) == 0) && (customer_to_loop.getPassword().compareTo(password) == 0)) {
 				return customer_to_loop;
+
 			}
 		}
 		return null;
 	}
+
 
 	public Customer getCustomerByOrder(int ordernrnr) {
 		for (Order order_to_loop : k.getListOfOrders()) {
 			if (order_to_loop.getId() == ordernrnr) {
 				return order_to_loop.getCustomer();
+
 			}
 		}
 		return null;
 	}
 
+
 	public List<Order> getAllOrdersByCustomer(Customer customer_to_orders) {
+
             
 		List<Order> orderlist0 = new ArrayList<>();
 		for (Order order_to_loop : this.getListOfOrders()) {
@@ -209,6 +244,13 @@ public class Mediator {
 		}
 		return orderlist0;
 	}
+        
+                /**
+	 * Gets all the reclamations by customer
+	 *
+	 * @param Customer customer
+                   * 
+	 */
         public List<Reclamation> getAllReclamationsByCustomer(Customer customer){
             List<Reclamation> listToReturn = new ArrayList<>();
             
@@ -222,6 +264,13 @@ public class Mediator {
         
             return listToReturn;
         }
+        
+                /**
+	 * Gets the ID for an order
+	 *
+	 * 
+                   * 
+	 */
         public int getIDforOrder(){
             int returnId= 0;
             List<Integer> listOfInts = new ArrayList<>();
@@ -232,6 +281,13 @@ public class Mediator {
             }
             return returnId;
         }
+        
+                /**
+	 * Gets ID for reclamation
+	 *
+	 * @param String s
+                   * 
+	 */
         public int getIDforReclamation(){
             int returnId=0;
             List<Integer> listOfInts = new ArrayList<>();
@@ -243,7 +299,9 @@ public class Mediator {
             return returnId;
             
         }
+
         public boolean addNewReclamation(Reclamation reclamation)
+
         {
              try {
                 return this.k.addNewReclamation(reclamation);
@@ -252,7 +310,9 @@ public class Mediator {
                 return false;
             }
         }
+
         public boolean addNewOrder(Order order)
+
         {
             try {
                 return k.addNewOrder(order);
